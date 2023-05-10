@@ -22,4 +22,11 @@ export class MovieService {
   getMovie(id: string): Observable<Movie> {
     return this.httpClient.get<Movie>(`http://localhost:3000/movies/${id}`)
   }
+
+  updateMovieBooking(movieId: any, seatsBooked: any): void {
+    this.httpClient.post(`http://localhost:3000/booking`, {
+      movieId,
+      seatsBooked
+    }).subscribe(response => console.log(`Post request successful: ${response}`))
+  }
 }

@@ -11,5 +11,6 @@ export class MovieItemComponent {
   @Input() time = "";
   @Input() name = "";
   @Input() numberOfSeats = 0;
+  @Input() seatsBooked = 0;
 
 }

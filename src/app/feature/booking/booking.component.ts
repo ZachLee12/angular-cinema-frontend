@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../movie/movie-service.service';
 
 @Component({
   selector: 'app-booking',
@@ -22,7 +23,8 @@ export class BookingComponent {
     { id: 8, isSelected: false },
     { id: 9, isSelected: false }]
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute,
+    private movieService: MovieService) {
 
   }
 
@@ -32,6 +34,17 @@ export class BookingComponent {
         seat.isSelected = true
       }
     })
+  }
+
+  confirmBooking() {
+    let seatsBooked = 0
+    this.seatLayout.forEach((seat) => {
+      if (seat.isSelected) {
+        seatsBooked++
+      }
+    })
+
+    this.movieService.updateMovieBooking(this.id, seatsBooked)
   }
 
   ngOnInit() {

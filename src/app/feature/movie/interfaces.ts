@@ -1,8 +1,10 @@
+//properties here must match the database model
 export interface Movie {
     id: string;
     time: string;
     name: string;
     numberofseats: number;
+    seatsbooked: number;
 }
 
 export interface MovieListResponse {
