@@ -1,8 +1,14 @@
 #Movie-Page {
     background-color: beige;
-
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../../assets/movie-page-background.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .movies-title {
+    color: white;
+    text-align: center;
     margin: 0;
 }

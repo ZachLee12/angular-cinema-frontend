@@ -1,7 +1,8 @@
 <div id="Movie-Item">
-    <div>Movie ID: {{id}}</div>
-    <div>Movie Time: {{time}} </div>
-    <div>Movie Name:{{name}} </div>
-    <div>Number of Seats: {{numberOfSeats - seatsBooked}} </div>
-    <button routerLink="/booking" [queryParams]="{id, time,name, numberOfSeats}">Book Now</button>
+    <!-- <div>Movie ID: {{id}}</div> -->
+    <div class="name">{{name}} </div>
+    <div class="time">{{time | uppercase }} </div>
+    <div class="seats">Number of seats left: {{numberOfSeats - seatsBooked}} </div>
+    <button class="book-now-button" routerLink="/booking" [queryParams]="{id, time,name, numberOfSeats}">Book
+        Now</button>
 </div>

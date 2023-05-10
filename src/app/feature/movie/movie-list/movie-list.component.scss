@@ -1,0 +1,9 @@
+#Movie-List {
+    // background-color: red;
+    padding: 30px;
+    height: 500px;
+    border: 2px solid red;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
