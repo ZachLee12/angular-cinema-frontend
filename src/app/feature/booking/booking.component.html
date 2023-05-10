@@ -1,7 +1,11 @@
 <div id="Booking">
-    <h1>Booking page</h1>
-    {{movieName}}
-    {{movieTime}}
+    <!-- <h1 class="booking-page-title">Booking page</h1> -->
+
+    <div class="target-movie-info-wrapper">
+        <p class="screen-title">SCREEN</p>
+        <div class="target-movie-name">{{movieName}} </div>
+        <div class="target-movie-time">{{movieTime}} </div>
+    </div>
 
     <div class="grid-container">
         <div (click)="setSelectedSeat($event)" *ngFor="let seat of seatLayout"
@@ -10,5 +14,6 @@
         </div>
     </div>
 
-    <button (click)="confirmBooking()" routerLink="/confirmation">Confirm Booking</button>
+    <button class="confirm-booking-button" (click)="confirmBooking()" routerLink="/confirmation">Confirm
+        Booking</button>
 </div>
