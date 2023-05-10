@@ -3,6 +3,7 @@
     <div class="name">{{name}} </div>
     <div class="time">{{time | uppercase }} </div>
     <div class="seats">Number of seats left: {{numberOfSeats - seatsBooked}} </div>
-    <button class="book-now-button" routerLink="/booking" [queryParams]="{id, time,name, numberOfSeats}">Book
+    <button class="book-now-button" routerLink="/booking"
+        [queryParams]="{id, time,name, numberOfSeats, seatsBooked}">Book
         Now</button>
 </div>

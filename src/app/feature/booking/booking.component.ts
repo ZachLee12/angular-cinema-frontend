@@ -11,6 +11,8 @@ export class BookingComponent {
   id!: any;
   movieName!: string;
   movieTime!: string;
+  numberOfSeatsBooked!: string;
+  generatedIntegers: number[] = [];
 
   seatLayout: any[] = [
     { id: 1, isSelected: false },
@@ -26,6 +28,33 @@ export class BookingComponent {
   constructor(private activatedRoute: ActivatedRoute,
     private movieService: MovieService) {
 
+  }
+
+  ngOnInit() {
+    new Promise<void>((resolve) => {
+      this.activatedRoute.queryParams.subscribe(params => {
+        this.id = params['id'];
+        this.movieName = params['name'];
+        this.movieTime = params['time'];
+        this.numberOfSeatsBooked = params["seatsBooked"]
+      })
+      resolve()
+    })
+      .then(() => {
+        for (let i = 0; i < Number(this.numberOfSeatsBooked); i++) {
+          let generatedInt = this.generateRandomInteger(0, 8)
+          this.generatedIntegers.push(generatedInt)
+          while (!this.generatedIntegers.includes(generatedInt)) {
+            let generatedInt = this.generateRandomInteger(0, 8)
+            this.generatedIntegers.push(generatedInt)
+          }
+          this.seatLayout[generatedInt].isSelected = true
+        }
+      })
+  }
+
+  generateRandomInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   setSelectedSeat(e: any) {
@@ -45,14 +74,5 @@ export class BookingComponent {
     })
 
     this.movieService.updateMovieBooking(this.id, seatsBooked)
-  }
-
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.id = params['id'];
-      this.movieName = params['name'];
-      this.movieTime = params['time']
-    });
-
   }
 }
