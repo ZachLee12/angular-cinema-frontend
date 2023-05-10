@@ -1,0 +1,6 @@
+<div id="Movie-Item">
+    <div>Movie ID: {{id}}</div>
+    <div>Movie Time: {{time}} </div>
+    <div>Movie Name:{{name}} </div>
+    <button routerLink="/booking" [queryParams]="{id, time,name}">Book Now</button>
+</div>

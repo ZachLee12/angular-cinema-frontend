@@ -1,0 +1,21 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.grid-item {
+    background-color: #ddd;
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.grid-item:hover {
+    background-color: #f3d2d2;
+}
+
+.selected-seat {
+    background-color: #f3d2d2;
+}

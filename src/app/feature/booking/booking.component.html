@@ -1,0 +1,14 @@
+<div id="Booking">
+    <h1>Booking page</h1>
+    {{movieName}}
+    {{movieTime}}
+
+    <div class="grid-container">
+        <div (click)="setSelectedSeat($event)" *ngFor="let seat of seatLayout"
+            [ngClass]="{'selected-seat':seat.isSelected }" class="grid-item" id="{{seat.id}}">
+            Seat {{seat.id}}
+        </div>
+    </div>
+
+    <button routerLink="/confirmation">Confirm Booking</button>
+</div>
