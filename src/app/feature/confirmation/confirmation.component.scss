@@ -1,0 +1,24 @@
+#Confirmation {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/confirmation-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.confirmation-title {
+    margin: 0;
+}
+
+.confirmation-content-wrapper {
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
