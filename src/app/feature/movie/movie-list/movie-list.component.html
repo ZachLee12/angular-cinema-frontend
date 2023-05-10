@@ -1,5 +1,6 @@
 <div id="Movie-List">
     <app-movie-item *ngFor="let movie of movieList" [id]="movie.id" [time]="movie.time" [name]="movie.name"
-        [numberOfSeats]="movie.numberofseats" [seatsBooked]="movie.seatsbooked">
+        [numberOfSeats]="movie.numberofseats" [numberOfSeatsBooked]="movie.numberofseatsbooked"
+        [seatsBooked]="movie.seatsbooked">
     </app-movie-item>
 </div>

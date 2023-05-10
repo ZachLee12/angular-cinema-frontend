@@ -8,7 +8,7 @@ import { Movie, MovieListResponse } from '../interfaces';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent {
-  movieList?: Movie[]
+  movieList!: Movie[]
 
   constructor(private movieService: MovieService) {
 

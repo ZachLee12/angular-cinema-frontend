@@ -2,8 +2,8 @@
     <!-- <div>Movie ID: {{id}}</div> -->
     <div class="name">{{name}} </div>
     <div class="time">{{time | uppercase }} </div>
-    <div class="seats">Number of seats left: {{numberOfSeats - seatsBooked}} </div>
+    <div class="seats">Number of seats left: {{numberOfSeats - numberOfSeatsBooked}} </div>
     <button class="book-now-button" routerLink="/booking"
-        [queryParams]="{id, time,name, numberOfSeats, seatsBooked}">Book
+        [queryParams]="{id, time,name, numberOfSeats, numberOfSeatsBooked, seatsBooked}">Book
         Now</button>
 </div>

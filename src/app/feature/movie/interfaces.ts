@@ -4,7 +4,8 @@ export interface Movie {
     time: string;
     name: string;
     numberofseats: number;
-    seatsbooked: number;
+    numberofseatsbooked: number;
+    seatsbooked: number[];
 }
 
 export interface MovieListResponse {

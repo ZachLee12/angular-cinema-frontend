@@ -12,6 +12,7 @@ export class BookingComponent {
   movieName!: string;
   movieTime!: string;
   numberOfSeatsBooked!: string;
+  seatsBooked!: any[];
   generatedIntegers: number[] = [];
 
   seatLayout: any[] = [
@@ -36,20 +37,18 @@ export class BookingComponent {
         this.id = params['id'];
         this.movieName = params['name'];
         this.movieTime = params['time'];
-        this.numberOfSeatsBooked = params["seatsBooked"]
+        this.numberOfSeatsBooked = params["numberOfSeatsBooked"]
+        this.seatsBooked = params["seatsBooked"]
       })
       resolve()
     })
       .then(() => {
-        for (let i = 0; i < Number(this.numberOfSeatsBooked); i++) {
-          let generatedInt = this.generateRandomInteger(0, 8)
-          this.generatedIntegers.push(generatedInt)
-          while (!this.generatedIntegers.includes(generatedInt)) {
-            let generatedInt = this.generateRandomInteger(0, 8)
-            this.generatedIntegers.push(generatedInt)
+        this.seatLayout.forEach(seat => {
+          if (this.seatsBooked?.includes(seat.id.toString())) {
+            // console.log(seat)
+            seat.isSelected = true
           }
-          this.seatLayout[generatedInt].isSelected = true
-        }
+        })
       })
   }
 
@@ -66,13 +65,15 @@ export class BookingComponent {
   }
 
   confirmBooking() {
-    let seatsBooked = 0
+    let numberOfSeatsBooked = 0
+    let seatsBooked: number[] = []
     this.seatLayout.forEach((seat) => {
       if (seat.isSelected) {
-        seatsBooked++
+        numberOfSeatsBooked++
+        seatsBooked.push(seat.id)
       }
     })
 
-    this.movieService.updateMovieBooking(this.id, seatsBooked)
+    this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, seatsBooked)
   }
 }
