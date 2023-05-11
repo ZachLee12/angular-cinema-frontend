@@ -7,22 +7,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './routes/main-page/main-page.component';
 import { AboutComponent } from './routes/about/about.component';
-import { BookingComponent } from './feature/booking/booking.component';
-import { ConfirmationComponent } from './feature/confirmation/confirmation.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { BookingModule } from './feature/booking/booking.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     AboutComponent,
-    BookingComponent,
-    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MovieModule,
     HttpClientModule,
+    OAuthModule.forRoot(),
+
+    //custom modules
+    MovieModule,
+    BookingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

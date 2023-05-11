@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../movie/movie-service.service';
+import { MovieService } from '../../movie/movie-service.service';
 
 @Component({
   selector: 'app-booking',
@@ -45,7 +45,6 @@ export class BookingComponent {
       .then(() => {
         this.seatLayout.forEach(seat => {
           if (this.seatsBooked?.includes(seat.id.toString())) {
-            // console.log(seat)
             seat.isSelected = true
           }
         })

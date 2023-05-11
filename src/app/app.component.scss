@@ -1,0 +1,10 @@
+$header-height: 50px;
+
+#App {
+    width: 100%;
+    height: calc(100% - $header-height);
+}
+
+.header {
+    height: $header-height
+}
