@@ -1,11 +1,19 @@
 #MainPage {
-    background-color: beige;
     width: 100%;
     height: 100%;
-    background-image: url('../../../assets/mainpage-background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-image: url('../../../assets/mainpage-background.jpg');
+    // background-repeat: no-repeat;
+    // background-size: cover;
     display: flex;
+    position: relative;
+}
+
+.movie-video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .content-wrapper {
@@ -15,6 +23,7 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    z-index: 1;
 }
 
 .cinema-booking-system-title {
