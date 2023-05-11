@@ -17,8 +17,7 @@ export const authConfig: AuthConfig = {
   providedIn: 'root'
 })
 export class AuthService {
-  userProfileSubject: Subject<any> = new Subject();
-  authTokenSubject: Subject<any> = new Subject();
+  userProfile !: any;
 
   constructor(private oAuthService: OAuthService) {
     this.oAuthService.configure(authConfig)
@@ -31,7 +30,7 @@ export class AuthService {
         }
         else {
           this.oAuthService.loadUserProfile().then(userProfile => {
-            console.log(userProfile)
+            this.userProfile = userProfile
           })
         }
       })
@@ -43,5 +42,10 @@ export class AuthService {
       client_id: this.oAuthService.clientId,
       returnTo: this.oAuthService.redirectUri
     }, true)
+  }
+
+  getRoutePermission() {
+    console.log(this.userProfile)
+    return this.userProfile["info"]["given_name"] === "Lee"
   }
 }

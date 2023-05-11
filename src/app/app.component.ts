@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from './core/services/auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cinema-angular-client';
+  constructor(private authService: AuthService) {
+
+  }
 }

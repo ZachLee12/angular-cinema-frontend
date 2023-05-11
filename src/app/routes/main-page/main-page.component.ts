@@ -7,11 +7,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent {
-  constructor(private authService: AuthService) {
+  constructor() {
 
   }
 
-  signOut() {
-    this.authService.signOut()
-  }
 }

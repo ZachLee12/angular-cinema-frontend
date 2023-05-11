@@ -1,4 +1,4 @@
-$header-height: 50px;
+$header-height: 70px;
 $header-left-and-right-padding: 20px;
 
 #App {
@@ -17,9 +17,14 @@ $header-left-and-right-padding: 20px;
     box-sizing: border-box;
 }
 
-.cinema-name-title {
-    font-weight: 600;
-    cursor: pointer;
+.cinema-name-title-wrapper {
+    display: flex;
+
+    .cinema-name-title {
+        align-self: center;
+        font-weight: 600;
+        cursor: pointer;
+    }
 }
 
 .nav-wrapper {
