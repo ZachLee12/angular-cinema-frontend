@@ -1,11 +1,24 @@
+$netflix-red: #e50914;
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../../assets/fonts/Roboto-Bold.ttf');
+}
+
 #MainPage {
     width: 100%;
     height: 100%;
-    // background-image: url('../../../assets/mainpage-background.jpg');
-    // background-repeat: no-repeat;
-    // background-size: cover;
     display: flex;
     position: relative;
+}
+
+.opacity-film {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .movie-video {
@@ -16,28 +29,51 @@
     z-index: 0;
 }
 
+
 .content-wrapper {
     margin: auto;
-    background-color: rgba(128, 128, 128, 0.7);
+    // background-color: rgba(128, 128, 128, 0.7);
     padding: 50px;
+    text-shadow: 3px 3px 3px black;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    font-family: 'Roboto';
+    font-size: 1.4em;
+    color: white;
     z-index: 1;
+
+    .cinema-booking-system-title {
+        margin-bottom: 40px;
+        font-size: 2.5em;
+        text-align: center;
+    }
+
+    .group-title {
+        margin-bottom: 20px;
+        text-align: center;
+        margin: 0;
+    }
+
+    .group-name-title {
+        text-align: center;
+    }
 }
 
 .cinema-booking-system-title {
     margin: 0;
 }
 
-.go-to-movies-button {
+.get-started-button {
     align-self: center;
     padding: 15px;
     width: 300px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 600;
     transition: all 400ms ease-in-out;
-    background-color: white;
+    background-color: $netflix-red;
+    color: white;
+    border-radius: 7px;
     border: 2px solid black;
 
     &:hover {
