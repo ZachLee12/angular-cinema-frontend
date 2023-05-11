@@ -13,12 +13,13 @@ $header-left-and-right-padding: 20px;
     color: white;
     justify-content: space-between;
     padding: 0 $header-left-and-right-padding;
+    border-bottom: 3px solid white;
+    box-sizing: border-box;
 }
 
 .cinema-name-title {
     font-weight: 600;
 }
-
 
 .nav-wrapper {
     display: flex;
