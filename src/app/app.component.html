@@ -1,4 +1,16 @@
 <div id="App">
-    <header class="header">fdsa</header>
+    <header class="header">
+        <div class="cinema-name-title-wrapper">
+            <p class="cinema-name-title" routerLink="/">Cinema name</p>
+        </div>
+        <div class="nav-wrapper">
+            <div routerLink="/movie-page" routerLinkActive="active-link" class="nav">
+                Movies
+            </div>
+            <div routerLink="/about" routerLinkActive="active-link" class="nav">
+                About
+            </div>
+        </div>
+    </header>
     <router-outlet></router-outlet>
 </div>

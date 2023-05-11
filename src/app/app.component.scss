@@ -1,4 +1,5 @@
 $header-height: 50px;
+$header-left-and-right-padding: 20px;
 
 #App {
     width: 100%;
@@ -6,5 +7,31 @@ $header-height: 50px;
 }
 
 .header {
-    height: $header-height
+    height: $header-height;
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    padding: 0 $header-left-and-right-padding;
+}
+
+.cinema-name-title {
+    font-weight: 600;
+}
+
+
+.nav-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-right: 20px;
+
+    .nav {
+        font-weight: 600;
+    }
+}
+
+.active-link {
+    color: #ffa200;
 }
