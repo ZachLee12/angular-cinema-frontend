@@ -1,1 +1,8 @@
-<p>admin works!</p>
+<div id="Admin">
+    <label for="movie-name">Movie Name</label>
+    <input [(ngModel)]="movieName" type="text" id="movie-name">
+    <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
+
+    <h2>Server response:</h2>
+    <h3>{{serverResponse | json}} </h3>
+</div>

@@ -10,6 +10,7 @@ import { AboutComponent } from './routes/about/about.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BookingModule } from './feature/booking/booking.module';
 import { AdminComponent } from './routes/admin/admin.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AdminComponent } from './routes/admin/admin.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     OAuthModule.forRoot(),
 
     //custom modules
