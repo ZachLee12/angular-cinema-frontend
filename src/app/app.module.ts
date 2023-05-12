@@ -9,12 +9,14 @@ import { MainPageComponent } from './routes/main-page/main-page.component';
 import { AboutComponent } from './routes/about/about.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BookingModule } from './feature/booking/booking.module';
+import { AdminComponent } from './routes/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     AboutComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

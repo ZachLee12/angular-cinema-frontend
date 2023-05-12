@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { Subject } from 'rxjs';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -37,6 +36,22 @@ export class AuthService {
     })
   }
 
+  logIn() {
+    this.oAuthService.loadDiscoveryDocument().then(() => {
+
+      this.oAuthService.tryLoginImplicitFlow().then(() => {
+        if (!this.oAuthService.hasValidAccessToken()) {
+          this.oAuthService.initLoginFlow();
+        }
+        else {
+          this.oAuthService.loadUserProfile().then(userProfile => {
+            this.userProfile = userProfile
+          })
+        }
+      })
+    })
+  }
+
   signOut() {
     this.oAuthService.revokeTokenAndLogout({
       client_id: this.oAuthService.clientId,
@@ -45,7 +60,6 @@ export class AuthService {
   }
 
   getRoutePermission() {
-    console.log(this.userProfile)
     return this.userProfile["info"]["given_name"] === "Lee"
   }
 }

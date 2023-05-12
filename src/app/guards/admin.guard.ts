@@ -1,9 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import { Router, CanActivateFn } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '../core/services/auth/auth.service';
 
 export const AdminGuard: CanActivateFn = () => {
-  // your  logic goes here
-  return inject(AuthService).getRoutePermission()
+  const authService = inject(AuthService)
+  const router = inject(Router)
+  // let adminPassword = prompt("Admin Password:", "password")
+  // if (adminPassword === "password") {
+  //   return true;
+  // } else {
+  //   router.navigateByUrl("/")
+  //   return false
+  // }
+
+  return true;
 }
