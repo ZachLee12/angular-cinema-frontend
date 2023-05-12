@@ -5,10 +5,13 @@
     background-image: url('../../../../assets/images/movie-page-background.webp');
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-y: auto;
 }
 
 .movies-title {
     color: white;
     text-align: center;
     margin: 0;
+    position: relative;
+    top: 10px;
 }
