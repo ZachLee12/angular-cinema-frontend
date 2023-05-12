@@ -29,8 +29,20 @@
         background-color: rgba(255, 255, 255, 0.5);
         text-align: center;
         color: black;
-        width: 100%
+        width: 100%;
+        font-size: 1.5em;
+        padding: 20px 0;
     }
+
+    .target-movie-name {
+        font-size: 1.7em;
+    }
+
+    .target-movie-time {
+        font-size: 1.2em;
+    }
+
+    padding-bottom: 10px;
 }
 
 
@@ -61,7 +73,17 @@
     width: 40%;
     align-self: center;
     height: 40px;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    font-weight: 600;
+    transition: all 400ms ease-in-out;
+    background-color: white;
+    border: 2px solid black;
+
+    &:hover {
+        background-color: black;
+        border: 2px solid white;
+        color: white;
+    }
 }
 
 
