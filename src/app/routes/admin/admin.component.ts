@@ -10,6 +10,7 @@ import { DatabaseService } from 'src/app/core/services/database/database.service
 export class AdminComponent {
   movies: string[] = []
   movieName: string = '';
+  movieTime: string = '';
   serverResponse?: any;
   constructor(private httpClient: HttpClient, private databaseService: DatabaseService) {
     this.getMovieNames()
@@ -26,6 +27,12 @@ export class AdminComponent {
       response.forEach(obj => {
         this.movies.push(obj.name)
       })
+    })
+  }
+
+  addMovie() {
+    this.databaseService.addMovie(this.movieTime, this.movieName).subscribe(response => {
+      this.serverResponse = response
     })
   }
 

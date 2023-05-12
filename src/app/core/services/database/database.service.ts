@@ -25,5 +25,10 @@ export class DatabaseService {
     return this.httpClient.get<[{ name: string }]>(`http://localhost:3000/movies/names`)
   }
 
+  addMovie(time: string, name: string) {
+    return this.httpClient.post(`http://localhost:3000/movies/add`, {
+      time, name
+    })
+  }
 
 }

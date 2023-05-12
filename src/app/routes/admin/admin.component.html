@@ -1,12 +1,23 @@
 <div id="Admin">
     <fieldset class="fieldset">
-        <legend>Movie</legend>
-        <label for="movie-name">Movie Name</label>
+        <legend>RESET</legend>
+        <label for="movie-name-reset">Movie Name</label>
         <select [(ngModel)]="movieName" name="movie-select" id="movie-select">
             <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
         </select>
         <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
     </fieldset>
+
+    <fieldset class="fieldset">
+        <legend>INSERT</legend>
+        <label for="movie-name-insert">Movie Name</label>
+        <input [(ngModel)]="movieName" type="text" id="movie-name-insert">
+        <label for="movie-time">Movie Time</label>
+        <input [(ngModel)]="movieTime" type="text" id="movie-time">
+        <button (click)="addMovie()">Add Movie</button>
+    </fieldset>
+
+
 
     <h2>Server response:</h2>
     <h3>{{serverResponse | json}} </h3>
