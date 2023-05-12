@@ -15,28 +15,13 @@ export const authConfig: AuthConfig = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   userProfile !: any;
 
   constructor(private oAuthService: OAuthService) {
     this.oAuthService.configure(authConfig)
     this.oAuthService.logoutUrl = 'https://www.google.com/accounts/Logout'
-    this.oAuthService.loadDiscoveryDocument().then(() => {
-
-      this.oAuthService.tryLoginImplicitFlow().then(() => {
-        if (!this.oAuthService.hasValidAccessToken()) {
-          this.oAuthService.initLoginFlow();
-        }
-        else {
-          this.oAuthService.loadUserProfile().then(userProfile => {
-            this.userProfile = userProfile
-          })
-        }
-      })
-    })
-  }
-
-  logIn() {
     this.oAuthService.loadDiscoveryDocument().then(() => {
 
       this.oAuthService.tryLoginImplicitFlow().then(() => {

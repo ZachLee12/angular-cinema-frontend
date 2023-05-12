@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DatabaseService } from 'src/app/core/services/database/database.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,16 +8,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  movieName?: string;
+  movies = ["test", "test"]
+  movieName: string = '';
   serverResponse?: any;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private databaseService: DatabaseService) {
 
   }
 
   resetSeatsBooked() {
-    this.httpClient.post(`http://localhost:3000/admin/reset-seats-booked`, {
-      movieName: this.movieName
-    }).subscribe(response => this.serverResponse = response)
+    this.databaseService.resetSeatsBooked(this.movieName).subscribe(response => {
+      this.serverResponse = response
+    })
   }
 
 }

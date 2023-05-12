@@ -1,6 +1,9 @@
 <div id="Admin">
     <label for="movie-name">Movie Name</label>
     <input [(ngModel)]="movieName" type="text" id="movie-name">
+    <select name="movie-select" id="movie-select">
+        <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+    </select>
     <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
 
     <h2>Server response:</h2>

@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  constructor(private authService: AuthService) {
+  constructor() {
   }
 
 }

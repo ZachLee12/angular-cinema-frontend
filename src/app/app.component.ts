@@ -7,10 +7,7 @@ import { AuthService } from './core/services/auth/auth.service';
 })
 export class AppComponent {
   title = 'cinema-angular-client';
-  constructor(private authService: AuthService) {
+  constructor() {
 
-  }
-  ngOnInit() {
-    this.authService.logIn()
   }
 }
