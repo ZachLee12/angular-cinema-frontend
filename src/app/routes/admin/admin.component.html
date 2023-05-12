@@ -1,10 +1,12 @@
 <div id="Admin">
-    <label for="movie-name">Movie Name</label>
-    <input [(ngModel)]="movieName" type="text" id="movie-name">
-    <select name="movie-select" id="movie-select">
-        <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
-    </select>
-    <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
+    <fieldset class="fieldset">
+        <legend>Movie</legend>
+        <label for="movie-name">Movie Name</label>
+        <select [(ngModel)]="movieName" name="movie-select" id="movie-select">
+            <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+        </select>
+        <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
+    </fieldset>
 
     <h2>Server response:</h2>
     <h3>{{serverResponse | json}} </h3>

@@ -21,5 +21,9 @@ export class DatabaseService {
     })
   }
 
+  getMovieNames(): Observable<[{ name: string }]> {
+    return this.httpClient.get<[{ name: string }]>(`http://localhost:3000/movies/names`)
+  }
+
 
 }
