@@ -10,4 +10,5 @@ export class AboutComponent {
   constructor() {
   }
 
+
 }
