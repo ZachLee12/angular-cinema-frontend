@@ -31,12 +31,14 @@ export class AdminComponent {
   }
 
   addMovie() {
+    this.movies.push(this.movieName) //to update the UI without rerendering the page
     this.databaseService.addMovie(this.movieTime, this.movieName).subscribe(response => {
       this.serverResponse = response
     })
   }
 
   deleteMovie() {
+    this.movies = this.movies.filter(name => this.movieName !== name)//to update the UI without rerendering the page
     this.databaseService.deleteMovie(this.movieName).subscribe(response => {
       this.serverResponse = response
     })
