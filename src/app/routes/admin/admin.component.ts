@@ -36,4 +36,10 @@ export class AdminComponent {
     })
   }
 
+  deleteMovie() {
+    this.databaseService.deleteMovie(this.movieName).subscribe(response => {
+      this.serverResponse = response
+    })
+  }
+
 }

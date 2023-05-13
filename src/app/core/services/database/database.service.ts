@@ -31,4 +31,10 @@ export class DatabaseService {
     })
   }
 
+  deleteMovie(name: string) {
+    return this.httpClient.post(`http://localhost:3000/movies/delete`, {
+      name
+    })
+  }
+
 }
