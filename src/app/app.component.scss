@@ -39,6 +39,11 @@ $header-left-and-right-padding: 20px;
     .nav {
         cursor: pointer;
         font-weight: 600;
+        transition: color 300ms ease-in-out;
+
+        &:hover {
+            color: #ffa200;
+        }
     }
 }
 
