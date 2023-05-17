@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { Observable, Subject } from 'rxjs';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -18,6 +19,7 @@ export const authConfig: AuthConfig = {
 
 export class AuthService {
   userProfile !: any;
+  userProfileSubject: Subject<any> = new Subject<any>();
 
   constructor(private oAuthService: OAuthService) {
     this.oAuthService.configure(authConfig)
@@ -31,6 +33,7 @@ export class AuthService {
         else {
           this.oAuthService.loadUserProfile().then(userProfile => {
             this.userProfile = userProfile
+            this.userProfileSubject.next(userProfile)
           })
         }
       })
@@ -46,5 +49,9 @@ export class AuthService {
 
   getRoutePermission() {
     return this.userProfile["info"]["given_name"] === "Lee"
+  }
+
+  getUserProfileObservable(): Observable<any> {
+    return this.userProfileSubject.asObservable()
   }
 }

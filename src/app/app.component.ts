@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
+import { Subject, Observable } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +9,10 @@ import { AuthService } from './core/services/auth/auth.service';
 })
 export class AppComponent {
   title = 'cinema-angular-client';
-  constructor() {
+  userProfile$?: Observable<any>;
 
+  constructor(private authService: AuthService) {
+    this.userProfile$ = this.authService.getUserProfileObservable()
+    this.userProfile$.subscribe(data => console.log(data))
   }
 }
