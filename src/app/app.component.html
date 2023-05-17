@@ -13,6 +13,9 @@
             <div routerLink="/about" routerLinkActive="active-link" class="nav">
                 About
             </div>
+            <div class="nav" (click)="logIn()">
+                {{getIsLoggedIn()? "Log Out" : "Log In" }}
+            </div>
         </div>
     </header>
     <router-outlet></router-outlet>

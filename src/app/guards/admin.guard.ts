@@ -9,12 +9,15 @@ export const AdminGuard: CanActivateFn = async () => {
   const authService = inject(AuthService)
   const userProfileObservable = authService.getUserProfileObservable()
   let isAllowed = false;
-
+  console.log("HELO")
   await new Promise(resolve => {
     userProfileObservable.subscribe(data => {
-
-      isAllowed = (data.info["given_name"] === AUTHORIZED_USERNAME) ? true : false
-      resolve(isAllowed)
+      if (data) {
+        isAllowed = (data.info["given_name"] === AUTHORIZED_USERNAME) ? true : false
+        resolve(isAllowed)
+      } else {
+        resolve(isAllowed)
+      }
     })
   })
 

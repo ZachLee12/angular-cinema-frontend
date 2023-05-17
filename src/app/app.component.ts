@@ -15,4 +15,12 @@ export class AppComponent {
     this.userProfile$ = this.authService.getUserProfileObservable()
     this.userProfile$.subscribe(data => console.log(data))
   }
+
+  logIn() {
+    this.authService.logIn();
+  }
+
+  getIsLoggedIn() {
+    return this.authService.getIsLoggedIn();
+  }
 }

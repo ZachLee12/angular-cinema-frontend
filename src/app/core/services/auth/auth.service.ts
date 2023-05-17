@@ -18,6 +18,7 @@ export const authConfig: AuthConfig = {
 })
 
 export class AuthService {
+  isLoggedIn: boolean = false;
   userProfile !: any;
   userProfileSubject: Subject<any> = new Subject<any>();
 
@@ -27,17 +28,23 @@ export class AuthService {
     this.oAuthService.loadDiscoveryDocument().then(() => {
 
       this.oAuthService.tryLoginImplicitFlow().then(() => {
-        if (!this.oAuthService.hasValidAccessToken()) {
-          this.oAuthService.initLoginFlow();
-        }
-        else {
+        if (this.oAuthService.hasValidAccessToken()) {
           this.oAuthService.loadUserProfile().then(userProfile => {
             this.userProfile = userProfile
             this.userProfileSubject.next(userProfile)
+            this.isLoggedIn = true
           })
+        } else {
+          this.userProfileSubject.next(null)
+          this.isLoggedIn = false
+          console.log("Not Logged In")
         }
       })
     })
+  }
+
+  logIn() {
+    this.oAuthService.initLoginFlow();
   }
 
   signOut() {
@@ -53,5 +60,9 @@ export class AuthService {
 
   getUserProfileObservable(): Observable<any> {
     return this.userProfileSubject.asObservable()
+  }
+
+  getIsLoggedIn() {
+    return this.isLoggedIn
   }
 }
