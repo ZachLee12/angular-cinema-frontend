@@ -3,6 +3,7 @@
     <div class="name">{{name}} </div>
     <div class="time">{{time | uppercase }} </div>
     <div class="seats">Number of seats left: {{numberOfSeats - numberOfSeatsBooked}} </div>
+    <img src="{{imageBase64}}" alt="movie-image" class="image">
     <button class="book-now-button" routerLink="/booking"
         [queryParams]="{id, time,name, numberOfSeats, numberOfSeatsBooked, seatsBooked}">Book
         Now</button>

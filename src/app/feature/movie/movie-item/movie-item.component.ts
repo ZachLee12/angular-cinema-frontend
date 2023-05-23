@@ -13,5 +13,6 @@ export class MovieItemComponent {
   @Input() numberOfSeats = 0;
   @Input() numberOfSeatsBooked = 0;
   @Input() seatsBooked: any = [];
+  @Input() imageBase64: any = "";
 
 }

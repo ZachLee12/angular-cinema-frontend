@@ -46,7 +46,6 @@ export class AdminComponent {
 
   addMovie() {
     this.movies.push(this.movieNameToAdd) //to update the UI without rerendering the page
-    console.log(this.movieImageBase64)
     this.databaseService.addMovie(this.movieTime, this.movieNameToAdd, this.movieImageBase64).subscribe(response => {
       this.serverResponse = response
     })
