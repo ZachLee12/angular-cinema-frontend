@@ -14,7 +14,7 @@
                 About
             </div>
 
-            <div *ngIf="getIsLoggedIn() else elseBlock" class="wrapper">
+            <div *ngIf="getIsLoggedIn() else elseBlock" class="wrapper" (click)="logOut()">
                 <div class="nav">
                     Log Out
                 </div>
@@ -25,7 +25,6 @@
                     Log In
                 </div>
             </ng-template>
-
         </div>
     </header>
     <router-outlet></router-outlet>

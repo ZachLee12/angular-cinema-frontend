@@ -47,7 +47,7 @@ export class AuthService {
     this.oAuthService.initLoginFlow();
   }
 
-  signOut() {
+  logOut() {
     this.oAuthService.revokeTokenAndLogout({
       client_id: this.oAuthService.clientId,
       returnTo: this.oAuthService.redirectUri

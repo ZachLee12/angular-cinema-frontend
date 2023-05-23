@@ -8,8 +8,8 @@ export const AdminGuard: CanActivateFn = async () => {
   const router = inject(Router)
   const authService = inject(AuthService)
   const userProfileObservable = authService.getUserProfileObservable()
+
   let isAllowed = false;
-  console.log("HELO")
   await new Promise(resolve => {
     userProfileObservable.subscribe(data => {
       if (data) {

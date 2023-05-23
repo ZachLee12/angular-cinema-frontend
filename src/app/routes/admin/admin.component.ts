@@ -13,9 +13,21 @@ export class AdminComponent {
   movieNameToAdd: string = '';
   movieNameToDelete: string = '';
   movieTime: string = '';
+  movieImageBase64: any = '';
   serverResponse?: any;
+
+
   constructor(private httpClient: HttpClient, private databaseService: DatabaseService) {
     this.getMovieNames()
+  }
+
+  handleImageInput(e: any) {
+    const imageFile = e.target.files[0]
+    const fileReader = new FileReader();
+    fileReader.onload = (event: any) => {
+      this.movieImageBase64 = event.target.result
+    }
+    fileReader.readAsDataURL(imageFile) // need this for .onload to execute
   }
 
   resetSeatsBooked() {
@@ -34,7 +46,8 @@ export class AdminComponent {
 
   addMovie() {
     this.movies.push(this.movieNameToAdd) //to update the UI without rerendering the page
-    this.databaseService.addMovie(this.movieTime, this.movieNameToAdd).subscribe(response => {
+    console.log(this.movieImageBase64)
+    this.databaseService.addMovie(this.movieTime, this.movieNameToAdd, this.movieImageBase64).subscribe(response => {
       this.serverResponse = response
     })
   }

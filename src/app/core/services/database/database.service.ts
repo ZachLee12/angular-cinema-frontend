@@ -25,9 +25,9 @@ export class DatabaseService {
     return this.httpClient.get<[{ name: string }]>(`http://localhost:3000/movies/names`)
   }
 
-  addMovie(time: string, name: string) {
+  addMovie(time: string, name: string, imageBase64: string) {
     return this.httpClient.post(`http://localhost:3000/movies/add`, {
-      time, name
+      time, name, imageBase64
     })
   }
 
@@ -36,5 +36,4 @@ export class DatabaseService {
       name
     })
   }
-
 }
