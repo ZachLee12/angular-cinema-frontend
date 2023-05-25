@@ -8,12 +8,12 @@ import { Movie, MovieListResponse } from '../interfaces';
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.scss']
 })
+
 export class MoviePageComponent {
   movieList?: Movie[];
 
   constructor(private movieService: MovieService) {
 
   }
-
 
 }

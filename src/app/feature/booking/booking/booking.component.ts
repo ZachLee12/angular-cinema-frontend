@@ -16,15 +16,21 @@ export class BookingComponent {
   generatedIntegers: number[] = [];
 
   seatLayout: any[] = [
-    { id: 1, isSelected: false },
-    { id: 2, isSelected: false },
-    { id: 3, isSelected: false },
-    { id: 4, isSelected: false },
-    { id: 5, isSelected: false },
-    { id: 6, isSelected: false },
-    { id: 7, isSelected: false },
-    { id: 8, isSelected: false },
-    { id: 9, isSelected: false }]
+    { id: 1, isSelected: false, isBooked: false },
+    { id: 2, isSelected: false, isBooked: false },
+    { id: 3, isSelected: false, isBooked: false },
+    { id: 4, isSelected: false, isBooked: false },
+    { id: 5, isSelected: false, isBooked: false },
+    { id: 6, isSelected: false, isBooked: false },
+    { id: 7, isSelected: false, isBooked: false },
+    { id: 8, isSelected: false, isBooked: false },
+    { id: 9, isSelected: false, isBooked: false },
+    { id: 10, isSelected: false, isBooked: false },
+    { id: 11, isSelected: false, isBooked: false },
+    { id: 12, isSelected: false, isBooked: false },
+    { id: 13, isSelected: false, isBooked: false },
+    { id: 14, isSelected: false, isBooked: false },
+    { id: 15, isSelected: false, isBooked: false }]
 
   constructor(private activatedRoute: ActivatedRoute,
     private movieService: MovieService) {
@@ -45,7 +51,7 @@ export class BookingComponent {
       .then(() => {
         this.seatLayout.forEach(seat => {
           if (this.seatsBooked?.includes(seat.id.toString())) {
-            seat.isSelected = true
+            seat.isBooked = true
           }
         })
       })
@@ -65,14 +71,13 @@ export class BookingComponent {
 
   confirmBooking() {
     let numberOfSeatsBooked = 0
-    let seatsBooked: number[] = []
     this.seatLayout.forEach((seat) => {
       if (seat.isSelected) {
         numberOfSeatsBooked++
-        seatsBooked.push(seat.id)
+        this.seatsBooked = [...this.seatsBooked, seat.id]
       }
     })
 
-    this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, seatsBooked)
+    this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, this.seatsBooked)
   }
 }
