@@ -5,7 +5,8 @@
         <select [(ngModel)]="movieName" name="movie-select" id="movie-select">
             <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
         </select>
-        <button class="reset-seats-booked-button" (click)="resetSeatsBooked()">Reset seats booked</button>
+        <button class="reset-seats-booked-button function-button" (click)="resetSeatsBooked()">Reset seats
+            booked</button>
     </fieldset>
 
     <fieldset class="fieldset">
@@ -14,9 +15,10 @@
         <input [(ngModel)]="movieNameToAdd" type="text" id="movie-name-insert">
         <label for="movie-time">Movie Time</label>
         <input [(ngModel)]="movieTime" type="text" id="movie-time">
+        <label for="movie-image">Movie Image</label>
         <input (change)="handleImageInput($event)" type="file" accept="image/*">
 
-        <button (click)="addMovie()">Add Movie</button>
+        <button (click)="addMovie()" class="function-button">Add Movie</button>
     </fieldset>
 
     <fieldset class="fieldset">
@@ -25,7 +27,7 @@
         <select [(ngModel)]="movieNameToDelete" name="movie-select" id="movie-select">
             <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
         </select>
-        <button class="reset-seats-booked-button" (click)="deleteMovie()">Delete Movie</button>
+        <button class="function-button" (click)="deleteMovie()">Delete Movie</button>
     </fieldset>
 
     <div class="server-response-wrapper">
