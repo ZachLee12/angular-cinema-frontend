@@ -11,6 +11,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { BookingModule } from './feature/booking/booking.module';
 import { AdminComponent } from './routes/admin/admin.component';
 import { FormsModule } from '@angular/forms';
+import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     MainPageComponent,
     AboutComponent,
     AdminComponent,
+    PlaceholderComponent,
   ],
   imports: [
     BrowserModule,
