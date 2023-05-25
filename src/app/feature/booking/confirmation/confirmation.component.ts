@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as uniqid from 'uniqid';
+import * as QRCode from 'qrcode';
 
 @Component({
   selector: 'app-confirmation',
@@ -9,5 +10,17 @@ import * as uniqid from 'uniqid';
 export class ConfirmationComponent {
   reservationId: string = uniqid()
 
+  generateQRCode() {
+    const canvas = document.getElementById('qr-code')
+    QRCode.toCanvas(canvas, 'Sample Text', err => {
+      if (err) {
+        console.error(err)
+      }
+    })
+  }
+
+  ngOnInit() {
+    this.generateQRCode()
+  }
 
 }

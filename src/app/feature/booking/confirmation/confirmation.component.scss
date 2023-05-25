@@ -13,6 +13,7 @@
     margin: 0;
 }
 
+
 .confirmation-content-wrapper {
     margin: auto;
     padding: 20px;
@@ -21,4 +22,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.back-to-homepage-button {
+    margin: 20px;
+    width: 50%;
+    height: 40px;
+    font-size: 1.1em;
+    transition: all 300ms ease-in-out;
+    background-color: white;
+    border: 2px solid black;
+    font-weight: 600;
+
+    &:hover {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+    }
 }
