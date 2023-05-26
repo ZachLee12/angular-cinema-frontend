@@ -69,14 +69,19 @@ export class BookingComponent {
     this.seatLayout.forEach(seat => {
       if (seat.isBooked) {
         numberOfSeatsBooked++;
-        this.seatsBooked.push(seat.id)
+        if (!this.seatsBooked.includes(seat.id.toString())) {
+          this.seatsBooked.push(seat.id)
+        }
       }
       if (seat.isSelected) {
         numberOfSeatsBooked++;
-        this.seatsBooked.push(seat.id)
+        if (!this.seatsBooked.includes(seat.id.toString())) {
+          this.seatsBooked.push(seat.id)
+        }
+
       }
     })
-    console.log(numberOfSeatsBooked)
+    this.seatsBooked = this.seatsBooked.filter((seatId, index) => this.seatsBooked.indexOf(seatId) === index)
 
     this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, this.seatsBooked)
   }
