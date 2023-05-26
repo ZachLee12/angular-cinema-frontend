@@ -19,7 +19,6 @@
         <input [(ngModel)]="movieSeatCount" type="number" max="20">
         <label for="movie-image">Movie Image</label>
         <input (change)="handleImageInput($event)" type="file" accept="image/*">
-
         <button (click)="addMovie()" class="function-button">Add Movie</button>
     </fieldset>
 

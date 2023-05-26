@@ -9,8 +9,9 @@
 
     <div class="grid-container">
         <div (click)="setSelectedSeat($event)" *ngFor="let seat of seatLayout"
-            [ngClass]="{'booked-seat':seat.isBooked, 'selected-seat':seat.isSelected  }" class="grid-item"
+            [ngClass]="{'booked-seat':seat.isBooked, 'selected-seat':seat.isSelected}" class="grid-item"
             id="{{seat.id}}">
+
             Seat {{seat.id}}
         </div>
     </div>

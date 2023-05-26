@@ -14,8 +14,6 @@ export class BookingComponent {
   numberOfSeatsBooked!: number;
   numberOfSeats !: number;
   seatsBooked!: any[];
-  generatedIntegers: number[] = [];
-
   seatLayout: any[] = []
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -30,11 +28,11 @@ export class BookingComponent {
         this.movieTime = params['time'];
         this.numberOfSeats = params['numberOfSeats']
         this.numberOfSeatsBooked = params["numberOfSeatsBooked"]
-        this.seatsBooked = params["seatsBooked"]
+        this.seatsBooked = params["seatsBooked"] || []
+        console.log("[INIT] number of seats booked: " + this.numberOfSeatsBooked)
       })
       resolve()
     }).then(() => {
-      console.log(this.numberOfSeats)
       this.generateSeats(this.numberOfSeats)
     })
       .then(() => {
@@ -51,7 +49,6 @@ export class BookingComponent {
   }
 
   generateSeats(count: number) {
-    console.log('count received: ' + count)
     for (let i = 0; i < count; i++) {
       let seatObject = Object.create({ id: i + 1, isSelected: false, isBooked: false })
       this.seatLayout.push(seatObject)
@@ -68,12 +65,18 @@ export class BookingComponent {
 
   confirmBooking() {
     let numberOfSeatsBooked = 0
-    this.seatLayout.forEach((seat) => {
+
+    this.seatLayout.forEach(seat => {
+      if (seat.isBooked) {
+        numberOfSeatsBooked++;
+        this.seatsBooked.push(seat.id)
+      }
       if (seat.isSelected) {
-        numberOfSeatsBooked++
-        this.seatsBooked = [...this.seatsBooked, seat.id]
+        numberOfSeatsBooked++;
+        this.seatsBooked.push(seat.id)
       }
     })
+    console.log(numberOfSeatsBooked)
 
     this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, this.seatsBooked)
   }
