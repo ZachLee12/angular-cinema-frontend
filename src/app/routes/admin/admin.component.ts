@@ -14,6 +14,7 @@ export class AdminComponent {
   movieNameToDelete: string = '';
   movieTime: string = '';
   movieImageBase64: any = '';
+  movieSeatCount: number = 0;
   serverResponse?: any;
 
 
@@ -46,7 +47,7 @@ export class AdminComponent {
 
   addMovie() {
     this.movies.push(this.movieNameToAdd) //to update the UI without rerendering the page
-    this.databaseService.addMovie(this.movieTime, this.movieNameToAdd, this.movieImageBase64).subscribe(response => {
+    this.databaseService.addMovie(this.movieTime, this.movieNameToAdd, this.movieSeatCount, this.movieImageBase64).subscribe(response => {
       this.serverResponse = response
     })
   }

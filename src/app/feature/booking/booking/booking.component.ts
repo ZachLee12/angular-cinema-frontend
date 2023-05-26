@@ -11,30 +11,15 @@ export class BookingComponent {
   id!: any;
   movieName!: string;
   movieTime!: string;
-  numberOfSeatsBooked!: string;
+  numberOfSeatsBooked!: number;
+  numberOfSeats !: number;
   seatsBooked!: any[];
   generatedIntegers: number[] = [];
 
-  seatLayout: any[] = [
-    { id: 1, isSelected: false, isBooked: false },
-    { id: 2, isSelected: false, isBooked: false },
-    { id: 3, isSelected: false, isBooked: false },
-    { id: 4, isSelected: false, isBooked: false },
-    { id: 5, isSelected: false, isBooked: false },
-    { id: 6, isSelected: false, isBooked: false },
-    { id: 7, isSelected: false, isBooked: false },
-    { id: 8, isSelected: false, isBooked: false },
-    { id: 9, isSelected: false, isBooked: false },
-    { id: 10, isSelected: false, isBooked: false },
-    { id: 11, isSelected: false, isBooked: false },
-    { id: 12, isSelected: false, isBooked: false },
-    { id: 13, isSelected: false, isBooked: false },
-    { id: 14, isSelected: false, isBooked: false },
-    { id: 15, isSelected: false, isBooked: false }]
+  seatLayout: any[] = []
 
   constructor(private activatedRoute: ActivatedRoute,
     private movieService: MovieService) {
-
   }
 
   ngOnInit() {
@@ -43,10 +28,14 @@ export class BookingComponent {
         this.id = params['id'];
         this.movieName = params['name'];
         this.movieTime = params['time'];
+        this.numberOfSeats = params['numberOfSeats']
         this.numberOfSeatsBooked = params["numberOfSeatsBooked"]
         this.seatsBooked = params["seatsBooked"]
       })
       resolve()
+    }).then(() => {
+      console.log(this.numberOfSeats)
+      this.generateSeats(this.numberOfSeats)
     })
       .then(() => {
         this.seatLayout.forEach(seat => {
@@ -59,6 +48,14 @@ export class BookingComponent {
 
   generateRandomInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  generateSeats(count: number) {
+    console.log('count received: ' + count)
+    for (let i = 0; i < count; i++) {
+      let seatObject = Object.create({ id: i + 1, isSelected: false, isBooked: false })
+      this.seatLayout.push(seatObject)
+    }
   }
 
   setSelectedSeat(e: any) {
