@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../movie/movie-service.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-booking',
@@ -8,6 +9,7 @@ import { MovieService } from '../../movie/movie-service.service';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent {
+  unsubscribe$: Subject<void> = new Subject();
   id!: any;
   movieName!: string;
   movieTime!: string;
@@ -22,7 +24,7 @@ export class BookingComponent {
 
   ngOnInit() {
     new Promise<void>((resolve) => {
-      this.activatedRoute.queryParams.subscribe(params => {
+      this.activatedRoute.queryParams.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
         this.id = params['id'];
         this.movieName = params['name'];
         this.movieTime = params['time'];
@@ -86,4 +88,8 @@ export class BookingComponent {
   }
 
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
