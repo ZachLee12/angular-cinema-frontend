@@ -15,23 +15,23 @@ export class DatabaseService {
 
   }
 
-  resetSeatsBooked(movieName: string): Observable<ApiResponse> {
+  resetSeatsBooked$(movieName: string): Observable<ApiResponse> {
     return this.httpClient.post<ApiResponse>(`http://localhost:3000/admin/reset-seats-booked`, {
       movieName
     })
   }
 
-  getMovieNames(): Observable<[{ name: string }]> {
+  getMovieNames$(): Observable<[{ name: string }]> {
     return this.httpClient.get<[{ name: string }]>(`http://localhost:3000/movies/names`)
   }
 
-  addMovie(time: string, name: string, numberofseats: number, imageBase64: string) {
+  addMovie$(time: string, name: string, numberofseats: number, imageBase64: string) {
     return this.httpClient.post(`http://localhost:3000/movies/add`, {
       time, name, numberofseats, imageBase64
     })
   }
 
-  deleteMovie(name: string) {
+  deleteMovie$(name: string) {
     return this.httpClient.post(`http://localhost:3000/movies/delete`, {
       name
     })

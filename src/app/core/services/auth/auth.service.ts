@@ -58,7 +58,7 @@ export class AuthService {
     return this.userProfile["info"]["given_name"] === "Lee"
   }
 
-  getUserProfileObservable(): Observable<any> {
+  getUserProfile$(): Observable<any> {
     return this.userProfileSubject.asObservable()
   }
 

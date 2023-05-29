@@ -1,17 +1,19 @@
 import { inject } from '@angular/core';
 import { Router, CanActivateFn } from '@angular/router';
 import { AuthService } from '../core/services/auth/auth.service';
+import { take } from 'rxjs';
 
 export const AdminGuard: CanActivateFn = async () => {
   const AUTHORIZED_USERNAME: string = "Lee"
 
   const router = inject(Router)
   const authService = inject(AuthService)
-  const userProfileObservable = authService.getUserProfileObservable()
+
+  const userProfile$ = authService.getUserProfile$()
 
   let isAllowed = false;
   await new Promise(resolve => {
-    userProfileObservable.subscribe(data => {
+    userProfile$.pipe(take(1)).subscribe(data => {
       if (data) {
         isAllowed = (data.info["given_name"] === AUTHORIZED_USERNAME) ? true : false
         resolve(isAllowed)
@@ -24,7 +26,7 @@ export const AdminGuard: CanActivateFn = async () => {
   if (isAllowed) {
     return true
   } else {
-    router.navigateByUrl('/')
+    router.navigateByUrl('/home')
     return false
   }
 }

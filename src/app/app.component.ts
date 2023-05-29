@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +10,14 @@ import { Subject, Observable } from 'rxjs';
 export class AppComponent {
   title = 'cinema-angular-client';
   userProfile$?: Observable<any>;
+  unsubscribe$: Subject<void> = new Subject();
 
   constructor(private authService: AuthService) {
-    this.userProfile$ = this.authService.getUserProfileObservable()
-    this.userProfile$.subscribe(data => console.log(data))
+  }
+
+  ngOnInit() {
+    this.userProfile$ = this.authService.getUserProfile$()
+    this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
   }
 
   logIn() {
@@ -26,5 +30,10 @@ export class AppComponent {
 
   getIsLoggedIn() {
     return this.authService.getIsLoggedIn();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DatabaseService } from 'src/app/core/services/database/database.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,7 @@ export class AdminComponent {
   movieImageBase64: any = '';
   movieSeatCount: number = 0;
   serverResponse?: any;
-
+  unsubscribe$: Subject<void> = new Subject();
 
   constructor(private httpClient: HttpClient, private databaseService: DatabaseService) {
     this.getMovieNames()
@@ -32,13 +33,13 @@ export class AdminComponent {
   }
 
   resetSeatsBooked() {
-    this.databaseService.resetSeatsBooked(this.movieName).subscribe(response => {
+    this.databaseService.resetSeatsBooked$(this.movieName).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
       this.serverResponse = response
     })
   }
 
   getMovieNames() {
-    this.databaseService.getMovieNames().subscribe((response: [{ name: string }]) => {
+    this.databaseService.getMovieNames$().pipe(takeUntil(this.unsubscribe$)).subscribe((response: [{ name: string }]) => {
       response.forEach(obj => {
         this.movies.push(obj.name)
       })
@@ -47,16 +48,21 @@ export class AdminComponent {
 
   addMovie() {
     this.movies.push(this.movieNameToAdd) //to update the UI without rerendering the page
-    this.databaseService.addMovie(this.movieTime, this.movieNameToAdd, this.movieSeatCount, this.movieImageBase64).subscribe(response => {
+    this.databaseService.addMovie$(this.movieTime, this.movieNameToAdd, this.movieSeatCount, this.movieImageBase64).subscribe(response => {
       this.serverResponse = response
     })
   }
 
   deleteMovie() {
     this.movies = this.movies.filter(name => this.movieNameToDelete !== name)//to update the UI without rerendering the page
-    this.databaseService.deleteMovie(this.movieNameToDelete).subscribe(response => {
+    this.databaseService.deleteMovie$(this.movieNameToDelete).subscribe(response => {
       this.serverResponse = response
     })
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

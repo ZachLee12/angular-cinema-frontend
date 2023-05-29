@@ -78,11 +78,12 @@ export class BookingComponent {
         if (!this.seatsBooked.includes(seat.id.toString())) {
           this.seatsBooked.push(seat.id)
         }
-
       }
     })
     this.seatsBooked = this.seatsBooked.filter((seatId, index) => this.seatsBooked.indexOf(seatId) === index)
 
     this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, this.seatsBooked)
   }
+
+
 }

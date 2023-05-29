@@ -7,9 +7,6 @@ import { Movie, MovieListResponse } from './interfaces';
   providedIn: 'root'
 })
 export class MovieService {
-  //change any[] to a movie interface
-  // movies$: Observable<any[]>;
-
   constructor(private httpClient: HttpClient) {
 
   }
