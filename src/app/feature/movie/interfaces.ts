@@ -1,12 +1,12 @@
 //properties here must match the database model
+
 export interface Movie {
     id: string;
-    time: string;
     name: string;
-    numberofseats: number;
-    numberofseatsbooked: number;
-    seatsbooked: number[];
-    imagebase64: any;
+    desc: string[];
+    genres: string[];
+    actors: string[];
+    playtimes: string[];
 }
 
 export interface MovieListResponse {

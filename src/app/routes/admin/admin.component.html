@@ -3,7 +3,7 @@
         <legend>RESET</legend>
         <label for="movie-name-reset">Movie Name</label>
         <select [(ngModel)]="movieName" name="movie-select" id="movie-select">
-            <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+            <option *ngFor="let movie of movies" value="{{movie.name}}">{{movie.name}} </option>
         </select>
         <button class="reset-seats-booked-button function-button" (click)="resetSeatsBooked()">Reset seats
             booked</button>
@@ -26,7 +26,7 @@
         <legend>DELETE</legend>
         <label for="movie-name-reset">Movie Name</label>
         <select [(ngModel)]="movieNameToDelete" name="movie-select" id="movie-select">
-            <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+            <option *ngFor="let movie of movies" value="{{movie.name}}">{{movie.name}} </option>
         </select>
         <button class="function-button" (click)="deleteMovie()">Delete Movie</button>
     </fieldset>
