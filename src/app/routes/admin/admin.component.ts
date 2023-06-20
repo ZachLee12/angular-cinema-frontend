@@ -21,7 +21,7 @@ export class AdminComponent {
   serverResponse?: any;
   unsubscribe$: Subject<void> = new Subject();
 
-  constructor(private httpClient: HttpClient,
+  constructor(
     private databaseService: DatabaseService,
     private driveService: DriveService
   ) {
@@ -30,12 +30,9 @@ export class AdminComponent {
   }
 
   ngOnInit() {
-    this.driveService.getUserDriveInfo().subscribe({
-      next: data => console.log(data)
-    })
-    this.driveService.getFiles().subscribe(
+    this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
       {
-        next: data => console.log(data)
+        next: (data: any) => console.log(data)
       }
     )
   }

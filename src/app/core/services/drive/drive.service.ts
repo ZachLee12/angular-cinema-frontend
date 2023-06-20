@@ -10,9 +10,7 @@ export class DriveService {
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
   private getHttpHeaders() {
-    return new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getAccessToken()}`
-    })
+    return new HttpHeaders().set('Authorization', `Bearer ${this.authService.getAccessToken()}`)
   }
 
   getUserDriveInfo() {
@@ -23,6 +21,18 @@ export class DriveService {
 
   getFiles() {
     return this.httpClient.get(`https://www.googleapis.com/drive/v3/files`, {
+      headers: this.getHttpHeaders()
+    })
+  }
+
+  getOneFile(id: string) {
+    return this.httpClient.get(`https://www.googleapis.com/drive/v3/files/${id}`, {
+      headers: this.getHttpHeaders()
+    })
+  }
+
+  getFilesInFolder(folderId: string) {
+    return this.httpClient.get(`https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=*`, {
       headers: this.getHttpHeaders()
     })
   }
