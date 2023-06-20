@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Observable, Subject } from 'rxjs';
+import { devEnvironment } from 'src/environments/environment.dev';
 
 export const authConfig: AuthConfig = {
-  issuer: 'https://accounts.google.com',
-
-  clientId: '765640755827-4umfa1ooabgrkhu8mcgovlktqb2oj1lb.apps.googleusercontent.com',
+  issuer: devEnvironment.AUTH_ISSUER,
+  clientId: devEnvironment.AUTH_CLIENT_ID,
   strictDiscoveryDocumentValidation: false,
   //redirect user here, after login, to the app
-  redirectUri: 'http://localhost:4200',
-  scope: 'openid profile email',
-  logoutUrl: 'https://www.google.com/accounts/Logout'
+  redirectUri: devEnvironment.AUTH_REDIRECT_URI,
+  scope: devEnvironment.AUTH_SCOPE,
+  logoutUrl: devEnvironment.AUTH_LOGOUT_URL,
+
 }
 
 @Injectable({
@@ -56,6 +57,10 @@ export class AuthService {
 
   getRoutePermission() {
     return this.userProfile["info"]["given_name"] === "Lee"
+  }
+
+  getAccessToken() {
+    return this.oAuthService.getAccessToken()
   }
 
   getUserProfile$(): Observable<any> {

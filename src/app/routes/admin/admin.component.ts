@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/feature/movie/interfaces';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DriveService } from 'src/app/core/services/drive/drive.service';
 
 @Component({
   selector: 'app-admin',
@@ -20,11 +21,27 @@ export class AdminComponent {
   serverResponse?: any;
   unsubscribe$: Subject<void> = new Subject();
 
-  constructor(private databaseService: DatabaseService) {
+  constructor(private httpClient: HttpClient,
+    private databaseService: DatabaseService,
+    private driveService: DriveService
+  ) {
+
+
   }
 
   ngOnInit() {
-    this.getMovies()
+    this.driveService.getUserDriveInfo().subscribe({
+      next: data => console.log(data)
+    })
+    this.driveService.getFiles().subscribe(
+      {
+        next: data => console.log(data)
+      }
+    )
+  }
+
+  callGoogleApi() {
+
   }
 
   handleImageInput(e: any) {

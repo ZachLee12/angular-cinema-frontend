@@ -13,6 +13,7 @@ import { AdminComponent } from './routes/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
