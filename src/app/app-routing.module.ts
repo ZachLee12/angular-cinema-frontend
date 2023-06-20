@@ -10,7 +10,9 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 const routes: Routes = [
   {
     path: "",
-    component: PlaceholderComponent
+    // component: PlaceholderComponent,
+    redirectTo: "admin",
+    pathMatch: 'full'
   },
   {
     path: "home",

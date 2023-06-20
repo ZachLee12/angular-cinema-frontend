@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
+import { Movie } from '../interfaces';
 
 @Component({
   selector: 'app-movie-item',
@@ -7,12 +8,8 @@ import { Input } from '@angular/core';
   styleUrls: ['./movie-item.component.scss']
 })
 export class MovieItemComponent {
-  @Input() id = "";
-  @Input() time = "";
-  @Input() name = "";
-  @Input() numberOfSeats = 0;
-  @Input() numberOfSeatsBooked = 0;
-  @Input() seatsBooked: any = [];
-  @Input() imageBase64: any = "";
+  @Input() movie!: Movie;
+
+
 
 }

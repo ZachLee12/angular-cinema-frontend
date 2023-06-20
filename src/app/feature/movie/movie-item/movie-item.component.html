@@ -1,12 +1,9 @@
 <div id="Movie-Item">
-    <div [style.background-image]="'url('+imageBase64+')'" class="movie-image-wrapper"></div>
+    <!-- <div [style.background-image]="'url('+imageBase64+')'" class="movie-image-wrapper"></div> -->
     <div class="position-wrapper">
         <div class="content-wrapper">
-            <div class="name">{{name}} </div>
-            <div class="time">{{time | uppercase }} </div>
-            <div class="seats">Number of seats left: {{numberOfSeats - numberOfSeatsBooked}} </div>
-            <button class="book-now-button" routerLink="/booking"
-                [queryParams]="{id, time,name, numberOfSeats, numberOfSeatsBooked, seatsBooked}">Book
+            <div class="name">{{movie.name}} </div>
+            <button class="book-now-button" routerLink="/booking">Book
                 Now</button>
         </div>
     </div>

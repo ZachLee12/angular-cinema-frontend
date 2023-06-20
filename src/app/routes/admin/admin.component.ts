@@ -30,6 +30,7 @@ export class AdminComponent {
   }
 
   ngOnInit() {
+    this.getMovies();
     this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
       {
         next: (data: any) => console.log(data)

@@ -8,7 +8,3 @@ export interface Movie {
     actors: string[];
     playtimes: string[];
 }
-
-export interface MovieListResponse {
-    movies: Movie[]
-}
