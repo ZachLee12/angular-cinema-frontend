@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/feature/movie/interfaces';
 
@@ -26,12 +26,8 @@ export class DatabaseService {
     return this.httpClient.get<Movie[]>(`http://localhost:3000/movies`)
   }
 
-
-  addMovie$(time: string, name: string, numberofseats: number, imageBase64: string) {
-
-  }
-
-  deleteMovie$(name: string) {
-
+  getUser$() {
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('jwt')}` })
+    return this.httpClient.get(`http://localhost:3000/testProtected`, { headers: header })
   }
 }

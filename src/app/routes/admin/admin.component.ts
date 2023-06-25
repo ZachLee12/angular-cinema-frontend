@@ -4,12 +4,14 @@ import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/feature/movie/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DriveService } from 'src/app/core/services/drive/drive.service';
+import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
+
 export class AdminComponent {
   movies: Movie[] = []
   movieName: string = '';
@@ -23,17 +25,33 @@ export class AdminComponent {
 
   constructor(
     private databaseService: DatabaseService,
-    private driveService: DriveService
-  ) {
-
-
-  }
+    private driveService: DriveService,
+    private localAuthService: LocalAuthService
+  ) { }
 
   ngOnInit() {
     this.getMovies();
-    this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
+    // this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
+    //   {
+    //     next: (data: any) => console.log(data)
+    //   }
+    // )
+  }
+
+  login() {
+    this.localAuthService.login().subscribe(
       {
-        next: (data: any) => console.log(data)
+        next: (data: { accessToken: string }) => {
+          localStorage.setItem('jwt', data.accessToken)
+        }
+      }
+    )
+  }
+
+  getUser() {
+    this.databaseService.getUser$().subscribe(
+      {
+        next: (data) => console.log(data)
       }
     )
   }
