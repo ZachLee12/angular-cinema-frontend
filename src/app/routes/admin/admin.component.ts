@@ -5,6 +5,9 @@ import { Movie } from 'src/app/feature/movie/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DriveService } from 'src/app/core/services/drive/drive.service';
 import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.service';
+import { Tokens } from './interfaces';
+import jwt_decode from 'jwt-decode'
+
 
 @Component({
   selector: 'app-admin',
@@ -41,15 +44,19 @@ export class AdminComponent {
   login() {
     this.localAuthService.login().subscribe(
       {
-        next: (data: { accessToken: string }) => {
-          localStorage.setItem('jwt', data.accessToken)
+        next: (data: Tokens) => {
+          localStorage.setItem('accessToken', data.accessToken)
+          localStorage.setItem('refreshToken', data.refreshToken)
         }
       }
     )
   }
 
   getUser() {
-    this.databaseService.getUser$().subscribe(
+    const token = jwt_decode(localStorage.getItem('accessToken') as string)
+    if (!token) { console.error('no access token') }
+    const { username } = token as any
+    this.databaseService.getUser$(username).subscribe(
       {
         next: (data) => console.log(data)
       }

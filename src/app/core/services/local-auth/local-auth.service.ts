@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Tokens } from 'src/app/routes/admin/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,8 @@ export class LocalAuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login() {
+  login(): Observable<Tokens> {
     const httpBody = { username: 'zachlee123', password: 'iLoveSushi%' }
-    return this.httpClient.post<{ accessToken: string }>(`http://localhost:3000/auth/login`, httpBody)
+    return this.httpClient.post<Tokens>(`http://localhost:3000/auth/login`, httpBody)
   }
 }
