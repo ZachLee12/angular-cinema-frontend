@@ -12,8 +12,20 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor() { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request.headers)
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const accessToken = localStorage.getItem('accessToken')
+
+    if (accessToken) {
+      const modifiedRequest = request.clone(
+        {
+          setHeaders: {
+            'Access-Control-Allow-Origin': '*',
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
+      )
+      return next.handle(modifiedRequest)
+    }
 
     return next.handle(request);
   }

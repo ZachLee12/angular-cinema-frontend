@@ -12,6 +12,8 @@ import { BookingModule } from './feature/booking/booking.module';
 import { AdminComponent } from './routes/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { AdminModule } from './routes/admin/admin.module';
+import { httpInterceptorProviders } from './core/interceptors';
 
 
 @NgModule({
@@ -19,12 +21,12 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
     AppComponent,
     MainPageComponent,
     AboutComponent,
-    AdminComponent,
     PlaceholderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AdminModule,
     HttpClientModule,
     FormsModule,
     OAuthModule.forRoot(),
@@ -33,7 +35,7 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
     MovieModule,
     BookingModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

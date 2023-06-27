@@ -28,7 +28,7 @@ export class DatabaseService {
   }
 
   getUser$(username: string) {
-    return this.httpClient.get(`http://localhost:3000/users/${username}`, { headers: this.getHttpHeaders() })
+    return this.httpClient.get(`http://localhost:3000/users/${username}`)
   }
 
   private getHttpHeaders(): HttpHeaders {
