@@ -14,4 +14,8 @@ export class LocalAuthService {
     const httpBody = { username: 'zachlee123', password: 'iLoveSushi%' }
     return this.httpClient.post<Tokens>(`http://localhost:3000/auth/login`, httpBody)
   }
+
+  logout(): Observable<Tokens> {
+    return this.httpClient.get<Tokens>(`http://localhost:3000/auth/logout`)
+  }
 }

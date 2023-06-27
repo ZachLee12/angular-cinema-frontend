@@ -44,12 +44,22 @@ export class AdminComponent {
   login() {
     this.localAuthService.login().subscribe(
       {
-        next: (data: Tokens) => {
-          localStorage.setItem('accessToken', data.accessToken)
-          localStorage.setItem('refreshToken', data.refreshToken)
-        }
+        next: (tokens: Tokens) => this.setTokens(tokens)
       }
     )
+  }
+
+  logout() {
+    this.localAuthService.logout().subscribe(
+      {
+        next: (nullTokens: Tokens) => this.setTokens(nullTokens)
+      }
+    )
+  }
+
+  private setTokens(tokens: Tokens) {
+    localStorage.setItem('accessToken', tokens.accessToken)
+    localStorage.setItem('refreshToken', tokens.refreshToken)
   }
 
   getUser() {
@@ -84,9 +94,11 @@ export class AdminComponent {
     })
   }
 
+
   resetSeatsBooked() {
 
   }
+
 
 
   addMovie() {
