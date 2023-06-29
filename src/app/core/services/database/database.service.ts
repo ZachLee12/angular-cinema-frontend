@@ -27,11 +27,8 @@ export class DatabaseService {
     return this.httpClient.get<Movie[]>(`http://localhost:3000/movies`)
   }
 
+  //Protected
   getUser$(username: string) {
-    return this.httpClient.get(`http://localhost:3000/users/${username}`)
-  }
-
-  private getHttpHeaders(): HttpHeaders {
-    return new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` })
+    return this.httpClient.get(`http://localhost:3000/protected/users/${username}`)
   }
 }

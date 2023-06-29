@@ -6,6 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { devEnvironment } from 'src/environments/environment.dev';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -14,19 +15,16 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = localStorage.getItem('accessToken')
-
-    if (accessToken) {
+    if (request.url.includes('protected') && accessToken) {
       const modifiedRequest = request.clone(
         {
-          setHeaders: {
-            'Access-Control-Allow-Origin': '*',
-            Authorization: `Bearer ${accessToken}`
-          }
+          headers: request.headers.set('Authorization', `Bearer ${accessToken}`)
         }
       )
       return next.handle(modifiedRequest)
     }
-
-    return next.handle(request);
+    else {
+      return next.handle(request);
+    }
   }
 }

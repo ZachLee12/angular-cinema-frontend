@@ -53,7 +53,7 @@ export class AdminComponent {
   logout() {
     this.localAuthService.logout().subscribe(
       {
-        next: (nullTokens: Tokens) => this.setTokens(nullTokens)
+        next: (revokedTokens: Tokens) => this.setTokens(revokedTokens)
       }
     )
   }
@@ -64,19 +64,14 @@ export class AdminComponent {
   }
 
   getUser() {
-    const token = jwt_decode(localStorage.getItem('accessToken') as string)
-    if (!token) { console.error('no access token') }
-    const { username } = token as any
-    this.databaseService.getUser$(username).subscribe(
+    this.databaseService.getUser$('zachlee123').subscribe(
       {
-        next: (data) => console.log(data)
+        next: (data) => console.log(data),
+        error: (err) => console.error(err)
       }
     )
   }
 
-  callGoogleApi() {
-
-  }
 
   handleImageInput(e: any) {
     const imageFile = e.target.files[0]
