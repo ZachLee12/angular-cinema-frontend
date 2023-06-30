@@ -2,7 +2,10 @@
 
 This project is built for the SWENG module in my 4th Semester at HSLU.
 
-It is still under active development along with a NestJS backend https://github.com/ZachLee12/nestjs-cinema-server
+It is still under active development, at branch : `NESTJS`
+
+along with a NestJS backend https://github.com/ZachLee12/nestjs-cinema-server
+
 
 ## Goals / Features to add
 1. JWT Authentication with Local Strategy (maybe add Passport but not sure yet)
