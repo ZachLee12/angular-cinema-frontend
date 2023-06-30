@@ -12,24 +12,24 @@ export class AppComponent {
   userProfile$?: Observable<any>;
   unsubscribe$: Subject<void> = new Subject();
 
-  constructor(private authService: AuthService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.userProfile$ = this.authService.getUserProfile$()
-    this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
+    // this.userProfile$ = this.authService.getUserProfile$()
+    // this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
   }
 
   logIn() {
-    this.authService.logIn();
+    // this.authService.logIn();
   }
 
   logOut() {
-    this.authService.logOut();
+    // this.authService.logOut();
   }
 
   getIsLoggedIn() {
-    return this.authService.getIsLoggedIn();
+    // return this.authService.getIsLoggedIn();
   }
 
   ngOnDestroy() {

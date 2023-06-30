@@ -3,7 +3,7 @@ import { DatabaseService } from 'src/app/core/services/database/database.service
 import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/feature/movie/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DriveService } from 'src/app/core/services/drive/drive.service';
+// import { DriveService } from 'src/app/core/services/drive/drive.service';
 import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.service';
 import { Tokens } from './interfaces';
 import { HttpInterceptor } from '@angular/common/http';
@@ -29,7 +29,7 @@ export class AdminComponent {
 
   constructor(
     private databaseService: DatabaseService,
-    private driveService: DriveService,
+    // private driveService: DriveService,
     private localAuthService: LocalAuthService
   ) { }
 
@@ -66,10 +66,13 @@ export class AdminComponent {
   getUser() {
     this.databaseService.getUser$('zachlee123').subscribe(
       {
-        next: (data) => console.log(data),
-        error: (err) => console.error(err)
+        next: (data) => console.log(data)
       }
     )
+  }
+
+  refreshAccessTokenTest() {
+    this.localAuthService.refreshAccessToken$().subscribe(data => console.log(data))
   }
 
 
