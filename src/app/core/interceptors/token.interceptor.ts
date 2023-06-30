@@ -17,7 +17,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
     private localAuthService: LocalAuthService,
-    private httpClient: HttpClient
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -29,7 +29,6 @@ export class AdminComponent {
 
   constructor(
     private databaseService: DatabaseService,
-    // private driveService: DriveService,
     private localAuthService: LocalAuthService
   ) { }
 
