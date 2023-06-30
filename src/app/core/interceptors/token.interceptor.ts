@@ -26,9 +26,9 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(requestWithAuthHeader)
       .pipe(
         catchError((err: HttpErrorResponse) => {
-          if (err.status === 401) {
-            console.log('here')
-            return this.handle401Error(requestWithAuthHeader, next)
+          const refreshToken = this.localAuthService.getRefreshToken()?.trim()
+          if (refreshToken !== '' && err.status === 401) {
+            return this.initRefreshTokenProcedure(requestWithAuthHeader, next)
           } else {
             return throwError(() => err)
           }
@@ -37,7 +37,7 @@ export class TokenInterceptor implements HttpInterceptor {
       )
   }//intercept
 
-  private handle401Error(req: HttpRequest<any>, next: HttpHandler) {
+  private initRefreshTokenProcedure(req: HttpRequest<any>, next: HttpHandler) {
     return this.localAuthService.refreshAccessToken$().pipe(
       switchMap((token: { accessToken: string }) => {
         localStorage.setItem('accessToken', token.accessToken)

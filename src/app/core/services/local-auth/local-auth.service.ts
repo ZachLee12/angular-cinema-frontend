@@ -23,11 +23,7 @@ export class LocalAuthService {
       {
         'refreshToken': localStorage.getItem('refreshToken')
       }
-    ).pipe(
-      tap(token => {
-        console.log('Received new token: ' + token)
-      })
-    )
+    ) as Observable<{ accessToken: string }>
   }
 
   login(): Observable<Tokens> {
