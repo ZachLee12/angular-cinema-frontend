@@ -1,7 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { catchError, of, switchMap, throwError } from 'rxjs';
+import { Observable, Subject, catchError, map, of, switchMap, takeUntil, tap, throwError } from 'rxjs';
+import { Tokens } from 'src/app/routes/admin/interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +17,14 @@ export class LoginPageComponent {
   loginService: LoginService = inject(LoginService)
 
   loginForm!: FormGroup;
-  loginStatus$: any;
+  isLoginSuccessful$!: Observable<boolean>;
+  loginStatusMessage: string = '';
+  unsubscribe$: Subject<void> = new Subject();
+
+  constructor(private router: Router) {
+
+  }
+
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -24,14 +34,25 @@ export class LoginPageComponent {
   }
 
   login() {
-    //zachlee123
-    //iLoveSushi%
-    this.loginService.login(this.loginForm.value).subscribe(
-      {
-        next: (data) => console.log(data),
-        error: (err) => console.log(err)
-      }
+    this.isLoginSuccessful$ = this.loginService.login(this.loginForm.value).pipe(
+      switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens)).pipe(
+        map(() => {
+          this.loginStatusMessage = 'Login Successful'
+          this.router.navigate(['/home'])
+          return true
+        })
+      )),
+      catchError((httpErrorResponse: HttpErrorResponse) => {
+        this.loginStatusMessage = httpErrorResponse.error.message
+        return of(false)
+      }),
+      takeUntil(this.unsubscribe$)
     )
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next()
+    this.unsubscribe$.complete()
   }
 
 }

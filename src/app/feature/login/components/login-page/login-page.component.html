@@ -1,4 +1,3 @@
-{{loginForm.value | json}}
 <div id="Login-Page">
     <form [formGroup]="loginForm" class="login-form">
         <label for="username">Username</label>
@@ -9,4 +8,11 @@
 
         <button (click)="login()" [disabled]="!loginForm.valid">Log In</button>
     </form>
+
+    <ng-container *ngIf="{isLoggedIn : isLoginSuccessful$ | async} as status">
+        <h2 class="login-status-message"
+            [ngClass]="{'login-success':status.isLoggedIn, 'login-failed':!status.isLoggedIn}">
+            {{loginStatusMessage}}
+        </h2>
+    </ng-container>
 </div>
