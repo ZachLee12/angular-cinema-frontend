@@ -70,10 +70,6 @@ export class AdminComponent {
     )
   }
 
-  refreshAccessTokenTest() {
-    this.localAuthService.refreshAccessToken$().subscribe(data => console.log(data))
-  }
-
 
   handleImageInput(e: any) {
     const imageFile = e.target.files[0]

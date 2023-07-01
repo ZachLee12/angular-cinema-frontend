@@ -1,0 +1,12 @@
+{{loginForm.value | json}}
+<div id="Login-Page">
+    <form [formGroup]="loginForm" class="login-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username">
+
+        <label for="password">Password</label>
+        <input type="text" id="password" formControlName="password">
+
+        <button (click)="login()" [disabled]="!loginForm.valid">Log In</button>
+    </form>
+</div>

@@ -19,7 +19,6 @@ import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
   imports: [
     CommonModule,
     FormsModule,
-
   ]
 })
 export class AdminModule { }

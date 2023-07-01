@@ -6,8 +6,6 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
-  HttpClient,
-  HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalAuthService } from '../services/local-auth/local-auth.service';

@@ -13,18 +13,16 @@
             <div routerLink="/about" routerLinkActive="active-link" class="nav">
                 About
             </div>
+            <div routerLink="/admin" routerLinkActive="active-link" class="nav">
+                Admin
+            </div>
 
-            <div *ngIf="getIsLoggedIn() else elseBlock" class="wrapper" (click)="logOut()">
+            <div routerLink="/login" class=" wrapper">
                 <div class="nav">
-                    Log Out
+                    Log In
                 </div>
             </div>
 
-            <ng-template #elseBlock>
-                <div class="nav" (click)="logIn()">
-                    Log In
-                </div>
-            </ng-template>
         </div>
     </header>
     <router-outlet></router-outlet>

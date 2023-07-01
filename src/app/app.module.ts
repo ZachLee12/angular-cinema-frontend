@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminModule } from './routes/admin/admin.module';
 import { httpInterceptorProviders } from './core/interceptors';
+import { LoginModule } from './feature/login/login.module';
 
 
 @NgModule({
@@ -21,19 +22,19 @@ import { httpInterceptorProviders } from './core/interceptors';
     AppComponent,
     MainPageComponent,
     AboutComponent,
-    PlaceholderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminModule,
     HttpClientModule,
-    FormsModule,
     OAuthModule.forRoot(),
 
     //custom modules
     MovieModule,
     BookingModule,
+    LoginModule
+
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

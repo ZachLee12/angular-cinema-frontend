@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Observable, Subject } from 'rxjs';
+import { LoginService } from 'src/app/feature/login/services/login.service';
 import { devEnvironment } from 'src/environments/environment.dev';
 
 export const authConfig: AuthConfig = {
@@ -23,7 +24,8 @@ export class AuthService {
   userProfile !: any;
   userProfileSubject: Subject<any> = new Subject<any>();
 
-  constructor(private oAuthService: OAuthService) {
+  constructor(
+    private oAuthService: OAuthService,) {
     this.oAuthService.configure(authConfig)
     this.oAuthService.logoutUrl = 'https://www.google.com/accounts/Logout'
     this.oAuthService.loadDiscoveryDocument().then(() => {
