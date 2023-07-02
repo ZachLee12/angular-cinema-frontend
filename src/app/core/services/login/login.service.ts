@@ -15,7 +15,8 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  initLoginFlow$(): Observable<UserProfile | string> {
+  initLoginFlow$(): Observable<UserProfile | any> {
+    // this.httpClient.get(`http://localhost:3000/protected/testConnection`).subscribe(data => console.log(data))
     try {
       const accessToken: string = this.getAccessToken() ?? ''
       const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
@@ -26,8 +27,6 @@ export class LoginService {
     } catch (err) {
       return throwError(() => 'not logged in')
     }
-
-    // return this.httpClient.get(`http://localhost:3000/testConnection`)
   }
 
   getIsLoggedIn$() {

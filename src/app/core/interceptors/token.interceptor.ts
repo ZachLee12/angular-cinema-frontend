@@ -18,25 +18,26 @@ export class TokenInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request.url.includes('protected')) {
-      return new Observable<HttpEvent<null>>;
-    }
+    if (request.url.includes('protected') || request.url.includes('auth')) {
+      const accessToken = this.localAuthService.getAccessToken()
+      const requestWithAuthHeader = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) })
 
-    const accessToken = this.localAuthService.getAccessToken()
-    const requestWithAuthHeader = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) })
+      return next.handle(requestWithAuthHeader)
+        .pipe(
+          catchError((err: HttpErrorResponse) => {
+            const refreshToken = this.localAuthService.getRefreshToken()?.trim()
+            if (refreshToken !== '' && err.status === 401) {
+              return this.initRefreshTokenProcedure(requestWithAuthHeader, next)
+            } else {
+              return throwError(() => err)
+            }
+          })
 
-    return next.handle(requestWithAuthHeader)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          const refreshToken = this.localAuthService.getRefreshToken()?.trim()
-          if (refreshToken !== '' && err.status === 401) {
-            return this.initRefreshTokenProcedure(requestWithAuthHeader, next)
-          } else {
-            return throwError(() => err)
-          }
-        })
-
-      )
+        )
+    }//if 
+    else {
+      return new Observable<HttpEvent<any>>;
+    }//else
   }//intercept
 
   private initRefreshTokenProcedure(req: HttpRequest<any>, next: HttpHandler) {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MovieModule } from './feature/movie/movie.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './routes/main-page/main-page.component';
@@ -15,6 +15,7 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminModule } from './routes/admin/admin.module';
 import { httpInterceptorProviders } from './core/interceptors';
 import { LoginModule } from './feature/login/login.module';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 
 @NgModule({
@@ -36,7 +37,13 @@ import { LoginModule } from './feature/login/login.module';
     LoginModule
 
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
