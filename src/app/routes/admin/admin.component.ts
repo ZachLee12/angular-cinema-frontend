@@ -8,6 +8,7 @@ import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.se
 import { Tokens } from './interfaces';
 import { HttpInterceptor } from '@angular/common/http';
 import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 
 
 @Component({
@@ -63,7 +64,8 @@ export class AdminComponent {
   }
 
   getUser() {
-    this.databaseService.getUser$('zachlee123').subscribe(
+    const { username } = jwtDecode(this.localAuthService.getAccessToken() ?? '') as any
+    this.databaseService.getUser$(username).subscribe(
       {
         next: (data) => console.log(data)
       }
