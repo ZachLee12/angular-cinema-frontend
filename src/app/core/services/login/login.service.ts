@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { Tokens } from 'src/app/routes/admin/interfaces';
 import { Credentials } from 'src/app/feature/login/interfaces';
 import jwtDecode from 'jwt-decode';
-import { UserProfile } from './interfaces';
+import { UserProfile, VerifyTokenResponse } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +16,32 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   initLoginFlow$(): Observable<UserProfile | any> {
-    // this.httpClient.get(`http://localhost:3000/protected/testConnection`).subscribe(data => console.log(data))
-    try {
-      const accessToken: string = this.getAccessToken() ?? ''
-      const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
-      const userProfile = { firstname, lastname, username, age }
-      this.setUserProfile$(userProfile)
-      this.setIsLoggedIn$(true)
-      return of('login session maintained')
-    } catch (err) {
-      return throwError(() => 'not logged in')
-    }
+    return this.httpClient.get(`http://localhost:3000/protected/verifyRefreshToken`, { headers: new HttpHeaders({ 'refreshtoken': (this.getRefreshToken() as string) }) }).pipe(
+      switchMap((response: any) => {
+        try {
+          const accessToken: string = this.getAccessToken() ?? ''
+          const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
+          const userProfile = { firstname, lastname, username, age }
+          this.setUserProfile$(userProfile)
+          this.setIsLoggedIn$(true)
+          return of(response.message as VerifyTokenResponse)
+        } catch (err) {
+          return throwError(() => 'not logged in')
+        }
+      }),
+      catchError((err: HttpErrorResponse) => throwError(() => err.error.error))
+    )
+
+    // try {
+    //   const accessToken: string = this.getAccessToken() ?? ''
+    //   const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
+    //   const userProfile = { firstname, lastname, username, age }
+    //   this.setUserProfile$(userProfile)
+    //   this.setIsLoggedIn$(true)
+    //   return of('login session maintained')
+    // } catch (err) {
+    //   return throwError(() => 'not logged in')
+    // }
   }
 
   getIsLoggedIn$() {

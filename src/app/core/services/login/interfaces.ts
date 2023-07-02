@@ -4,3 +4,7 @@ export interface UserProfile {
     username: string,
     age: number
 }
+
+export interface VerifyTokenResponse {
+    message: string
+}
