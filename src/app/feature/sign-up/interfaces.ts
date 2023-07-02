@@ -1,6 +1,7 @@
 export interface CreateUser {
-    firstname: string,
-    lastname: string,
-    username: string,
-    birthday: Date
+    firstname: string | null,
+    lastname: string | null,
+    username: string | null,
+    password: string | null,
+    birthday: string
 }

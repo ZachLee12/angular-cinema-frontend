@@ -12,10 +12,19 @@ export class SignUpComponent {
   signUpService: SignUpService = inject(SignUpService)
 
   signUpForm = this.formBuilder.group({
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl(''),
-    username: new FormControl(''),
-    birthday: new FormControl(new Date(2022, 6, 2).toISOString().substring(0, 10))
+    firstname: new FormControl('Carl', [Validators.required]),
+    lastname: new FormControl('Jackson', [Validators.required]),
+    username: new FormControl('jackson123', [Validators.required]),
+    password: new FormControl('applePie@', [Validators.required]),
+    birthday: new FormControl('', [Validators.required])
   })
+
+  signUp() {
+    this.signUpService.signUp(this.signUpForm.value as any).subscribe(
+      {
+        next: data => console.log(data)
+      }
+    )
+  }
 
 }

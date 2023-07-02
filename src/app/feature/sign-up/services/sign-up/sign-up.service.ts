@@ -9,6 +9,16 @@ export class SignUpService {
   httpClient: HttpClient = inject(HttpClient)
 
   signUp(createUser: CreateUser) {
-    this.httpClient.post(`http://localhost:3000/protected/users`, createUser)
+    console.log(Number(new Date().getFullYear()) - Number(createUser.birthday.slice(0, 4)))
+    const user = {
+      ...createUser,
+      age: Number(new Date().getFullYear()) - Number(createUser.birthday.slice(0, 4)),
+      movies: {
+        liked: [],
+        watched: []
+      }
+    }
+
+    return this.httpClient.post(`http://localhost:3000/protected/users`, user)
   }
 }
