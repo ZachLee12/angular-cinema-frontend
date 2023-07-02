@@ -18,6 +18,10 @@ export class TokenInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (!request.url.includes('protected')) {
+      return new Observable<HttpEvent<null>>;
+    }
+
     const accessToken = this.localAuthService.getAccessToken()
     const requestWithAuthHeader = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) })
 

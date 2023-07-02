@@ -35,7 +35,7 @@ export class LoginPageComponent {
       switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens)).pipe(
         map(() => {
           this.loginStatusMessage = 'Login Successful'
-          this.loginService.emitIsLoggedIn$(true)
+          this.loginService.setIsLoggedIn$(true)
           this.router.navigate(['/home'])
           return true
         })

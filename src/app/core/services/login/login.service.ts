@@ -1,32 +1,49 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, throwError } from 'rxjs';
 import { Tokens } from 'src/app/routes/admin/interfaces';
 import { Credentials } from 'src/app/feature/login/interfaces';
 import jwtDecode from 'jwt-decode';
+import { UserProfile } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  isLoggedIn$: Subject<boolean> = new Subject();
+  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  userProfile$: Subject<UserProfile> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
-  initLoginFlow$(): Observable<any> {
-    return this.httpClient.get(`http://localhost:3000/testConnection`)
+  initLoginFlow$(): Observable<UserProfile | string> {
+    try {
+      const accessToken: string = this.getAccessToken() ?? ''
+      const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
+      const userProfile = { firstname, lastname, username, age }
+      this.setUserProfile$(userProfile)
+      this.setIsLoggedIn$(true)
+      return of('login session maintained')
+    } catch (err) {
+      return throwError(() => 'not logged in')
+    }
+
+    // return this.httpClient.get(`http://localhost:3000/testConnection`)
   }
 
   getIsLoggedIn$() {
     return this.isLoggedIn$.asObservable()
   }
 
-  emitIsLoggedIn$(bool: boolean) {
+  setIsLoggedIn$(bool: boolean) {
     this.isLoggedIn$.next(bool)
   }
 
-  getUserProfile$(jwtToken: string): Observable<any> {
-    return of(jwtDecode(jwtToken))
+  setUserProfile$(userProfile: UserProfile): void {
+    this.userProfile$.next(userProfile)
+  }
+
+  getUserProfile$(): Observable<UserProfile> {
+    return this.userProfile$.asObservable()
   }
 
   getAccessToken() {
