@@ -9,14 +9,11 @@ import { MainPageComponent } from './routes/main-page/main-page.component';
 import { AboutComponent } from './routes/about/about.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BookingModule } from './feature/booking/booking.module';
-import { AdminComponent } from './routes/admin/admin.component';
-import { FormsModule } from '@angular/forms';
-import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminModule } from './routes/admin/admin.module';
 import { httpInterceptorProviders } from './core/interceptors';
 import { LoginModule } from './feature/login/login.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
-
+import { SignUpModule } from './feature/sign-up/sign-up.module';
 
 @NgModule({
   declarations: [
@@ -34,8 +31,8 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     //custom modules
     MovieModule,
     BookingModule,
-    LoginModule
-
+    LoginModule,
+    SignUpModule
   ],
   providers: [httpInterceptorProviders,
     {
