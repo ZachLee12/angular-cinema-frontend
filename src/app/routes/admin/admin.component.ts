@@ -70,6 +70,11 @@ export class AdminComponent {
     )
   }
 
+  logTokens() {
+    console.log('Access Token: ' + localStorage.getItem('accessToken'))
+    console.log('Refresh Token: ' + localStorage.getItem('refreshToken'))
+  }
+
 
   handleImageInput(e: any) {
     const imageFile = e.target.files[0]

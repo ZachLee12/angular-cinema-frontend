@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Observable, Subject } from 'rxjs';
-import { LoginService } from 'src/app/feature/login/services/login.service';
 import { devEnvironment } from 'src/environments/environment.dev';
 
 export const authConfig: AuthConfig = {

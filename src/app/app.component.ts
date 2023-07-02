@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
 import { Subject, Observable, takeUntil } from 'rxjs';
-
+import { LoginService } from './core/services/login/login.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,12 +12,18 @@ export class AppComponent {
   userProfile$?: Observable<any>;
   unsubscribe$: Subject<void> = new Subject();
 
-  constructor() {
-  }
+  loginService: LoginService = inject(LoginService)
+  isLoggedIn: boolean = false;
+
 
   ngOnInit() {
     // this.userProfile$ = this.authService.getUserProfile$()
     // this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
+    this.loginService.initLoginFlow$().subscribe(data => console.log(data))
+    this.loginService.getIsLoggedIn$().subscribe({
+      next: (bool) => this.isLoggedIn = bool
+    })
+
   }
 
   logIn() {
