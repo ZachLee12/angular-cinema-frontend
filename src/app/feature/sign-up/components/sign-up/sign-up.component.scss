@@ -31,6 +31,13 @@
 
 .wrapper {
     @include flexDisplay(column, false);
+
+    @mixin activeLabel() {
+        font-size: 0.85em;
+        transform: translate(-10px, -25px);
+        color: purple;
+    }
+
     position: relative;
 
     input[type="text"],
@@ -42,6 +49,8 @@
         border-radius: 10px;
         font-size: 1.2em;
         padding-left: 10px;
+        padding-top: 20px;
+        outline: none;
     }
 
     .label {
@@ -55,8 +64,14 @@
             color 300ms ease-in-out
     }
 
+
     &>input:focus+.label {
-        font-size: 0.8em;
-        transform: translate(-10px, -25px);
+        @include activeLabel();
+
+    }
+
+    .active-label {
+        @include activeLabel();
+
     }
 }
