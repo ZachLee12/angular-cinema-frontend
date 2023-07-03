@@ -9,7 +9,6 @@ export class SignUpService {
   httpClient: HttpClient = inject(HttpClient)
 
   signUp(createUser: CreateUser) {
-    console.log(Number(new Date().getFullYear()) - Number(createUser.birthday.slice(0, 4)))
     const user = {
       ...createUser,
       age: Number(new Date().getFullYear()) - Number(createUser.birthday.slice(0, 4)),
