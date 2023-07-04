@@ -3,25 +3,46 @@
         <div class="wrapper">
             <input type="text" id="firstname" formControlName="firstname">
             <label class="label" for="firstname"
-                [ngClass]="{'active-label': signUpForm.get('firstname')?.valid}">Firstname</label>
+                [ngClass]="{'active-label': signUpForm.get('firstname')?.dirty &&signUpForm.get('firstname')?.valid }">
+                Firstname <span class="error-message"
+                    *ngIf="signUpForm.get('firstname')?.touched && signUpForm.get('firstname')?.invalid">Cannot be
+                    empty</span>
+            </label>
         </div>
 
         <div class="wrapper">
             <input type="text" id="lastname" formControlName="lastname">
             <label class="label" for="lastname"
-                [ngClass]="{'active-label': signUpForm.get('lastname')?.dirty}">Lastname</label>
+                [ngClass]="{'active-label': signUpForm.get('lastname')?.dirty && signUpForm.get('lastname')?.valid}">
+                Lastname
+                <span class="error-message"
+                    *ngIf="signUpForm.get('lastname')?.touched && signUpForm.get('lastname')?.invalid">
+                    Cannot be empty
+                </span>
+            </label>
         </div>
 
         <div class="wrapper">
             <input type="text" id="username" formControlName="username">
             <label class="label" for="username"
-                [ngClass]="{'active-label': signUpForm.get('username')?.dirty}">Username</label>
+                [ngClass]="{'active-label': signUpForm.get('username')?.dirty && signUpForm.get('username')?.valid}">
+                Username <span class="error-message"
+                    *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">Must have at
+                    least 5 characters</span>
+            </label>
         </div>
 
         <div class="wrapper">
             <input type="password" id="password" formControlName="password">
-            <label class="label" for="password"
-                [ngClass]="{'active-label': signUpForm.get('password')?.dirty}">Password</label>
+            <label class="label" for="password" [ngClass]="{
+                    'active-label': signUpForm.get('password')?.dirty && (signUpForm.get('password')?.value?.trim() !==''),
+                    'invalid-label':  signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid,
+                }">
+                Password <span class="error-message"
+                    *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">at least
+                    5 characters, a special character and a capital
+                    letter</span>
+            </label>
         </div>
 
         <div class="wrapper">
