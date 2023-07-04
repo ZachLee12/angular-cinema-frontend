@@ -1,3 +1,12 @@
 <div id="Accounts">
+    <div class="navigation-btns-wrapper">
+        <button class="navigate-to-sign-up-btn navigation-btn" routerLink="./sign-up"
+            [routerLinkActive]="['active-route']">
+            Sign Up
+        </button>
+        <button class="navigate-to-login-btn navigation-btn" routerLink="./login" [routerLinkActive]="['active-route']">
+            Log In
+        </button>
+    </div>
     <router-outlet></router-outlet>
 </div>
