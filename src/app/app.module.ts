@@ -11,9 +11,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { BookingModule } from './feature/booking/booking.module';
 import { AdminModule } from './routes/admin/admin.module';
 import { httpInterceptorProviders } from './core/interceptors';
-import { LoginModule } from './feature/login/login.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
-import { SignUpModule } from './feature/sign-up/sign-up.module';
+import { AccountsModule } from './feature/accounts/accounts.module';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { SignUpModule } from './feature/sign-up/sign-up.module';
     //custom modules
     MovieModule,
     BookingModule,
-    LoginModule,
-    SignUpModule
+    AccountsModule
   ],
   providers: [httpInterceptorProviders,
     {

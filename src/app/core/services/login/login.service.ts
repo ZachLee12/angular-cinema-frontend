@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { Tokens } from 'src/app/routes/admin/interfaces';
-import { Credentials } from 'src/app/feature/login/interfaces';
+import { Credentials } from 'src/app/feature/accounts/components/login/interfaces';
 import jwtDecode from 'jwt-decode';
 import { UserProfile, VerifyTokenResponse } from './interfaces';
 
