@@ -25,8 +25,17 @@
 
     ;
     border: 2px solid black;
+    border-radius: 10px;
+    background-color: #ffffff;
     width: clamp(250px, 30%, 700px);
     padding: 40px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+
+    .form-title {
+        text-align: center
+    }
 }
 
 .wrapper {
@@ -44,6 +53,8 @@
     input[type="password"] {
         height: 55px;
         border: 2px solid purple;
+        box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4),
+            1px 2px 2px hsla(0, 0%, 0%, 0.4);
         border-radius: 10px;
         font-size: 1.2em;
         padding-left: 10px;
@@ -86,5 +97,22 @@
     .transform-words {
         font-size: 0.85em;
         transform: translate(-10px, -25px);
+    }
+}
+
+.sign-up-btn {
+    height: 40px;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: white;
+    background: linear-gradient(45deg, purple, #23c1f5);
+    opacity: 0.8;
+    transition: opacity 200ms ease-in-out;
+    border-style: solid;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
     }
 }
