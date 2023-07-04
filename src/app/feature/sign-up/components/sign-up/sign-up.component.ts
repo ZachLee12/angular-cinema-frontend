@@ -19,7 +19,7 @@ export class SignUpComponent {
     birthday: new FormControl('', [Validators.required])
   })
 
-  signUp() {
+  async signUp() {
     this.signUpService.signUp(this.signUpForm.value as any).subscribe(
       {
         next: data => console.log(data)

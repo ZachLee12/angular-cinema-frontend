@@ -9,7 +9,7 @@
                     'invalid-label':  signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')
                 }">
                 Firstname <span class="error-message"
-                    *ngIf="signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')">Cannot
+                    *ngIf="signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')">*Cannot
                     be
                     empty</span>
             </label>
@@ -25,7 +25,7 @@
                 Lastname
                 <span class="error-message"
                     *ngIf="signUpForm.get('lastname')?.touched && (signUpForm.get('lastname')?.invalid || signUpForm.get('lastname')?.value?.trim() === '')">
-                    Cannot be empty
+                    *Cannot be empty
                 </span>
             </label>
             <div class="focus-line"></div>
@@ -39,7 +39,7 @@
                     'transform-words': signUpForm.get('username')?.value?.trim() !== ''
                 }">
                 Username <span class="error-message"
-                    *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">Must have at
+                    *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">*Must have at
                     least 5 characters</span>
             </label>
             <div class="focus-line"></div>
@@ -52,7 +52,7 @@
                     'invalid-label':  signUpForm.get('password')?.touched && (signUpForm.get('password')?.invalid || signUpForm.get('password')?.value?.trim() === ''),
                 }">
                 Password <span class="error-message"
-                    *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">at least
+                    *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">*at least
                     5 characters, a special character and a capital
                     letter</span>
             </label>
@@ -63,7 +63,8 @@
             <input type="date" id="birthday" formControlName="birthday">
             <label class="label-birthday " for="birthday">Birthday</label>
         </div>
-        <button class="sign-up-btn" (click)="signUp()">Sign Up</button>
+        <button [ngClass]="{'disable-form': signUpForm.invalid }" class="sign-up-btn" (click)="signUp()"
+            [disabled]="signUpForm.invalid"> Sign Up </button>
     </form>
 
 </div>

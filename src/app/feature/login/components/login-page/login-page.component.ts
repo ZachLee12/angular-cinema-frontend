@@ -6,6 +6,7 @@ import { Tokens } from 'src/app/routes/admin/interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -30,7 +31,8 @@ export class LoginPageComponent {
     })
   }
 
-  login() {
+  async login() {
+    console.log(JSON.stringify(this.loginForm.value))
     this.isLoginSuccessful$ = this.loginService.login(this.loginForm.value).pipe(
       switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens)).pipe(
         map(() => {
@@ -52,5 +54,4 @@ export class LoginPageComponent {
     this.unsubscribe$.next()
     this.unsubscribe$.complete()
   }
-
 }
