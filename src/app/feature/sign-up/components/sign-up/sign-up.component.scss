@@ -24,8 +24,9 @@
     }
 
     ;
-    border: 2px solid black;
-    border-radius: 10px;
+    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4),
+    1px 2px 2px hsla(0, 0%, 0%, 0.4);
+    border-radius: 5px;
     background-color: #ffffff;
     width: clamp(250px, 30%, 700px);
     padding: 40px;
@@ -60,6 +61,10 @@
         padding-left: 10px;
         padding-top: 20px;
         outline: none;
+
+        &:focus {
+            border-radius: 10px 10px 0px 0px;
+        }
     }
 
     .label {
@@ -86,6 +91,14 @@
         @include activeLabel();
     }
 
+    &>input:focus~.focus-line {
+        width: 100%;
+        height: 7px;
+        background-image: linear-gradient(90deg, purple, #23c1f5);
+        position: absolute;
+        bottom: 0px;
+    }
+
     .active-label {
         @include activeLabel();
     }
@@ -105,10 +118,10 @@
     font-weight: 600;
     font-size: 1.2em;
     color: white;
-    background: linear-gradient(45deg, purple, #23c1f5);
+    background: linear-gradient(45deg, #800080, #23c1f5);
     opacity: 0.8;
     transition: opacity 200ms ease-in-out;
-    border-style: solid;
+    border-style: none;
     border-radius: 8px;
     cursor: pointer;
 
