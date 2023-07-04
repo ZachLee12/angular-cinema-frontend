@@ -2,21 +2,26 @@
     <form class="sign-up-form" [formGroup]="signUpForm">
         <div class="wrapper">
             <input type="text" id="firstname" formControlName="firstname">
-            <label class="label" for="firstname"
-                [ngClass]="{'active-label': signUpForm.get('firstname')?.dirty &&signUpForm.get('firstname')?.valid }">
+            <label class="label" for="firstname" [ngClass]="{
+                    'active-label': signUpForm.get('firstname')?.dirty &&signUpForm.get('firstname')?.valid && signUpForm.get('firstname')?.value?.trim() !== '',
+                    'invalid-label':  signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')
+                }">
                 Firstname <span class="error-message"
-                    *ngIf="signUpForm.get('firstname')?.touched && signUpForm.get('firstname')?.invalid">Cannot be
+                    *ngIf="signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')">Cannot
+                    be
                     empty</span>
             </label>
         </div>
 
         <div class="wrapper">
             <input type="text" id="lastname" formControlName="lastname">
-            <label class="label" for="lastname"
-                [ngClass]="{'active-label': signUpForm.get('lastname')?.dirty && signUpForm.get('lastname')?.valid}">
+            <label class="label" for="lastname" [ngClass]="{
+                    'active-label': signUpForm.get('lastname')?.dirty && signUpForm.get('lastname')?.valid && signUpForm.get('lastname')?.value?.trim() !== '',
+                    'invalid-label':  signUpForm.get('lastname')?.touched && (signUpForm.get('lastname')?.invalid || signUpForm.get('lastname')?.value?.trim() === '')
+                 }">
                 Lastname
                 <span class="error-message"
-                    *ngIf="signUpForm.get('lastname')?.touched && signUpForm.get('lastname')?.invalid">
+                    *ngIf="signUpForm.get('lastname')?.touched && (signUpForm.get('lastname')?.invalid || signUpForm.get('lastname')?.value?.trim() === '')">
                     Cannot be empty
                 </span>
             </label>
@@ -24,8 +29,11 @@
 
         <div class="wrapper">
             <input type="text" id="username" formControlName="username">
-            <label class="label" for="username"
-                [ngClass]="{'active-label': signUpForm.get('username')?.dirty && signUpForm.get('username')?.valid}">
+            <label class="label" for="username" [ngClass]="{
+                    'active-label': signUpForm.get('username')?.dirty && signUpForm.get('username')?.valid,
+                    'invalid-label':  signUpForm.get('username')?.touched && (signUpForm.get('username')?.invalid || signUpForm.get('username')?.value?.trim() === ''),
+                    'transform-words': signUpForm.get('username')?.value?.trim() !== ''
+                }">
                 Username <span class="error-message"
                     *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">Must have at
                     least 5 characters</span>
@@ -36,7 +44,7 @@
             <input type="password" id="password" formControlName="password">
             <label class="label" for="password" [ngClass]="{
                     'active-label': signUpForm.get('password')?.dirty && (signUpForm.get('password')?.value?.trim() !==''),
-                    'invalid-label':  signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid,
+                    'invalid-label':  signUpForm.get('password')?.touched && (signUpForm.get('password')?.invalid || signUpForm.get('password')?.value?.trim() === ''),
                 }">
                 Password <span class="error-message"
                     *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">at least

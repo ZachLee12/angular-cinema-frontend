@@ -73,16 +73,18 @@
 
     &>input:focus+.label {
         @include activeLabel();
-        transform: translate(-10px, -25px);
-
     }
 
     .active-label {
         @include activeLabel();
-
     }
 
     .invalid-label {
         color: red !important;
+    }
+
+    .transform-words {
+        font-size: 0.85em;
+        transform: translate(-10px, -25px);
     }
 }

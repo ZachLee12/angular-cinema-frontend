@@ -14,7 +14,7 @@ export class SignUpComponent {
   signUpForm = this.formBuilder.group({
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.pattern(/^.{5,}$/)]),
     password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[!@#$%^&*()\-=_+{}\[\]:;"'<>,.?/])(?=.*[A-Z]).{5,}$/)]),
     birthday: new FormControl('', [Validators.required])
   })
