@@ -14,13 +14,16 @@
     width: 100%;
     height: 100%;
     background-color: beige;
+
+    @include flexDisplay(column, false);
 }
+
 
 .navigation-btns-wrapper {
     @include flexDisplay(row, true) {}
 
     width:100%;
-
+    margin: 20px 0px;
 
     .navigation-btn {
         width: clamp(150px, 20%, 300px);
