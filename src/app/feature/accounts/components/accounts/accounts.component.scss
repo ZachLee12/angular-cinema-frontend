@@ -33,6 +33,10 @@
     Helvetica,
     sans-serif;
 
+    .outlet-wrapper {
+        width: 100%;
+    }
+
     .nav-btns-wrapper {
         @include flexDisplay(row, true);
         width: 100%;
