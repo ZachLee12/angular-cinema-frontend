@@ -59,9 +59,15 @@
         </div>
 
         <div class="wrapper">
-            <input type="date" id="birthday" formControlName="birthday">
-            <label class="label-birthday " for="birthday">Birthday</label>
+            <mat-form-field>
+                <mat-label>Birthday</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthday">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
         </div>
+
         <button [ngClass]="{'disable-btn': signUpForm.invalid }" class="sign-up-btn" (click)="signUp()"
             [disabled]="signUpForm.invalid"> Sign Up </button>
     </form>

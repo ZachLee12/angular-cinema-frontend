@@ -13,6 +13,7 @@ import { AdminModule } from './routes/admin/admin.module';
 import { httpInterceptorProviders } from './core/interceptors';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AccountsModule } from './feature/accounts/accounts.module';
     //custom modules
     MovieModule,
     BookingModule,
-    AccountsModule
+    AccountsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
