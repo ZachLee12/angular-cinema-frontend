@@ -15,33 +15,50 @@
     height: 100%;
     background-color: beige;
 
-    @include flexDisplay(column, false);
+    @include flexDisplay(column, true);
 }
 
 
-.navigation-btns-wrapper {
-    @include flexDisplay(row, true) {}
+.contents-wrapper {
+    @include flexDisplay(column, true) {}
 
     width:100%;
-    margin: 20px 0px;
+    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4),
+    1px 2px 2px hsla(0, 0%, 0%, 0.4);
+    border-radius: 5px;
+    background-color: #ffffff;
+    width: clamp(250px, 30%, 700px);
+    padding: 20px 40px 20px 40px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
 
-    .navigation-btn {
-        width: clamp(150px, 20%, 300px);
-        height: 55px;
-        font-size: 1.4em;
-        font-weight: 600;
-        margin: 0;
-        text-align: center;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(to right, purple, #23c1f5);
+    .nav-btns-wrapper {
+        @include flexDisplay(row, true);
+        width: 100%;
+        margin-bottom: 15px;
+        border: 2px solid red;
+
+        .nav-btn {
+            flex-grow: 1;
+            width: clamp(150px, 20%, 300px);
+            height: 55px;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, purple, #23c1f5);
+        }
+
+        .active-route {
+            color: white;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: aliceblue;
+            background-image: linear-gradient(to right, purple, #23c1f5);
+        }
     }
 
-    .active-route {
-        color: white;
-        -webkit-background-clip: unset;
-        -webkit-text-fill-color: aliceblue;
-        background-image: linear-gradient(to right, purple, #23c1f5);
-    }
 
 }
