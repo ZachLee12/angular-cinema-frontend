@@ -62,7 +62,7 @@
             <input type="date" id="birthday" formControlName="birthday">
             <label class="label-birthday " for="birthday">Birthday</label>
         </div>
-        <button [ngClass]="{'disable-form': signUpForm.invalid }" class="sign-up-btn" (click)="signUp()"
+        <button [ngClass]="{'disable-btn': signUpForm.invalid }" class="sign-up-btn" (click)="signUp()"
             [disabled]="signUpForm.invalid"> Sign Up </button>
     </form>
 
