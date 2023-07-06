@@ -6,7 +6,7 @@
             <label class="label" for="username" [ngClass]="{
                 'active-label': loginForm.get('username')?.dirty &&loginForm.get('username')?.valid && loginForm.get('username')?.value?.trim() !== '',
                 'invalid-label':  loginForm.get('username')?.touched && (loginForm.get('username')?.invalid || loginForm.get('username')?.value?.trim() === '')
-            }">Username</label>
+            }">Username<span>*</span></label>
             <div class="focus-line"></div>
         </div>
 
@@ -15,7 +15,7 @@
             <label class="label" for="password" [ngClass]="{
                 'active-label': loginForm.get('password')?.dirty && loginForm.get('password')?.valid && loginForm.get('password')?.value?.trim() !== '',
                 'invalid-label':  loginForm.get('password')?.touched && (loginForm.get('password')?.invalid || loginForm.get('password')?.value?.trim() === '')
-            }">Password</label>
+            }">Password<span>*</span> </label>
             <div class="focus-line"></div>
         </div>
         <label for="remember-me"><input type="checkbox" (change)="setRememberMe($event)" [checked]="rememberMe">

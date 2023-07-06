@@ -1,16 +1,21 @@
 <div id="Accounts">
     <div class="contents-wrapper">
-        <div class="nav-btns-wrapper">
-            <button class="nav-to-sign-up-btn nav-btn" routerLink="./sign-up" [routerLinkActive]="['active-route']">
-                Sign Up
-            </button>
-            <button class="nav-to-login-btn nav-btn" routerLink="./login" [routerLinkActive]="['active-route']">
-                Log In
-            </button>
-        </div>
+        <p class="form-title">{{router.url.includes('login')? 'Log In' : 'Sign Up'}} </p>
+        <!-- <button class="nav-to-sign-up-btn nav-btn" routerLink="./sign-up" [routerLinkActive]="['active-route']">
+            Sign Up
+        </button>
+        <button class="nav-to-login-btn nav-btn" routerLink="./login" [routerLinkActive]="['active-route']">
+            Log In
+        </button> -->
         <div class="outlet-wrapper">
             <router-outlet>
             </router-outlet>
+            <p class="nav-sentence" *ngIf="router.url.includes('login')">Don't have an account?
+                Sign up <span class="here" routerLink="/accounts/sign-up">here</span></p>
+
+            <p class="nav-sentence" *ngIf="router.url.includes('sign-up')">Already have an account? Login <span
+                    class="here" routerLink="/accounts/login">here</span></p>
         </div>
+
     </div>
 </div>

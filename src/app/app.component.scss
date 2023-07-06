@@ -13,10 +13,12 @@ $header-left-and-right-padding: 20px;
     color: white;
     justify-content: space-between;
     padding: 0 $header-left-and-right-padding;
-    border-bottom: 3px solid white;
+    // border-bottom: 3px solid white;
     box-sizing: border-box;
     font-weight: 600;
     font-size: 1.2em;
+    position: relative;
+
 }
 
 .cinema-name-title-wrapper {

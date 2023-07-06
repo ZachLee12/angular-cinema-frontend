@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accounts',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent {
+  router: Router = inject(Router)
 
 }
