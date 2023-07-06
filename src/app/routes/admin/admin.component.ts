@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.service';
 import { Tokens } from './interfaces';
 import jwtDecode from 'jwt-decode';
+import { LoginService } from 'src/app/core/services/login/login.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AdminComponent {
 
   constructor(
     private databaseService: DatabaseService,
-    private localAuthService: LocalAuthService
+    private localAuthService: LocalAuthService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class AdminComponent {
   login() {
     this.localAuthService.login().subscribe(
       {
-        next: (tokens: Tokens) => this.setTokens(tokens)
+        next: (tokens: Tokens) => this.loginService.setTokens(tokens)
       }
     )
   }

@@ -18,6 +18,10 @@
             }">Password</label>
             <div class="focus-line"></div>
         </div>
+        <label for="remember-me"><input type="checkbox" (change)="setRememberMe($event)" [checked]="rememberMe">
+            Remember Me
+        </label>
+
         <button (click)="login()" [ngClass]="{'disable-btn':!loginForm.valid}" class="login-btn">Log In</button>
     </form>
 

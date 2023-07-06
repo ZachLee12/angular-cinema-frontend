@@ -32,11 +32,11 @@ import { AccountsModule } from './feature/accounts/accounts.module';
     BookingModule,
     AccountsModule
   ],
-  providers: [httpInterceptorProviders,
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]

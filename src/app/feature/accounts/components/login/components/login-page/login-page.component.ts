@@ -21,20 +21,20 @@ export class LoginPageComponent {
   loginForm!: FormGroup;
   isLoginSuccessful$!: Observable<boolean>;
   loginStatusMessage: string = '';
+  rememberMe: boolean = false;
   unsubscribe$: Subject<void> = new Subject();
 
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('zachlee123', [Validators.required]),
-      password: new FormControl('iLoveSushi%', [Validators.required])
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     })
   }
 
   async login() {
-    console.log(JSON.stringify(this.loginForm.value))
     this.isLoginSuccessful$ = this.loginService.login(this.loginForm.value).pipe(
-      switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens)).pipe(
+      switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens, this.rememberMe)).pipe(
         map(() => {
           this.loginStatusMessage = 'Login Successful'
           this.loginService.setIsLoggedIn$(true)
@@ -48,6 +48,10 @@ export class LoginPageComponent {
       }),
       takeUntil(this.unsubscribe$)
     )
+  }
+
+  setRememberMe($event: any) {
+    this.rememberMe = $event.target.checked
   }
 
   ngOnDestroy() {

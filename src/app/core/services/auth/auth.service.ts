@@ -11,7 +11,6 @@ export const authConfig: AuthConfig = {
   redirectUri: devEnvironment.AUTH_REDIRECT_URI,
   scope: devEnvironment.AUTH_SCOPE,
   logoutUrl: devEnvironment.AUTH_LOGOUT_URL,
-
 }
 
 @Injectable({

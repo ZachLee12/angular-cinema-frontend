@@ -76,9 +76,11 @@ export class LoginService {
     ) as Observable<{ accessToken: string }>
   }
 
-  setTokens(tokens: Tokens) {
+  setTokens(tokens: Tokens, rememberMe: boolean = false) {
     localStorage.setItem('accessToken', tokens.accessToken)
-    localStorage.setItem('refreshToken', tokens.refreshToken)
+    if (rememberMe) {
+      localStorage.setItem('refreshToken', tokens.refreshToken)
+    }
   }
 
   login(credentials: Credentials): Observable<Tokens> {

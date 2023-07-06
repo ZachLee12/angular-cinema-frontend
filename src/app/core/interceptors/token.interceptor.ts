@@ -17,7 +17,11 @@ export class TokenInterceptor implements HttpInterceptor {
     private localAuthService: LocalAuthService,
   ) { }
 
+  ngOnInit() {
+  }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     if (request.url.includes('protected') || request.url.includes('auth')) {
       const accessToken = this.localAuthService.getAccessToken()
       const requestWithAuthHeader = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) })
@@ -32,7 +36,6 @@ export class TokenInterceptor implements HttpInterceptor {
               return throwError(() => err)
             }
           })
-
         )
     }//if 
     else {
