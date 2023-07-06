@@ -11,7 +11,7 @@ export class SignUpService {
   signUp(createUser: CreateUser) {
     const user = {
       ...createUser,
-      age: Number(new Date().getFullYear()) - Number(createUser.birthday.slice(0, 4)),
+      age: new Date().getFullYear() - new Date(createUser.birthday).getFullYear(),
       movies: {
         liked: [],
         watched: []
