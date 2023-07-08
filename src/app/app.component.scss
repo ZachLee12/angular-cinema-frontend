@@ -1,3 +1,15 @@
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $centerContents {
+        justify-content: center;
+        align-items: center;
+    }
+
+    @content
+}
+
 #App {
     width: 100%;
     height: 100%;
@@ -16,18 +28,34 @@
     width: 100%;
     border: 2px solid lightgreen;
     z-index: 1; //this is needed
-    margin: 25px 0px 0px 25px;
-}
+    padding: 25px 25px 0px 25px;
+    box-sizing: border-box;
 
-.cinema-booking-system-title {
-    margin: 0px;
-    font-size: 2.5em;
-    text-shadow: none;
-    font-weight: bolder;
+    @include flexDisplay(row, false) {
+        justify-content: space-between;
+    }
 
-    .beautify {
-        background-image: linear-gradient(to right, #f62929, #e84949, #f3a64e, #f18509);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    ;
+
+    .main-tab-title {
+        @include flexDisplay(row, true);
+
+        .cinema-booking-system-title {
+            margin: 0px;
+            font-size: 2em;
+            text-shadow: none;
+            font-weight: bolder;
+
+            .beautify {
+                background-image: linear-gradient(to right, #f62929, #e84949, #f3a64e, #f18509);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    .tab>.tab-title {
+        color: white;
+        font-size: 1.5em;
     }
 }
