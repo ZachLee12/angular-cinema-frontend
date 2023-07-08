@@ -12,7 +12,7 @@
 
 #App {
     width: 100%;
-    height: 100%;
+    height: 1000px;
     background-color: beige;
     position: relative;
 }
@@ -26,7 +26,7 @@
 .header {
     position: absolute;
     width: 100%;
-    border: 2px solid lightgreen;
+    // border: 2px solid lightgreen;
     z-index: 1; //this is needed
     padding: 25px 25px 0px 25px;
     box-sizing: border-box;

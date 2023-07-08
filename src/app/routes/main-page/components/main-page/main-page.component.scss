@@ -1,9 +1,20 @@
 $netflix-red: #e50914;
 
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $centerContents {
+        justify-content: center;
+        align-items: center;
+    }
+
+    @content
+}
 
 @font-face {
     font-family: 'Roboto';
-    src: url('../../../assets/fonts/Roboto-Bold.ttf');
+    src: url('../../../../../assets/fonts/Roboto-Black.ttf');
 }
 
 #MainPage {
@@ -11,16 +22,18 @@ $netflix-red: #e50914;
     height: 100%;
     border: 2px solid blue;
     box-sizing: border-box;
+
 }
 
 section.main {
     width: 100%;
-    height: max(500px, 80%);
-    border: 2px solid red;
+    height: clamp(500px, 60%, 800px);
+    // border: 2px solid red;
     position: relative;
-    background-image: url("../../../assets/images/background.webp");
+    background-image: url("../../../../../assets/images/background.webp");
     background-size: cover;
     background-repeat: no-repeat;
+    border-bottom: 8px solid rgb(96, 96, 96);
 
     .opacity-wrapper {
         position: absolute;
@@ -31,5 +44,6 @@ section.main {
         background: radial-gradient(ellipse at center, transparent, black 95%);
         opacity: 0.8;
     }
-
 }
+
+section.second-section {}

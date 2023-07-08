@@ -1,0 +1,15 @@
+@import "../../../../app.component.scss";
+
+#Carousel {
+    border: 2px solid red;
+    overflow: scroll;
+    height: 100%;
+
+    @include flexDisplay(row, false) {
+        gap: 20px;
+    }
+
+    ;
+
+
+}
