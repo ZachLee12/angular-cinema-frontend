@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError, mergeMap, switchMap, tap, throwError } from 'rxjs';
 import {
   HttpRequest,
   HttpHandler,
@@ -28,6 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
       return next.handle(requestWithAuthHeader)
         .pipe(
+          tap(() => console.log('TokenInterceptor executed:')),
           catchError((err: HttpErrorResponse) => {
             const refreshToken = this.localAuthService.getRefreshToken()?.trim()
             if (refreshToken !== '' && err.status === 401) {
@@ -43,7 +44,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }//else
   }//intercept
 
-  private initRefreshTokenProcedure(req: HttpRequest<any>, next: HttpHandler) {
+  private initRefreshTokenProcedure(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.localAuthService.refreshAccessToken$().pipe(
       switchMap((token: { accessToken: string }) => {
         localStorage.setItem('accessToken', token.accessToken)

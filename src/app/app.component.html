@@ -1,29 +1,11 @@
 <div id="App">
-    <header class="header">
-        <div class="cinema-name-title-wrapper">
-            <p class="cinema-name-title" routerLink="/home">Projekt</p>
-        </div>
-        <div class="nav-wrapper">
-            <div routerLink="/home" routerLinkActive="active-link" class="nav">
-                Home
-            </div>
-            <div routerLink="/movie-page" routerLinkActive="active-link" class="nav">
-                <!-- Movies -->
-            </div>
-            <div routerLink="/about" routerLinkActive="active-link" class="nav">
-                About
-            </div>
-            <div routerLink="/admin" routerLinkActive="active-link" class="nav">
-                Admin
-            </div>
+    <header>
+        <nav>
 
-            <div routerLink="/accounts/login" class=" wrapper">
-                <div class="nav">
-                    My Account
-                </div>
-            </div>
-
-        </div>
+        </nav>
     </header>
-    <router-outlet></router-outlet>
+
+    <main>
+        <router-outlet></router-outlet>
+    </main>
 </div>

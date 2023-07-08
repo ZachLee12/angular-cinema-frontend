@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SignUpService } from '../../services/sign-up/sign-up.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,6 +13,7 @@ import { SignUpService } from '../../services/sign-up/sign-up.service';
 export class SignUpComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   signUpService: SignUpService = inject(SignUpService)
+  router: Router = inject(Router)
 
   signUpForm = this.formBuilder.group({
     firstname: new FormControl('', [Validators.required]),
@@ -20,11 +24,16 @@ export class SignUpComponent {
   })
 
   async signUp() {
-    this.signUpService.signUp(this.signUpForm.value as any).subscribe(
-      {
-        next: data => console.log(data)
-      }
-    )
+    this.signUpService.signUp(this.signUpForm.value as any).
+      pipe(catchError(() => throwError(() => null))).subscribe(
+        {
+          next: data => {
+            console.log(data)
+            this.router.navigate(['/accounts/login'])
+          },
+          error: err => console.error(new HttpErrorResponse(err))
+        }
+      )
   }
 
 }
