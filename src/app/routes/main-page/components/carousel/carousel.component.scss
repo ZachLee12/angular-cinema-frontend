@@ -5,11 +5,13 @@
     overflow: scroll;
     height: 100%;
 
+
+}
+
+.slides {
     @include flexDisplay(row, false) {
         gap: 20px;
     }
 
     ;
-
-
 }
