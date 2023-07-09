@@ -4,6 +4,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SlideComponent } from './components/slide/slide.component';
 import { MatIconModule } from '@angular/material/icon';
+import { TilesComponent } from './components/tiles/tiles/tiles.component';
+import { TilesModule } from './components/tiles/tiles.module';
 
 
 
@@ -11,11 +13,12 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     MainPageComponent,
     CarouselComponent,
-    SlideComponent
+    SlideComponent,
   ],
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    TilesModule
   ],
   exports: []
 })
