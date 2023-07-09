@@ -10,13 +10,13 @@
         </div>
     </header>
 
-    <!-- [@fadeInOut]="isShown? 'open':'close'" -->
-
-    <ng-container *ngFor="let obj of backgroundImgSrcs">
-        <section [ngClass]="{'hidden': obj.display}" class="main" [style.background-image]="'url('+obj.src+')'">
-            <div class="opacity-wrapper"></div>
-        </section>
-    </ng-container>
+    <div class="spacing-for-main">
+        <ng-container *ngFor="let obj of backgroundImgSrcs; let index;">
+            <section *ngIf="obj.display" @fadeIn @fadeOut class="main" [style.background-image]="'url('+obj.src+')'">
+                <div class="opacity-wrapper"></div>
+            </section>
+        </ng-container>
+    </div>
 
     <section class="carousel-section">
         <app-carousel></app-carousel>

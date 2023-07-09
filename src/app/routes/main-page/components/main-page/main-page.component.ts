@@ -2,22 +2,19 @@ import { Component } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
-const fadeInOut = trigger('fadeInOut', [
-  state('open', style({
-    opacity: 1
-  })),
-  state('close', style({
-    opacity: 0
-  })),
-  transition('open => close', [animate('1s ease-out')]),
-  transition('close => open', [animate('1s ease-in')]),
-])
-
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
-  animations: [fadeInOut] //array of triggers
+  animations: [trigger('fadeIn', [
+    state('void', style({ opacity: 0 })),
+    transition('void => *', [animate('3s', style({ opacity: 1 }))])
+  ]),
+  trigger('fadeOut', [
+    state('*', style({ opacity: 1 })),
+    transition('* => void', [animate('3s', style({ opacity: 0 }))])
+  ])
+  ] //array of triggers
 })
 export class MainPageComponent {
   backgroundImgSrcs: any[] = [
@@ -42,7 +39,7 @@ export class MainPageComponent {
   ngOnInit() {
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
-    }, 10000)
+    }, 5000)
   }
 
   nextBackgroundIndex() {
