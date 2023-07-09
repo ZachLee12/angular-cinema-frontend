@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
 import { Subject, Observable, takeUntil } from 'rxjs';
 import { LoginService } from './core/services/login/login.service';
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +15,10 @@ export class AppComponent {
 
   loginService: LoginService = inject(LoginService)
   isLoggedIn: boolean = false;
+
+  constructor(
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
@@ -29,17 +34,6 @@ export class AppComponent {
     })
   }
 
-  logIn() {
-    // this.authService.logIn();
-  }
-
-  logOut() {
-    // this.authService.logOut();
-  }
-
-  getIsLoggedIn() {
-    // return this.authService.getIsLoggedIn();
-  }
 
   ngOnDestroy() {
     this.unsubscribe$.next();

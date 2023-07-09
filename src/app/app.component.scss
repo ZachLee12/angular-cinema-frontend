@@ -61,3 +61,25 @@
         font-size: 1.5em;
     }
 }
+
+.footer {
+    height: 50px;
+    background-color: rgb(49, 49, 49);
+    color: rgb(128, 128, 128);
+    width: 100%;
+
+    @include flexDisplay(row, true) {
+        gap: 20px;
+    }
+
+    ;
+
+    p {
+        margin: 0;
+    }
+
+    .github-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
