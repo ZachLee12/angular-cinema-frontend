@@ -1,3 +1,5 @@
 <div id="Tiles">
-    <h1>Tiles here</h1>
+    <app-tile-item *ngFor="let tile of tiles" [iconSrc]="tile.iconSrc" [descTitle]="tile.descTitle" [desc]="tile.desc">
+
+    </app-tile-item>
 </div>

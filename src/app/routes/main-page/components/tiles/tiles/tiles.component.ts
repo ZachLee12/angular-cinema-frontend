@@ -6,5 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./tiles.component.scss']
 })
 export class TilesComponent {
+  tiles: any[] = [
+    {
+      iconSrc: 'iconSrc here',
+      descTitle: 'desc title',
+      desc: 'description hereee'
+    },
+    {
+      iconSrc: 'iconSrc here',
+      descTitle: 'desc title',
+      desc: 'description hereee'
+    },
+    {
+      iconSrc: 'iconSrc here',
+      descTitle: 'desc title',
+      desc: 'description hereee'
+    },
+    {
+      iconSrc: 'iconSrc here',
+      descTitle: 'desc title',
+      desc: 'description hereee'
+    },
+  ]
 
 }

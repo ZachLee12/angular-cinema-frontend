@@ -25,6 +25,10 @@ $netflix-red: #e50914;
 
 }
 
+section {
+    border-bottom: 8px solid gray;
+}
+
 section.main {
     width: 100%;
     height: 600px;
@@ -33,7 +37,6 @@ section.main {
     background-image: url("../../../../../assets/images/background.webp");
     background-size: cover;
     background-repeat: no-repeat;
-    border-bottom: 8px solid rgb(96, 96, 96);
 
     .opacity-wrapper {
         position: absolute;

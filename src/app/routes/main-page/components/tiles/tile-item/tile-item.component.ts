@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tile-item',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./tile-item.component.scss']
 })
 export class TileItemComponent {
+  @Input() iconSrc: string = ''
+  @Input() descTitle: string = ''
+  @Input() desc: string = ''
 
 }
