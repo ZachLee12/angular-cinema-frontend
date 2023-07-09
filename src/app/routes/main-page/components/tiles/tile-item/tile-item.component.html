@@ -1,7 +1,7 @@
 <div id="Tile-Item">
-    <h2>{{iconSrc}} </h2>
+    <object *ngIf="iconSrc" [data]="getSafeUrl(iconSrc)" type="image/svg+xml" class="svg"></object>
     <div class="desc-wrapper">
-        <h1>{{descTitle}}</h1>
-        <h2>{{desc}}</h2>
+        <p *ngIf="descTitle" class="desc-title">{{descTitle}}</p>
+        <p *ngIf="desc" class="desc">{{desc}}</p>
     </div>
 </div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-tiles',
   templateUrl: './tiles.component.html',
@@ -8,24 +7,24 @@ import { Component } from '@angular/core';
 export class TilesComponent {
   tiles: any[] = [
     {
-      iconSrc: 'iconSrc here',
-      descTitle: 'desc title',
-      desc: 'description hereee'
+      iconSrc: '../../../../../../assets/images/angular.svg',
+      descTitle: 'Angular Frontend',
+      desc: 'The web development framework for building the future. Checkout its new hottest feature: Signals!'
     },
     {
-      iconSrc: 'iconSrc here',
-      descTitle: 'desc title',
-      desc: 'description hereee'
+      iconSrc: '../../../../../../assets/images/nestjs.svg',
+      descTitle: 'NestJS Backend',
+      desc: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications. Something tells me that the author of NestJS likes cats.'
     },
     {
-      iconSrc: 'iconSrc here',
-      descTitle: 'desc title',
-      desc: 'description hereee'
+      iconSrc: '../../../../../../assets/images/graphql.svg',
+      descTitle: 'GraphQL API offered',
+      desc: 'Describe your data. Ask for what you want. Get predictable results.'
     },
     {
-      iconSrc: 'iconSrc here',
-      descTitle: 'desc title',
-      desc: 'description hereee'
+      iconSrc: '../../../../../../assets/images/prisma.svg',
+      descTitle: 'Prisma ORM',
+      desc: 'The next-generation Node.js and TypeScript ORM.'
     },
   ]
 }

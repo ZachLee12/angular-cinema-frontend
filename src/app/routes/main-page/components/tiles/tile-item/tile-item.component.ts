@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tile-item',
@@ -6,8 +7,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tile-item.component.scss']
 })
 export class TileItemComponent {
-  @Input() iconSrc: string = ''
-  @Input() descTitle: string = ''
-  @Input() desc: string = ''
+  @Input() iconSrc?: string;
+  @Input() descTitle?: string;
+  @Input() desc?: string;
+  constructor(
+    private domSanitizer: DomSanitizer
+  ) { }
 
+  getSafeUrl(url: string) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url)
+  }
 }
