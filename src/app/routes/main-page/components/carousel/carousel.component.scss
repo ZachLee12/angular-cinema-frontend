@@ -1,20 +1,29 @@
 @import "../../../../app.component.scss";
 
 #Carousel {
-    border: 2px solid red;
+    border-bottom: 8px solid gray;
     height: 100%;
+    padding: 0px 20px;
 
     @include flexDisplay(row, true) {
         gap: 20px;
+        justify-content: space-between
     }
 
     ;
+    background-color: #1e1e20;
 }
 
-.slides {
-    @include flexDisplay(row, false) {
-        gap: 20px;
-    }
+.nav-arrow {
+    height: 50px;
+    width: 50px;
+    font-size: 90px;
+    cursor: pointer;
+    color: #919191;
+    transition: color 200ms ease-in-out;
+    @include flexDisplay(row, true);
 
-    ;
+    &:hover {
+        color: white;
+    }
 }

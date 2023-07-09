@@ -1,5 +1,5 @@
 <div id="Carousel">
-    <button (click)="prev()">previous</button>
+    <mat-icon class="left-arrow nav-arrow" (click)="prev()">keyboard_arrow_left</mat-icon>
     <section class="slides">
         <ng-container *ngFor="let slide of slides;">
             <app-slide [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" [imgSrc]="slide.url"
@@ -7,5 +7,5 @@
             </app-slide>
         </ng-container>
     </section>
-    <button (click)="next()">next</button>
+    <mat-icon class="right-arrow nav-arrow" (click)="next()">keyboard_arrow_right</mat-icon>
 </div>

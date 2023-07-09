@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SlideComponent } from './components/slide/slide.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -13,7 +14,8 @@ import { SlideComponent } from './components/slide/slide.component';
     SlideComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: []
 })

@@ -14,6 +14,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageModule } from './routes/main-page/main-page.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MainPageModule } from './routes/main-page/main-page.module';
     BookingModule,
     AccountsModule,
     BrowserAnimationsModule,
-    MainPageModule
+    MainPageModule,
   ],
   providers: [
     {
