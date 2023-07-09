@@ -28,5 +28,4 @@ export class TilesComponent {
       desc: 'description hereee'
     },
   ]
-
 }
