@@ -25,47 +25,10 @@
     box-sizing: border-box;
 }
 
-.header {
-    position: absolute;
-    width: 100%;
-    // border: 2px solid lightgreen;
-    z-index: 1; //this is needed
-    padding: 25px 25px 0px 25px;
-    box-sizing: border-box;
-
-    @include flexDisplay(row, false) {
-        justify-content: space-between;
-    }
-
-    ;
-
-    .main-tab-title {
-        @include flexDisplay(row, true);
-
-        .cinema-booking-system-title {
-            margin: 0px;
-            font-size: 2em;
-            text-shadow: none;
-            font-weight: bolder;
-
-            .beautify {
-                background-image: linear-gradient(to right, #f62929, #e84949, #f3a64e, #f18509);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
-    }
-
-    .tab>.tab-title {
-        color: white;
-        font-size: 1.5em;
-    }
-}
-
 .footer {
     height: 50px;
-    background-color: rgb(49, 49, 49);
-    color: rgb(128, 128, 128);
+    background-color: #313131;
+    color: #808080;
     width: 100%;
 
     @include flexDisplay(row, true) {

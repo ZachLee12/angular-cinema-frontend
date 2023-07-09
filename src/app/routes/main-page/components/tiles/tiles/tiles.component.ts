@@ -7,32 +7,32 @@ import { Component } from '@angular/core';
 export class TilesComponent {
   tiles: any[] = [
     {
-      iconSrc: '../../../../../../assets/images/angular.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/angular.svg',
       descTitle: 'Angular Frontend',
       desc: 'The web development framework for building the future. Checkout its new hottest feature: Signals!'
     },
     {
-      iconSrc: '../../../../../../assets/images/nestjs.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/nestjs.svg',
       descTitle: 'NestJS Backend',
       desc: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications.'
     },
     {
-      iconSrc: '../../../../../../assets/images/graphql.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/graphql.svg',
       descTitle: 'GraphQL API offered',
       desc: 'Describe your data. Ask for what you want. Get predictable results.'
     },
     {
-      iconSrc: '../../../../../../assets/images/prisma.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/prisma.svg',
       descTitle: 'Prisma ORM',
       desc: 'The next-generation Node.js and TypeScript ORM.'
     },
     {
-      iconSrc: '../../../../../../assets/images/mongodb.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/mongodb.svg',
       descTitle: 'MongoDB',
       desc: 'For the next generation of intelligent applications.'
     },
     {
-      iconSrc: '../../../../../../assets/images/vuejs.svg',
+      iconSrc: '../../../../../../assets/images/web-technology/vuejs.svg',
       descTitle: 'VueJS',
       desc: 'The progressive JavaScript Framework.'
     },

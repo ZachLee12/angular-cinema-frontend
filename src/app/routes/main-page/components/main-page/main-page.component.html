@@ -1,8 +1,22 @@
 <div id="MainPage">
+    <header class="header">
 
-    <section class="main">
-        <div class="opacity-wrapper"></div>
-    </section>
+        <div class="tab main-tab-title">
+            <p class="cinema-booking-system-title"><span class="beautify">Cinema Express</span></p>
+        </div>
+
+        <div class="tab" routerLink="/accounts/login">
+            <p class="tab-title">Log In</p>
+        </div>
+    </header>
+
+    <!-- [@fadeInOut]="isShown? 'open':'close'" -->
+
+    <ng-container *ngFor="let obj of backgroundImgSrcs">
+        <section [ngClass]="{'hidden': obj.display}" class="main" [style.background-image]="'url('+obj.src+')'">
+            <div class="opacity-wrapper"></div>
+        </section>
+    </ng-container>
 
     <section class="carousel-section">
         <app-carousel></app-carousel>
