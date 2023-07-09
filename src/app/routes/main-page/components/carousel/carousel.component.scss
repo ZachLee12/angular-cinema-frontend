@@ -2,10 +2,13 @@
 
 #Carousel {
     border: 2px solid red;
-    overflow: scroll;
     height: 100%;
 
+    @include flexDisplay(row, true) {
+        gap: 20px;
+    }
 
+    ;
 }
 
 .slides {

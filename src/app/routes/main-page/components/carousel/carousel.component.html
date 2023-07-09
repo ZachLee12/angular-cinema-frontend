@@ -1,10 +1,11 @@
 <div id="Carousel">
     <button (click)="prev()">previous</button>
-
-    <button (click)="next()">next</button>
     <section class="slides">
         <ng-container *ngFor="let slide of slides;">
-            <img [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" src="{{slide.url}}" alt="" class="img">
+            <app-slide [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" [imgSrc]="slide.url"
+                [title]="'some title'">
+            </app-slide>
         </ng-container>
     </section>
+    <button (click)="next()">next</button>
 </div>
