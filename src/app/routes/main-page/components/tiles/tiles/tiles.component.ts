@@ -14,7 +14,7 @@ export class TilesComponent {
     {
       iconSrc: '../../../../../../assets/images/nestjs.svg',
       descTitle: 'NestJS Backend',
-      desc: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications. Something tells me that the author of NestJS likes cats.'
+      desc: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications.'
     },
     {
       iconSrc: '../../../../../../assets/images/graphql.svg',
@@ -25,6 +25,16 @@ export class TilesComponent {
       iconSrc: '../../../../../../assets/images/prisma.svg',
       descTitle: 'Prisma ORM',
       desc: 'The next-generation Node.js and TypeScript ORM.'
+    },
+    {
+      iconSrc: '../../../../../../assets/images/mongodb.svg',
+      descTitle: 'MongoDB',
+      desc: 'For the next generation of intelligent applications.'
+    },
+    {
+      iconSrc: '../../../../../../assets/images/vuejs.svg',
+      descTitle: 'VueJS',
+      desc: 'The progressive JavaScript Framework.'
     },
   ]
 }
