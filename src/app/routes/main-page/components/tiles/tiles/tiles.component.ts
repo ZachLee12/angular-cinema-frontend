@@ -8,12 +8,12 @@ export class TilesComponent {
   tiles: any[] = [
     {
       iconSrc: '../../../../../../assets/images/web-technology/angular.svg',
-      descTitle: 'Angular Frontend',
+      descTitle: 'Angular',
       desc: 'The web development framework for building the future. Checkout its new hottest feature: Signals!'
     },
     {
       iconSrc: '../../../../../../assets/images/web-technology/nestjs.svg',
-      descTitle: 'NestJS Backend',
+      descTitle: 'NestJS',
       desc: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications.'
     },
     {

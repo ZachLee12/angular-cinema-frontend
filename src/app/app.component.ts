@@ -17,7 +17,7 @@ export class AppComponent {
   isLoggedIn: boolean = false;
 
   constructor(
-    private router: Router
+    public router: Router
   ) { }
 
 

@@ -20,14 +20,12 @@ $netflix-red: #e50914;
 #MainPage {
     width: 100%;
     height: 100%;
-    // border: 2px solid blue;
     box-sizing: border-box;
 }
 
 .header {
     position: absolute;
     width: 100%;
-    // border: 2px solid lightgreen;
     z-index: 1; //this is needed
     padding: 25px 25px 0px 25px;
     box-sizing: border-box;
@@ -69,6 +67,7 @@ section {
     width: 100%;
     height: 600px;
     position: relative;
+    border-bottom: 8px solid gray;
 }
 
 section.main {
