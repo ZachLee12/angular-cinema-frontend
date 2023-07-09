@@ -42,7 +42,7 @@ export class MainPageComponent {
   ngOnInit() {
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
-    }, 3000)
+    }, 10000)
   }
 
   nextBackgroundIndex() {

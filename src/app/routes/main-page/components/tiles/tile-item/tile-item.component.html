@@ -1,5 +1,5 @@
 <div id="Tile-Item" class="animate-border">
-    <object *ngIf="iconSrc" [data]="getSafeUrl(iconSrc)" type="image/svg+xml" class="svg"></object>
+    <img class="svg" *ngIf="iconSrc" [src]="getSafeUrl(iconSrc)" alt="">
     <div class="desc-wrapper">
         <p *ngIf="descTitle" class="desc-title">{{descTitle}}</p>
         <p *ngIf="desc" class="desc">{{desc}}</p>
