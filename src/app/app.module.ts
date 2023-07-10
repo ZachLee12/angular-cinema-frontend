@@ -14,6 +14,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageModule } from './routes/main-page/main-page.module';
+import { WordSpacingPipe } from './core/pipes/word-spacing/word-spacing.pipe';
 
 @NgModule({
   declarations: [

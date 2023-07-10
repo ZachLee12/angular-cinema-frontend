@@ -8,7 +8,7 @@
 
 .first-section {
     .title {
-        font-size: 2rem;
+        font-size: 2.8rem;
     }
 
     .desc {
@@ -18,15 +18,20 @@
 }
 
 .second-section {
-    // border: 2px solid lightgreen;
-
     @include flexDisplay(row, false) {
         justify-content: space-evenly;
+        gap: 100px;
     }
 
     ;
+    // border: 2px solid red;
 
-    .showtimes {
+    .playtimes-title {
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .playtime {
         text-align: center;
     }
 
@@ -39,15 +44,25 @@
         }
     }
 
-    .actors {
-        text-align: center;
+    .movie-info-wrapper {
+
+        .actors {
+            text-align: center;
+        }
     }
 }
 
 @media screen and (max-width: 510px) {
+    .first-section {
+        .title {
+            text-align: center;
+        }
+    }
+
     .second-section {
         @include flexDisplay(column, false) {
             justify-content: space-evenly;
+            gap: 30px;
         }
     }
 
@@ -56,6 +71,4 @@
         height: auto;
         align-self: center;
     }
-
-
 }

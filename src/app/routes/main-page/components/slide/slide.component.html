@@ -5,16 +5,15 @@
     </div>
     <div class="second-section">
         <div class="showtimes">
-            <h1 class="showtimes-title">Showtimes</h1>
-            <p class="showtime">13:00</p>
-            <p class="showtime">15:00</p>
-            <p class="showtime">17:00</p>
+            <h1 class="playtimes-title">Playtimes</h1>
+            <p class="playtime" *ngFor="let s of slide?.playtimes">{{s}} </p>
         </div>
         <div class="movie-info-wrapper">
             <div class="movie-img-wrapper">
                 <img class="movie-img" [src]="slide?.imgUrl" alt="movie-image">
             </div>
-            <p class="actors">Actors: Lorem ipsum, Lorem ipsum, Lorem ipsum</p>
+            <p class="actors">Actors: <span class="actors"
+                    *ngFor="let actor of slide?.actors">{{actor | wordSpacing: ' '}}</span></p>
         </div>
     </div>
 </div>
