@@ -4,7 +4,7 @@
         <h2 class="desc">{{slide?.description}}</h2>
     </div>
     <div class="second-section">
-        <div class="showtimes">
+        <div class="playtimes">
             <h1 class="playtimes-title">Playtimes</h1>
             <p class="playtime" *ngFor="let s of slide?.playtimes">{{s}} </p>
         </div>
@@ -13,7 +13,7 @@
                 <img class="movie-img" [src]="slide?.imgUrl" alt="movie-image">
             </div>
             <p class="actors">Actors: <span class="actors"
-                    *ngFor="let actor of slide?.actors">{{actor | wordSpacing: ' '}}</span></p>
+                    *ngFor="let actor of slide?.actors">{{actor | wordSpacing: ', '}}</span></p>
         </div>
     </div>
 </div>
