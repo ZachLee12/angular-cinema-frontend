@@ -17,13 +17,17 @@ export class AppComponent {
   isLoggedIn: boolean = false;
 
   constructor(
-    public router: Router
+    public readonly router: Router,
+    private authService: AuthService
   ) { }
 
+  login() {
+    this.authService.logIn();
+  }
 
   ngOnInit() {
-    // this.userProfile$ = this.authService.getUserProfile$()
-    // this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
+    this.userProfile$ = this.authService.getUserProfile$()
+    this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
     this.loginService.initLoginFlow$().subscribe({
       next: (userProfile) => console.log(`%c${userProfile}`, "color:green"),
       error: (err) => console.error(err)

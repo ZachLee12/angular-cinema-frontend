@@ -8,6 +8,7 @@ import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.se
 import { Tokens } from './interfaces';
 import jwtDecode from 'jwt-decode';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { DriveService } from 'src/app/core/services/drive/drive.service';
 
 
 @Component({
@@ -30,16 +31,17 @@ export class AdminComponent {
   constructor(
     private databaseService: DatabaseService,
     private localAuthService: LocalAuthService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private driveService: DriveService
   ) { }
 
   ngOnInit() {
     this.getMovies();
-    // this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
-    //   {
-    //     next: (data: any) => console.log(data)
-    //   }
-    // )
+    this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
+      {
+        next: (data: any) => console.log(data)
+      }
+    )
   }
 
   login() {

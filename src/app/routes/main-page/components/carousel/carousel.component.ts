@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { mockSlides } from './mock-slides';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 
 @Component({
@@ -29,7 +28,6 @@ export class CarouselComponent {
     this.movieService.getMovies$().pipe(
       tap(movies => {
         movies.forEach((m, index) => {
-          m.imgUrl = '../../../../../assets/images/placeholder.jpg'
           m.display = index === 0 ? true : false
         })
       }),

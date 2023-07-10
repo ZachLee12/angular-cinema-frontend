@@ -11,6 +11,6 @@ import { Movie } from 'src/app/feature/movie/interfaces';
 })
 export class SlideComponent {
   @Input() slide?: Movie;
-
+  placeholderImgUrl: string = "../../../../../assets/images/placeholder.jpg"
 
 }
