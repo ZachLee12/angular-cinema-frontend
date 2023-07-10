@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: "",
     // component: PlaceholderComponent,
-    redirectTo: "admin",
+    redirectTo: "home",
     pathMatch: 'full'
   },
   {

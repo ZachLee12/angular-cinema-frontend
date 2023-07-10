@@ -98,6 +98,12 @@ section {
         text-align: center;
         font-size: 3rem;
         margin: 0;
+
+        span.style-word {
+            background-image: linear-gradient(to right, #44f629, #49e87b, #4ef3d5, #09aff1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
 
     .wrapper {
@@ -129,6 +135,15 @@ section {
 
 .carousel-section {
     padding: 100px 50px;
+}
+
+.third-section {
+    .tech-stack-title {
+        margin: 40px 0 0 0;
+        text-align: center;
+        color: white;
+        font-size: 2.5rem;
+    }
 }
 
 
