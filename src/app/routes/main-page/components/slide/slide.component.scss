@@ -1,7 +1,6 @@
 @import '../../../../mixins';
 
 #Slide {
-    border: 2px solid red;
     max-height: 100%;
     color: white;
     max-width: 100%;
@@ -31,9 +30,17 @@
         text-align: center;
     }
 
-    .movie-img {
-        width: 300px;
-        height: auto;
+    .movie-img-wrapper {
+        @include flexDisplay(row, true);
+
+        .movie-img {
+            width: 300px;
+            height: auto;
+        }
+    }
+
+    .actors {
+        text-align: center;
     }
 }
 
@@ -49,4 +56,6 @@
         height: auto;
         align-self: center;
     }
+
+
 }
