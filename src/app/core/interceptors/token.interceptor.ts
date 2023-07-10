@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, mergeMap, switchMap, tap, throwError } from 'rxjs';
+import { catchError, mergeMap, of, switchMap, tap, throwError } from 'rxjs';
 import {
   HttpRequest,
   HttpHandler,
@@ -40,7 +40,7 @@ export class TokenInterceptor implements HttpInterceptor {
         )
     }//if 
     else {
-      return new Observable<HttpEvent<any>>;
+      return next.handle(request); //important to pass on the request handler!!!
     }//else
   }//intercept
 

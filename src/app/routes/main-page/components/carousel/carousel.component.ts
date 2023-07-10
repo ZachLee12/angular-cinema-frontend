@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { mockSlides } from './mock-slides';
+import { MovieService } from 'src/app/core/services/movie/movie-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-carousel',
@@ -18,6 +20,21 @@ import { mockSlides } from './mock-slides';
 export class CarouselComponent {
   currentIndex: number = 0
   slides: any[] = mockSlides
+  movieService: MovieService = inject(MovieService)
+  httpClient: HttpClient = inject(HttpClient)
+
+  ngOnInit() {
+    this.movieService.getMovies$().subscribe(
+      {
+        next: (movies) => {
+          console.log(movies)
+        },
+      }
+    )
+    this.httpClient.get(`http://localhost:3000/testConnection`).subscribe({
+      next: data => console.log(data)
+    })
+  }
 
   next() {
     if (this.currentIndex === this.slides.length - 1) {

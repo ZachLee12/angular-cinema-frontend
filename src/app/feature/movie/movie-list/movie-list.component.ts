@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieService } from '../movie-service.service';
+import { MovieService } from '../../../core/services/movie/movie-service.service';
 import { Movie } from '../interfaces';
 import { Subject, takeUntil } from 'rxjs';
 

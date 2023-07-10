@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../movie/movie-service.service';
+import { MovieService } from '../../../core/services/movie/movie-service.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

@@ -76,3 +76,10 @@ header {
         height: 30px;
     }
 }
+
+@media screen and (max-width:520px) {
+    .footer {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+}
