@@ -1,7 +1,7 @@
 <div id="Slide">
     <div class="first-section">
-        <h1 class="title">{{slide.title}}</h1>
-        <h2 class="desc">{{slide.desc}}</h2>
+        <h1 class="title">{{slide?.name}}</h1>
+        <h2 class="desc">{{slide?.description}}</h2>
     </div>
     <div class="second-section">
         <div class="showtimes">
@@ -12,7 +12,7 @@
         </div>
         <div class="movie-info-wrapper">
             <div class="movie-img-wrapper">
-                <img class="movie-img" [src]="slide.url" alt="movie-image">
+                <img class="movie-img" [src]="slide?.imgUrl" alt="movie-image">
             </div>
             <p class="actors">Actors: Lorem ipsum, Lorem ipsum, Lorem ipsum</p>
         </div>

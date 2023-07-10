@@ -3,6 +3,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 import { mockSlides } from './mock-slides';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
@@ -20,20 +21,24 @@ import { HttpClient } from '@angular/common/http';
 export class CarouselComponent {
   currentIndex: number = 0
   slides: any[] = mockSlides
+  movies$?: Observable<any>;
+  unsubscribe$: Subject<void> = new Subject();
   movieService: MovieService = inject(MovieService)
-  httpClient: HttpClient = inject(HttpClient)
 
   ngOnInit() {
-    this.movieService.getMovies$().subscribe(
+    this.movieService.getMovies$().pipe(
+      tap(movies => {
+        movies.forEach((m, index) => {
+          m.imgUrl = '../../../../../assets/images/placeholder.jpg'
+          m.display = index === 0 ? true : false
+        })
+      }),
+      takeUntil(this.unsubscribe$)
+    ).subscribe(
       {
-        next: (movies) => {
-          console.log(movies)
-        },
+        next: movies => this.slides = movies
       }
     )
-    this.httpClient.get(`http://localhost:3000/testConnection`).subscribe({
-      next: data => console.log(data)
-    })
   }
 
   next() {
@@ -59,4 +64,8 @@ export class CarouselComponent {
     this.slides[this.currentIndex].display = true
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

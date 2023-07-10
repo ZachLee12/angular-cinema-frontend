@@ -3,8 +3,10 @@
 export interface Movie {
     id: string;
     name: string;
-    desc: string[];
+    description: string[];
     genres: string[];
     actors: string[];
     playtimes: string[];
+    display?: boolean;
+    imgUrl?: string;
 }

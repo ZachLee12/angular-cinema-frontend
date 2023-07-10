@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { trigger, style, state, transition, animate } from '@angular/animations';
+import { Movie } from 'src/app/feature/movie/interfaces';
 
 @Component({
   selector: 'app-slide',
@@ -9,7 +10,7 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   ]
 })
 export class SlideComponent {
-  @Input() slide?: any;
+  @Input() slide?: Movie;
 
 
 }
