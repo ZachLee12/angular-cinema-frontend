@@ -18,7 +18,7 @@
 }
 
 .second-section {
-    border: 2px solid lightgreen;
+    // border: 2px solid lightgreen;
 
     @include flexDisplay(row, false) {
         justify-content: space-evenly;
