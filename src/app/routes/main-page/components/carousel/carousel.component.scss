@@ -1,7 +1,7 @@
 @import "../../../../app.component.scss";
 
 #Carousel {
-    height: 100%;
+    max-height: 100%;
     padding: 0px 20px;
 
     @include flexDisplay(row, true) {
@@ -12,6 +12,10 @@
     ;
     background-color: #1e1e20;
 }
+
+// .slides {
+//     height: 100%;
+// }
 
 .nav-arrow {
     height: 50px;

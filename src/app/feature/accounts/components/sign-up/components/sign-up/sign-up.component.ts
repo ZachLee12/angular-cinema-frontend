@@ -29,7 +29,7 @@ export class SignUpComponent {
         {
           next: data => {
             console.log(data)
-            this.router.navigate(['/accounts/login'])
+            this.router.navigate(['/home'])
           },
           error: err => console.error(new HttpErrorResponse(err))
         }

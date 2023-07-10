@@ -9,8 +9,7 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   ]
 })
 export class SlideComponent {
-  @Input() imgSrc: string = 'imgSrc here';
-  @Input() title: string = 'some title';
+  @Input() slide?: any;
 
 
 }

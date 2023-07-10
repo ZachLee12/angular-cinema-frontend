@@ -2,8 +2,7 @@
     <mat-icon class="left-arrow nav-arrow" (click)="prev()">keyboard_arrow_left</mat-icon>
     <section class="slides">
         <ng-container *ngFor="let slide of slides;">
-            <app-slide [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" [imgSrc]="slide.url"
-                [title]="'some title'">
+            <app-slide [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" [slide]="slide">
             </app-slide>
         </ng-container>
     </section>

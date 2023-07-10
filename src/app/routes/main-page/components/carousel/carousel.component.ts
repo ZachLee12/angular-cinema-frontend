@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { mockSlides } from './mock-slides';
 
 @Component({
   selector: 'app-carousel',
@@ -16,24 +17,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class CarouselComponent {
   currentIndex: number = 0
-  slides: any[] = [
-    {
-      url: 'http://placekitten.com/400/200',
-      display: true
-    },
-    {
-      url: 'http://placekitten.com/400/202',
-      display: false
-    },
-    {
-      url: 'http://placekitten.com/400/203',
-      display: false
-    },
-    {
-      url: 'http://placekitten.com/400/205',
-      display: false
-    },
-  ]
+  slides: any[] = mockSlides
 
   next() {
     if (this.currentIndex === this.slides.length - 1) {
