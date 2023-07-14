@@ -6,7 +6,7 @@ export interface Movie {
     description: string[];
     genres: string[];
     actors: string[];
-    playtimes: string[];
+    showtimes: string[];
     display?: boolean;
     imgUrl?: string;
 }

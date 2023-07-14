@@ -26,7 +26,7 @@
     ;
     // border: 2px solid red;
 
-    .playtimes {
+    .showtimes {
         // border: 2px solid red;
         max-height: 250px;
         overflow-y: auto;
@@ -46,7 +46,7 @@
             background-color: #424242;
         }
 
-        .playtimes-title {
+        .showtimes-title {
             position: sticky;
             top: 0;
             text-align: center;
@@ -54,7 +54,7 @@
             background-color: #1e1e20;
         }
 
-        .playtime {
+        .showtime {
             text-align: center;
         }
     }
