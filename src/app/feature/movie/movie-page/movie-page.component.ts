@@ -11,9 +11,7 @@ import { Movie } from '../interfaces';
 
 export class MoviePageComponent {
 
-  constructor(private movieService: MovieService) {
 
-  }
 
   ngOnInit() {
   }

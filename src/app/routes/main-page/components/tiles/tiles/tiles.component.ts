@@ -27,14 +27,14 @@ export class TilesComponent {
       desc: 'The next-generation Node.js and TypeScript ORM.'
     },
     {
-      iconSrc: '../../../../../../assets/images/web-technology/mongodb.svg',
-      descTitle: 'MongoDB',
-      desc: 'For the next generation of intelligent applications.'
+      iconSrc: '../../../../../../assets/images/web-technology/postgresql.svg',
+      descTitle: 'PostgreSQL',
+      desc: 'The world\'s most advanced open source relational database.'
     },
     {
-      iconSrc: '../../../../../../assets/images/web-technology/vuejs.svg',
-      descTitle: 'VueJS',
-      desc: 'The progressive JavaScript Framework.'
+      iconSrc: '../../../../../../assets/images/web-technology/jwt.svg',
+      descTitle: 'JWT Authentication',
+      desc: 'Token-based authentication with access and refresh tokens.'
     },
   ]
 }

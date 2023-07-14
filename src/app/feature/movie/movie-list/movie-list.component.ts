@@ -20,7 +20,9 @@ export class MovieListComponent {
     this.movieService.getMovies$().pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         {
-          next: (data: Movie[]) => { this.movieList = data }
+          next: (data: Movie[]) => {
+            this.movieList = data
+          }
         }
       )
   }
