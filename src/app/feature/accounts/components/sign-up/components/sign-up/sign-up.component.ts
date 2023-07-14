@@ -24,14 +24,14 @@ export class SignUpComponent {
   })
 
   async signUp() {
-    this.signUpService.signUp(this.signUpForm.value as any).
-      pipe(catchError(() => throwError(() => null))).subscribe(
+    this.signUpService.signUp(this.signUpForm.value as any)
+      .subscribe(
         {
           next: data => {
             console.log(data)
             this.router.navigate(['/home'])
           },
-          error: err => console.error(new HttpErrorResponse(err))
+          error: (err: HttpErrorResponse) => console.error(err.error.loginStatusMessage)
         }
       )
   }

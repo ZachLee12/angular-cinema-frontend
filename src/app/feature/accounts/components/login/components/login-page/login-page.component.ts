@@ -20,6 +20,7 @@ export class LoginPageComponent {
 
   loginForm!: FormGroup;
   isLoginSuccessful$!: Observable<boolean>;
+  loginAttempted: boolean = false;
   loginStatusMessage: string = '';
   rememberMe: boolean = false;
   unsubscribe$: Subject<void> = new Subject();
@@ -33,6 +34,7 @@ export class LoginPageComponent {
   }
 
   async login() {
+    this.loginAttempted = true;
     this.isLoginSuccessful$ = this.loginService.login(this.loginForm.value).pipe(
       switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens, this.rememberMe)).pipe(
         map(() => {
