@@ -5,8 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class WordSpacingPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return value + (args[0] as string);
+  transform(value: string, ...args: unknown[]): unknown {
+    value = value + (args[0] as string)
+
+
+    return value;
   }
 
 }

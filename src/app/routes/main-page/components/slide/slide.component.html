@@ -12,8 +12,14 @@
             <div class="movie-img-wrapper">
                 <img class="movie-img" [src]="slide?.imgUrl " alt="movie-image">
             </div>
-            <p class="actors">Actors: <span class="actors"
-                    *ngFor="let actor of slide?.actors">{{actor | wordSpacing: ', '}}</span></p>
+            <p class="actors">Actors: <span class="actors" *ngFor="let actor of slide?.actors; let i = index">
+                    <ng-container *ngIf="!checkLastElement(i,slide?.actors!); else lastActor">
+                        {{actor | wordSpacing: ', '}}
+                    </ng-container>
+                    <ng-template #lastActor>
+                        {{actor}}
+                    </ng-template>
+                </span></p>
         </div>
     </div>
 </div>

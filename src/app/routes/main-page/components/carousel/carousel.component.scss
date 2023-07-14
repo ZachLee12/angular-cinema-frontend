@@ -1,16 +1,22 @@
 @import "../../../../app.component.scss";
 
 #Carousel {
-    height: 600px;
+    height: 500px;
     padding: 0px 20px;
+    position: relative;
 
     @include flexDisplay(row, true) {
         gap: 20px;
-        justify-content: space-between
+        // justify-content: space-between
     }
 
     ;
     background-color: #1e1e20;
+}
+
+.slides {
+    align-self: center;
+    max-width: 70%;
 }
 
 .nav-arrow {
@@ -27,6 +33,16 @@
     }
 }
 
+.nav-arrow.left-arrow {
+    position: absolute;
+    left: 50px;
+}
+
+.nav-arrow.right-arrow {
+    position: absolute;
+    right: 50px;
+}
+
 .small-nav-arrows {
     display: none;
 }
@@ -34,7 +50,7 @@
 @media screen and (max-width: 880px) {
     #Carousel {
         flex-direction: column;
-
+        height: 100%;
     }
 
     .nav-arrow {

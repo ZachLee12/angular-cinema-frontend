@@ -13,4 +13,8 @@ export class SlideComponent {
   @Input() slide?: Movie;
   placeholderImgUrl: string = "../../../../../assets/images/placeholder.jpg"
 
+
+  checkLastElement(index: any, array: any[]) {
+    return index === array.length - 1
+  }
 }
