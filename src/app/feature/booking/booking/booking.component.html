@@ -1,7 +1,11 @@
 <div id="Booking">
-    <h1>Booking</h1>
-
-    <div>
-        {{(currentMovie$ | async)?.name}}
-    </div>
+    <ng-container *ngIf="(currentMovie$ | async) as movie">
+        <h1>{{movie.name}}</h1>
+        <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
+        <div class="content-wrapper">
+            <div class="img-wrapper">
+                <img [src]="movie.imgUrl" alt="movie-image">
+            </div>
+        </div>
+    </ng-container>
 </div>
