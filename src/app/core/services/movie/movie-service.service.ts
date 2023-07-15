@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Subject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Movie } from '../../../feature/movie/interfaces';
+import { mockMovie } from 'src/app/feature/movie/mock-movies';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  constructor(private httpClient: HttpClient) {
+  currentMovie$: BehaviorSubject<Movie> = new BehaviorSubject(mockMovie);
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
+  setCurrentMovie$(movie: Movie): void {
+    this.currentMovie$.next(movie)
+  }
+
+  getCurrentMovie$(): Observable<Movie> {
+    return this.currentMovie$.asObservable();
   }
 
   //replace any with movie
