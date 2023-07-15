@@ -14,7 +14,9 @@
         <div class="showtimes-wrapper">
             <p class="showtimes-title">Showtimes</p>
             <ul class="showtimes">
-                <li class="showtime" *ngFor="let showtime of movie.showtimes">{{showtime}} </li>
+                <li class="showtime" routerLink="/movies/booking/{{movie.id}}/{{showtime}}"
+                    *ngFor="let showtime of movie.showtimes">
+                    {{showtime}} </li>
             </ul>
         </div>
     </ng-container>

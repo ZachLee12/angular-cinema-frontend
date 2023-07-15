@@ -15,13 +15,13 @@ const routes: Routes = [
                 component: MovieListComponent,
             },
             {
-                path: 'booking/:id',
-                component: BookingComponent,
-            },
-            {
                 path: 'details/:id',
                 component: MovieDetailComponent,
-            }
+            },
+            {
+                path: 'booking/:id/:showtime',
+                component: BookingComponent,
+            },
         ]
     },
 ];
