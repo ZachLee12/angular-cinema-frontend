@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { DriveService } from 'src/app/core/services/drive/drive.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 
 @Component({
@@ -34,12 +36,20 @@ export class MainPageComponent {
   currentSrcIndex: number = 0;
   imgInterval?: NodeJS.Timer;
 
+  googleDriveAuth: DriveService = inject(DriveService)
+  authService: AuthService = inject(AuthService)
   constructor() { }
 
   ngOnInit() {
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
     }, 5000)
+
+    this.googleDriveAuth.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(data => console.log(data))
+  }
+
+  loginGoogleDrive() {
+    this.authService.logIn();
   }
 
   nextBackgroundIndex() {
