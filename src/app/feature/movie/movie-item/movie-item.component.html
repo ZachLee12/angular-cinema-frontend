@@ -7,7 +7,9 @@
         <div class="title-underline"></div>
         <div class="movie-details-wrapper" [ngClass]="{'hovered':isHovered, 'not-hovered': !isHovered}">
             <p>{{movie.description}}</p>
-            <button class="details-btn" (click)="setCurrentMovie$()">More Details</button>
+            <button class="details-btn" (click)="setCurrentMovie$()"
+                [routerLink]="getCurrentUrl()+'/booking/'+movie.id">More
+                Details</button>
         </div>
     </div>
 </div>

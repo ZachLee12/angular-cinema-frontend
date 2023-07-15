@@ -5,6 +5,7 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { RouterModule } from '@angular/router';
 import { MovieRoutingModule } from './movie-routing.module';
+import { BookingModule } from '../booking/booking.module';
 
 
 
@@ -17,6 +18,7 @@ import { MovieRoutingModule } from './movie-routing.module';
   imports: [
     CommonModule,
     RouterModule,
+    BookingModule,
     MovieRoutingModule
   ]
 })

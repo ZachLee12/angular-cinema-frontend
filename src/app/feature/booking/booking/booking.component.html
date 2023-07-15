@@ -1,21 +1,7 @@
 <div id="Booking">
-    <!-- <h1 class="booking-page-title">Booking page</h1> -->
+    <h1>Booking</h1>
 
-    <div class="target-movie-info-wrapper">
-        <p class="screen-title">SCREEN</p>
-        <div class="target-movie-name movie-info-text">{{movieName}} </div>
-        <div class="target-movie-time movie-info-text">{{movieTime}} </div>
+    <div>
+        {{(currentMovie$ | async)?.name}}
     </div>
-
-    <div class="grid-container">
-        <div (click)="setSelectedSeat($event)" *ngFor="let seat of seatLayout"
-            [ngClass]="{'booked-seat':seat.isBooked, 'selected-seat':seat.isSelected}" class="grid-item"
-            id="{{seat.id}}">
-
-            Seat {{seat.id}}
-        </div>
-    </div>
-
-    <button class="confirm-booking-button" (click)="confirmBooking()" routerLink="/confirmation">Confirm
-        Booking</button>
 </div>

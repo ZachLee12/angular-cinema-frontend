@@ -29,7 +29,6 @@ import { MainPageModule } from './routes/main-page/main-page.module';
 
     //custom modules
     MovieModule,
-    BookingModule,
     AccountsModule,
     BrowserAnimationsModule,
     MainPageModule,

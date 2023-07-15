@@ -3,6 +3,7 @@ import { Input } from '@angular/core';
 import { Movie } from '../interfaces';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 import { switchMap, take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-item',
@@ -13,6 +14,7 @@ export class MovieItemComponent {
   @Input() movie!: Movie;
   isHovered: boolean = false;
   movieService: MovieService = inject(MovieService)
+  router: Router = inject(Router)
 
   onMouseLeave() {
     this.isHovered = false;
@@ -28,5 +30,9 @@ export class MovieItemComponent {
       .subscribe({
         next: movie => this.movieService.setCurrentMovie$(movie)
       })
+  }
+
+  getCurrentUrl(): string {
+    return this.router.url // '/movies/
   }
 }
