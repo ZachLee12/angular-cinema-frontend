@@ -6,6 +6,7 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { RouterModule } from '@angular/router';
 import { MovieRoutingModule } from './movie-routing.module';
 import { BookingModule } from '../booking/booking.module';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 
 
@@ -13,7 +14,8 @@ import { BookingModule } from '../booking/booking.module';
   declarations: [
     MovieItemComponent,
     MoviePageComponent,
-    MovieListComponent
+    MovieListComponent,
+    MovieDetailComponent
   ],
   imports: [
     CommonModule,
