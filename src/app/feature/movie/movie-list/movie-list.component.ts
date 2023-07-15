@@ -12,9 +12,9 @@ export class MovieListComponent {
   unsubscribe$: Subject<void> = new Subject();
   movieList?: Movie[]
 
-  constructor(private movieService: MovieService) {
-
-  }
+  constructor(
+    private movieService: MovieService
+  ) { }
 
   getMovieList(): void {
     this.movieService.getMovies$().pipe(takeUntil(this.unsubscribe$))

@@ -1,10 +1,15 @@
-<div id="Movie-Item">
-    <!-- <div [style.background-image]="'url('+imageBase64+')'" class="movie-image-wrapper"></div> -->
-    <div class="position-wrapper">
-        <div class="content-wrapper">
-            <div class="name">{{movie.name}} </div>
-            <button class="book-now-button" routerLink="/booking">Book
-                Now</button>
+<div id="Movie-Item" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <div class="opacity-film"></div>
+
+    <div class="content-wrapper">
+        <p class="movie-title">Blade Runner 2049</p>
+        <div class="title-underline"></div>
+        <div class="movie-details-wrapper" [ngClass]="{'hovered':isHovered, 'not-hovered': !isHovered}">
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut aut sit voluptates, iste similique
+                asperiores
+                explicabo. Ad eligendi eum labore itaque accusamus hic corrupti exercitationem. Odit repudiandae iste
+                illum
+                dolor?</p>
         </div>
     </div>
 </div>

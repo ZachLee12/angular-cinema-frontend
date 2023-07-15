@@ -9,7 +9,14 @@ import { Movie } from '../interfaces';
 })
 export class MovieItemComponent {
   @Input() movie!: Movie;
+  isHovered: boolean = false;
 
+  onMouseLeave() {
+    this.isHovered = false;
+  }
 
+  onMouseEnter() {
+    this.isHovered = true;
+  }
 
 }
