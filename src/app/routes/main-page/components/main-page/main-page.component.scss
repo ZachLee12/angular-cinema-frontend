@@ -38,6 +38,7 @@ $netflix-red: #e50914;
 
     .main-tab-title {
         @include flexDisplay(row, true);
+        cursor: pointer;
 
         .cinema-booking-system-title {
             margin: 0px;
@@ -59,6 +60,8 @@ $netflix-red: #e50914;
         }
 
         ;
+
+        cursor: pointer;
         // border: 2px solid red;
         width: 300px;
 
