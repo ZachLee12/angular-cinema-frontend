@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DriveService } from 'src/app/core/services/drive/drive.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { MovieService } from 'src/app/core/services/movie/movie-service.service';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -19,28 +21,32 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   ] //array of triggers
 })
 export class MainPageComponent {
-  backgroundImgSrcs: any[] = [
-    {
-      src: '../../../../../assets/images/movies/elemental.webp',
-      display: true
-    },
-    {
-      src: '../../../../../assets/images/movies/gifted.jpg',
-      display: false
-    },
-    {
-      src: '../../../../../assets/images/movies/coco.jpg',
-      display: false
-    }
-  ]
+  backgroundImgSrcs!: any[];
   currentSrcIndex: number = 0;
   imgInterval?: NodeJS.Timer;
 
   googleDriveAuth: DriveService = inject(DriveService)
   authService: AuthService = inject(AuthService)
+  movieService: MovieService = inject(MovieService)
   constructor() { }
 
   ngOnInit() {
+    this.movieService.getMovies$()
+      .pipe(
+        map(movies => movies.map(m => {
+          return {
+            src: m.imgUrlHorizontal,
+            display: false
+          }
+        }))
+      )
+      .subscribe({
+        next: movies => {
+          this.backgroundImgSrcs = movies
+          this.backgroundImgSrcs[0].display = true
+        }
+      })
+
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
     }, 5000)
