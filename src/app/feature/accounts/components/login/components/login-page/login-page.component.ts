@@ -5,6 +5,8 @@ import { Observable, Subject, catchError, map, of, switchMap, takeUntil, tap, th
 import { Tokens } from 'src/app/routes/admin/interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { UserProfile } from 'src/app/core/services/login/interfaces';
 
 
 @Component({
@@ -36,14 +38,18 @@ export class LoginPageComponent {
   async login() {
     this.loginAttempted = true;
     this.isLoginSuccessful$ = this.loginService.login(this.loginForm.value).pipe(
-      switchMap((tokens: Tokens) => of(this.loginService.setTokens(tokens, this.rememberMe)).pipe(
-        map(() => {
-          this.loginStatusMessage = 'Login Successful'
-          this.loginService.setIsLoggedIn$(true)
-          this.router.navigate(['/home'])
-          return true
-        })
-      )),
+      switchMap((tokens: Tokens) =>
+        of(this.loginService.setTokens(tokens, this.rememberMe)).pipe(
+          map(() => {
+            this.loginStatusMessage = 'Login Successful'
+            this.loginService.setIsLoggedIn$(true)
+            const { firstname, lastname, username, age, id } = jwtDecode(tokens.accessToken) as UserProfile
+            const userProfile = { firstname, lastname, username, age, id }
+            this.loginService.setUserProfile$(userProfile)
+            this.router.navigate(['/home'])
+            return true
+          })
+        )),
       catchError((httpErrorResponse: HttpErrorResponse) => {
         this.loginStatusMessage = httpErrorResponse.error.message
         return of(false)
