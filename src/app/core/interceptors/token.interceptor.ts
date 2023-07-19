@@ -9,12 +9,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalAuthService } from '../services/local-auth/local-auth.service';
+import { LoginService } from '../services/login/login.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
     private localAuthService: LocalAuthService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {

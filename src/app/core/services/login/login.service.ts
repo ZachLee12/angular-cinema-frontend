@@ -5,13 +5,14 @@ import { Tokens } from 'src/app/routes/admin/interfaces';
 import { Credentials } from 'src/app/feature/accounts/components/login/interfaces';
 import jwtDecode from 'jwt-decode';
 import { UserProfile, VerifyTokenResponse } from './interfaces';
+import { mockUserProfile } from './mocks';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  userProfile$: Subject<UserProfile> = new Subject();
+  userProfile$: BehaviorSubject<UserProfile> = new BehaviorSubject(mockUserProfile);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,8 +21,8 @@ export class LoginService {
       switchMap((response: any) => {
         try {
           const accessToken: string = this.getAccessToken() ?? ''
-          const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
-          const userProfile = { firstname, lastname, username, age }
+          const { firstname, lastname, username, age, id } = jwtDecode(accessToken) as UserProfile
+          const userProfile = { firstname, lastname, username, age, id }
           this.setUserProfile$(userProfile)
           this.setIsLoggedIn$(true)
           return of(response.message as VerifyTokenResponse)
@@ -31,17 +32,6 @@ export class LoginService {
       }),
       catchError((err: HttpErrorResponse) => throwError(() => err.error.error))
     )
-
-    // try {
-    //   const accessToken: string = this.getAccessToken() ?? ''
-    //   const { firstname, lastname, username, age } = jwtDecode(accessToken) as UserProfile
-    //   const userProfile = { firstname, lastname, username, age }
-    //   this.setUserProfile$(userProfile)
-    //   this.setIsLoggedIn$(true)
-    //   return of('login session maintained')
-    // } catch (err) {
-    //   return throwError(() => 'not logged in')
-    // }
   }
 
   getIsLoggedIn$() {

@@ -3,7 +3,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DriveService } from 'src/app/core/services/drive/drive.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { UserProfile } from 'src/app/core/services/login/interfaces';
 
 
 @Component({
@@ -24,13 +26,19 @@ export class MainPageComponent {
   backgroundImgSrcs!: any[];
   currentSrcIndex: number = 0;
   imgInterval?: NodeJS.Timer;
+  isLoggedIn$?: Observable<boolean>;
+  userProfile$?: Observable<UserProfile>;
 
   googleDriveAuth: DriveService = inject(DriveService)
   authService: AuthService = inject(AuthService)
   movieService: MovieService = inject(MovieService)
-  constructor() { }
+  loginService: LoginService = inject(LoginService)
+
 
   ngOnInit() {
+    this.isLoggedIn$ = this.loginService.getIsLoggedIn$()
+    this.userProfile$ = this.loginService.getUserProfile$()
+
     this.movieService.getMovies$()
       .pipe(
         map(movies => movies.map(m => {

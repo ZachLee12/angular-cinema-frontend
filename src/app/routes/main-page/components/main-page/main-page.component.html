@@ -10,8 +10,11 @@
             <div class="tab" routerLink="/movies">
                 <p class="tab-title">Movies</p>
             </div>
-            <div class="tab" routerLink="/accounts/login">
+            <div *ngIf="!(isLoggedIn$|async)" class="tab" routerLink="/accounts/login">
                 <p class="tab-title">Log In</p>
+            </div>
+            <div *ngIf="isLoggedIn$|async" class="tab" [routerLink]="'/user/'+ (userProfile$|async)?.id">
+                <p class="tab-title">My Profile</p>
             </div>
         </div>
     </header>

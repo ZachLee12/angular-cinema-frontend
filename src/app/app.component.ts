@@ -10,7 +10,7 @@ import { Route, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'cinema-angular-client';
-  userProfile$?: Observable<any>;
+  googleDriveUserProfile$?: Observable<any>;
   unsubscribe$: Subject<void> = new Subject();
 
   loginService: LoginService = inject(LoginService)
@@ -26,8 +26,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.userProfile$ = this.authService.getUserProfile$()
-    this.userProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
+    this.googleDriveUserProfile$ = this.authService.getUserProfile$()
+    this.googleDriveUserProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => console.log(data))
     this.loginService.initLoginFlow$().subscribe({
       next: (userProfile) => console.log(`%c${userProfile}`, "color:green"),
       error: (err) => console.error(err)
