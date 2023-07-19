@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MovieRoutingModule } from './movie-routing.module';
 import { BookingModule } from '../booking/booking.module';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
-
+import { SharedModule } from 'src/app/core/shared/shared.module';
 
 
 @NgModule({
@@ -15,13 +15,14 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     MovieItemComponent,
     MoviePageComponent,
     MovieListComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     BookingModule,
-    MovieRoutingModule
+    MovieRoutingModule,
+    SharedModule
   ]
 })
 export class MovieModule { }

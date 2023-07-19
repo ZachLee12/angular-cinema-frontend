@@ -8,7 +8,7 @@ import { TilesComponent } from './components/tiles/tiles/tiles.component';
 import { TilesModule } from './components/tiles/tiles.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { WordSpacingPipe } from 'src/app/core/pipes/word-spacing/word-spacing.pipe';
+import { SharedModule } from 'src/app/core/shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +16,6 @@ import { WordSpacingPipe } from 'src/app/core/pipes/word-spacing/word-spacing.pi
     MainPageComponent,
     CarouselComponent,
     SlideComponent,
-    WordSpacingPipe
   ],
   imports: [
     CommonModule,
@@ -24,6 +23,7 @@ import { WordSpacingPipe } from 'src/app/core/pipes/word-spacing/word-spacing.pi
     TilesModule,
     RouterModule,
     BrowserAnimationsModule,
+    SharedModule
   ],
   exports: []
 })

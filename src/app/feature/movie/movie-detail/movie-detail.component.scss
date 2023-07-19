@@ -32,9 +32,31 @@
     font-size: 3rem;
 }
 
-.desc-and-img-wrapper {
+.content-wrapper {
     @include flexDisplay(row, true);
-    border: 2px solid red;
+    // border: 2px solid red;
+
+    .movie-info {
+        @include flexDisplay(column, false);
+        // border: 2px solid red;
+
+        .actors-and-genres-wrapper {
+            @include flexDisplay(column, false) {
+                justify-content: space-evenly;
+            }
+
+            ;
+
+            .actors,
+            .genres {
+                @include flexDisplay(row, false) {
+                    justify-content: space-evenly;
+                }
+
+                ;
+            }
+        }
+    }
 
     .img-wrapper {
         width: 300px;

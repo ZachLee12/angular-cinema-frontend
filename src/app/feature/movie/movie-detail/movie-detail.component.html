@@ -2,9 +2,19 @@
     <ng-container *ngIf="(selectedMovie$ | async) as movie">
         <p class="movie-name">{{movie.name}} </p>
 
-        <div class="desc-and-img-wrapper">
-            <div class="desc">
-                {{movie.description}}
+        <div class="content-wrapper">
+            <div class="movie-info">
+                <p class="desc">{{movie.description}}</p>
+                <div class="actors-and-genres-wrapper">
+                    <div class="actors">
+                        <p class="actor" *ngFor="let actor of movie.actors; let i = index">
+                            {{actor}}
+                        </p>
+                    </div>
+                    <div class="genres">
+                        <p class="genre" *ngFor="let genre of movie.genres">{{genre}} </p>
+                    </div>
+                </div>
             </div>
 
             <div class="img-wrapper">

@@ -14,7 +14,6 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageModule } from './routes/main-page/main-page.module';
-import { UserProfileModule } from './feature/user-profile/user-profile.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { UserProfileModule } from './feature/user-profile/user-profile.module';
     AccountsModule,
     BrowserAnimationsModule,
     MainPageModule,
-    UserProfileModule
   ],
   providers: [
     {
