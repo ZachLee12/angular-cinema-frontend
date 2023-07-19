@@ -58,6 +58,7 @@
     position: relative;
 
     .details-btn {
+        cursor: pointer;
         position: absolute;
         bottom: 0;
         background-color: rgb(210, 160, 33);
@@ -87,6 +88,6 @@
 
 
 #Movie-Item:hover>.content-wrapper>.movie-details-wrapper {
-    height: 200px;
+    height: 220px;
     opacity: 1;
 }

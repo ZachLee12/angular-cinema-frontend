@@ -44,8 +44,29 @@ export class MainPageComponent {
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
     }, 5000)
+    //HORIZONTAL IMAGES
+    // this.googleDriveAuth.getFilesInFolder('131ls8vcMej1aFm2BmrFZ586fD47t62Sa').subscribe(
+    //   (data: any) => {
+    //     data.files.forEach((f: any) => {
+    //       console.log({
+    //         name: f.name,
+    //         webContentLink: f.webContentLink
+    //       })
+    //     }
+    //     )
+    //   }
+    // )
 
-    this.googleDriveAuth.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(data => console.log(data))
+    //VERTICAL IMAGES
+    // this.googleDriveAuth.getFilesInFolder("1rRlyTCdPjTdgMT5wz_p-IAAJFujAqSUK").subscribe((data: any) => {
+    //   data.files.forEach((f: any) => {
+    //     console.log({
+    //       name: f.name,
+    //       webContentLink: f.webContentLink
+    //     })
+    //   }
+    //   )
+    // })
   }
 
   loginGoogleDrive() {

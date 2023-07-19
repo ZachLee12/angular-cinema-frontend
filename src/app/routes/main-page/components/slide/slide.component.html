@@ -10,7 +10,7 @@
         </div>
         <div class="movie-info-wrapper">
             <div class="movie-img-wrapper">
-                <img class="movie-img" [src]="slide?.imgUrl " alt="movie-image">
+                <img class="movie-img" [src]="slide?.imgUrlHorizontal " alt="movie-image">
             </div>
             <p class="actors">Actors: <span class="actors" *ngFor="let actor of slide?.actors; let i = index">
                     <ng-container *ngIf="!checkLastElement(i,slide?.actors!); else lastActor">

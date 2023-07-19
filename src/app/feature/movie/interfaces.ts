@@ -8,5 +8,6 @@ export interface Movie {
     actors: string[];
     showtimes: string[];
     display?: boolean;
-    imgUrl?: string;
+    imgUrlHorizontal?: string;
+    imgUrlVertical?: string;
 }

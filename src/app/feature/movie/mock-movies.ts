@@ -7,5 +7,5 @@ export const mockMovie: Movie = {
     name: 'Blade Runner 2049',
     showtimes: ["09:00 AM", "11:45 AM", "14:45 PM", "16:00 PM", "22:00 PM", "23:00 PM"],
     genres: ["Action", "Thriller", "Horror"],
-    imgUrl: 'https://drive.google.com/uc?id=1E8USBmO7o00sgsdYWmczEzLbyGEPKIfo&export=download'
+
 }
