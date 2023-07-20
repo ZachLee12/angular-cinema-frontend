@@ -6,28 +6,26 @@
             <div class="movie-info">
                 <p class="desc">{{movie.description}}</p>
                 <div class="actors-and-genres-wrapper">
-                    <div class="actors">
-                        <p class="actor" *ngFor="let actor of movie.actors; let i = index">
-                            {{actor}}
-                        </p>
-                    </div>
+                    <div class="actors">Actors: <span
+                            *ngFor="let actor of movie.actors">{{actor | wordSpacing: " "}}</span></div>
+
                     <div class="genres">
-                        <p class="genre" *ngFor="let genre of movie.genres">{{genre}} </p>
+                        Genres: <span *ngFor="let genre of movie.genres">{{genre | wordSpacing: " "}} </span>
                     </div>
+                </div>
+                <div class="showtimes-wrapper">
+                    <p class="showtimes-title">Showtimes</p>
+                    <ul class="showtimes">
+                        <li class="showtime" routerLink="/movies/booking/{{movie.id}}/{{showtime}}"
+                            *ngFor="let showtime of movie.showtimes">
+                            {{showtime}} </li>
+                    </ul>
                 </div>
             </div>
 
             <div class="img-wrapper">
                 <img [src]="movie.imgUrlVertical" alt="">
             </div>
-        </div>
-        <div class="showtimes-wrapper">
-            <p class="showtimes-title">Showtimes</p>
-            <ul class="showtimes">
-                <li class="showtime" routerLink="/movies/booking/{{movie.id}}/{{showtime}}"
-                    *ngFor="let showtime of movie.showtimes">
-                    {{showtime}} </li>
-            </ul>
         </div>
     </ng-container>
 </div>

@@ -58,7 +58,7 @@ export class MainPageComponent {
     this.imgInterval = setInterval(() => {
       this.nextBackgroundIndex();
     }, 5000)
-    //HORIZONTAL IMAGES
+    // // HORIZONTAL IMAGES
     // this.googleDriveAuth.getFilesInFolder('131ls8vcMej1aFm2BmrFZ586fD47t62Sa').subscribe(
     //   (data: any) => {
     //     data.files.forEach((f: any) => {
@@ -71,7 +71,7 @@ export class MainPageComponent {
     //   }
     // )
 
-    //VERTICAL IMAGES
+    // //VERTICAL IMAGES
     // this.googleDriveAuth.getFilesInFolder("1rRlyTCdPjTdgMT5wz_p-IAAJFujAqSUK").subscribe((data: any) => {
     //   data.files.forEach((f: any) => {
     //     console.log({

@@ -2,7 +2,7 @@
     <form class="sign-up-form" [formGroup]="signUpForm">
 
         <div class="wrapper">
-            <input type="text" id="firstname" formControlName="firstname">
+            <input autocomplete="off" type="text" id="firstname" formControlName="firstname">
             <label class="label" for="firstname" [ngClass]="{
                     'active-label': signUpForm.get('firstname')?.dirty &&signUpForm.get('firstname')?.valid && signUpForm.get('firstname')?.value?.trim() !== '',
                     'invalid-label':  signUpForm.get('firstname')?.touched && (signUpForm.get('firstname')?.invalid || signUpForm.get('firstname')?.value?.trim() === '')
@@ -16,7 +16,7 @@
         </div>
 
         <div class="wrapper">
-            <input type="text" id="lastname" formControlName="lastname">
+            <input autocomplete="off" type="text" id="lastname" formControlName="lastname">
             <label class="label" for="lastname" [ngClass]="{
                     'active-label': signUpForm.get('lastname')?.dirty && signUpForm.get('lastname')?.valid && signUpForm.get('lastname')?.value?.trim() !== '',
                     'invalid-label':  signUpForm.get('lastname')?.touched && (signUpForm.get('lastname')?.invalid || signUpForm.get('lastname')?.value?.trim() === '')
@@ -31,7 +31,7 @@
         </div>
 
         <div class="wrapper">
-            <input type="text" id="username" formControlName="username">
+            <input autocomplete="off" type="text" id="username" formControlName="username">
             <label class="label" for="username" [ngClass]="{
                     'active-label': signUpForm.get('username')?.dirty && signUpForm.get('username')?.valid,
                     'invalid-label':  signUpForm.get('username')?.touched && (signUpForm.get('username')?.invalid || signUpForm.get('username')?.value?.trim() === ''),
@@ -45,7 +45,7 @@
         </div>
 
         <div class="wrapper">
-            <input type="password" id="password" formControlName="password">
+            <input autocomplete="off" type="password" id="password" formControlName="password">
             <label class="label" for="password" [ngClass]="{
                     'active-label': signUpForm.get('password')?.dirty && (signUpForm.get('password')?.value?.trim() !==''),
                     'invalid-label':  signUpForm.get('password')?.touched && (signUpForm.get('password')?.invalid || signUpForm.get('password')?.value?.trim() === ''),

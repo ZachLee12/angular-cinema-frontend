@@ -2,7 +2,7 @@
     <form [formGroup]="loginForm" class="login-form">
 
         <div class="wrapper">
-            <input type="text" id="username" formControlName="username">
+            <input autocomplete="off" type="text" id="username" formControlName="username">
             <label class="label" for="username" [ngClass]="{
                 'active-label': loginForm.get('username')?.dirty &&loginForm.get('username')?.valid && loginForm.get('username')?.value?.trim() !== '',
                 'invalid-label':  loginForm.get('username')?.touched && (loginForm.get('username')?.invalid || loginForm.get('username')?.value?.trim() === ''),
@@ -12,7 +12,7 @@
         </div>
 
         <div class="wrapper">
-            <input type="text" id="password" formControlName="password">
+            <input autocomplete="off" type="text" id="password" formControlName="password">
             <label class="label" for="password" [ngClass]="{
                 'active-label': loginForm.get('password')?.dirty && loginForm.get('password')?.valid && loginForm.get('password')?.value?.trim() !== '',
                 'invalid-label':  loginForm.get('password')?.touched && (loginForm.get('password')?.invalid || loginForm.get('password')?.value?.trim() === ''),
