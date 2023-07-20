@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Movie } from '../../../feature/movie/interfaces';
@@ -9,12 +9,21 @@ import { mockMovie } from 'src/app/feature/movie/mock-movies';
 })
 export class MovieService {
   currentMovie$: BehaviorSubject<Movie> = new BehaviorSubject(mockMovie);
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+
+  httpClient: HttpClient = inject(HttpClient)
+
+
+  makeBooking(movieId: string, showtime: string, seats: number[]) {
+    // this.httpClient.post
+  }
+
+  getMovieHall(movieId: string, showtime: string) {
+    return this.httpClient.get(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
+  }
 
   setCurrentMovie$(movie: Movie): void {
     this.currentMovie$.next(movie)
+
   }
 
   getCurrentMovie$(): Observable<Movie> {
