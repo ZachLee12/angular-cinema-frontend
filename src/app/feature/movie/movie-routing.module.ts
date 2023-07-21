@@ -18,10 +18,6 @@ const routes: Routes = [
                 path: 'details/:id',
                 component: MovieDetailComponent,
             },
-            {
-                path: 'booking/:id/:showtime',
-                component: BookingComponent,
-            },
         ]
     },
 ];

@@ -17,7 +17,7 @@ export class MovieService {
     // this.httpClient.post
   }
 
-  getMovieHall(movieId: string, showtime: string) {
+  getMovieHalls$(movieId: string, showtime: string) {
     return this.httpClient.get(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
   }
 

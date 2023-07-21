@@ -15,7 +15,7 @@ export class BookingComponent {
 
   currentMovie$!: Observable<Movie>;
   currentRouteParams$?: Observable<Params>;
-  hall$?: Observable<any>;
+  halls$?: Observable<any>;
 
   ngOnInit() {
     this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
@@ -24,9 +24,9 @@ export class BookingComponent {
       ).subscribe()
 
     this.currentMovie$ = this.movieService.getCurrentMovie$()
-    this.hall$ = this.activatedRoute.params
-      .pipe(switchMap(({ id, showtime }) => this.movieService.getMovieHall(id, showtime)))
+    this.halls$ = this.activatedRoute.params
+      .pipe(switchMap(({ id, showtime }) => this.movieService.getMovieHalls$(id, showtime)))
 
-    this.hall$.subscribe(console.log)
+    this.halls$.subscribe(console.log)
   }
 }
