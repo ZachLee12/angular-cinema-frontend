@@ -1,8 +1,5 @@
 <div id="Hall-Selection">
     <div class="movie-info-wrapper">
-        <div class="movie-img-wrapper">
-            <img class="movie-img" [src]="(selectedMovie$|async)?.imgUrlHorizontal" alt="">
-        </div>
         <div class="movie-title-wrapper">
             <p class="movie-title">
                 {{(selectedMovie$|async)?.name}} - {{(activatedRouteService.params | async)?.["showtime"]}}

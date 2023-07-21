@@ -11,21 +11,10 @@
 .movie-info-wrapper {
     @include flexDisplay(column, true);
     margin: 50px;
-    border: 2px solid red;
-    position: relative;
 
-    .movie-img-wrapper {
-        width: 50%;
-
-        .movie-img {
-            width: 100%;
-        }
-    }
 
     .movie-title-wrapper {
         width: 100%;
-        position: absolute;
-        bottom: 0;
         @include flexDisplay(column, true);
         background-color: hsla(0, 0%, 4%, 0.139);
 
@@ -37,7 +26,7 @@
         }
 
         .underline {
-            width: 50%;
+            width: 70%;
             height: 5px;
             background-color: gold;
         }
@@ -90,7 +79,6 @@
 
         .hall-size-title {
             font-size: 1.5rem;
-            margin: 0
         }
 
         .hall-desc-list {
@@ -138,7 +126,7 @@
         @include flexDisplay(column, true);
 
         .underline {
-            width: 80%;
+            width: 100% !important;
             background-color: gold;
         }
     }
