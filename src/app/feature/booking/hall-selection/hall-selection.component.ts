@@ -22,6 +22,8 @@ export class HallSelectionComponent {
         tap(movie => { this.movieService.setCurrentMovie$(movie) })
       ).subscribe()
 
+    this.selectedMovie$ = this.movieService.getCurrentMovie$()
+
     this.halls$ = this.activatedRouteService.params
       .pipe(switchMap(({ id, showtime }) => this.movieService.getMovieHalls$(id, showtime)))
 

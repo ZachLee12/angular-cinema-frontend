@@ -1,3 +1,29 @@
 <div id="Hall-Selection">
+    <h1 class="movie-title">{{(selectedMovie$|async)?.name}}</h1>
     <h1>HALL SELECTION</h1>
+    <div class="hall-cards">
+        <div class="hall-card" *ngFor="let hall of halls$ | async">
+            <p class="hall-size-title">{{hall.hallSize}} Hall</p>
+            <ul class="hall-desc-list">
+                <ng-container *ngIf="hall.hallSize === 'MEDIUM'">
+                    <div class="img-wrapper">
+                        <img class="img" src="../../../../assets/images/cinema.png" alt="">
+                    </div>
+                    <li class="hall-desc">
+                        <p>🍟</p>
+                        <p>20% discount for snacks</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p>👻</p>
+                        <p>Ideal for Groups and Solo Moviegoers</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p>🎫</p>
+                        <p>A versatile cinematic experience</p>
+                    </li>
+                </ng-container>
+            </ul>
+
+        </div>
+    </div>
 </div>
