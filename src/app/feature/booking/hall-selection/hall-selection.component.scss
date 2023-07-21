@@ -9,6 +9,7 @@
 }
 
 .hall-cards {
+    margin: 50px 0;
 
     @include flexDisplay(row, false) {
         justify-content: space-evenly;
@@ -24,8 +25,23 @@
         min-height: 400px;
         // border: 2px solid gold;
         border-radius: 15px;
-        box-shadow: 0 0px 5px hsla(170, 100%, 50%, 0.841);
+        box-shadow: 0 0px 5px hsla(202, 100%, 50%, 0.977);
         background-color: #2a2a2f;
+        transition: background-color 200ms ease-in-out,
+            box-shadow 200ms ease-in-out,
+            transform 200ms ease-in-out;
+
+        &:hover {
+            background-color: #313137;
+            box-shadow: 0 0px 10px hsla(170, 100%, 50%, 0.841);
+            transform: translate(-2px, -2px);
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: #2a2a2f;
+            box-shadow: 0 0px 10px hsla(34, 100%, 53%, 0.931);
+        }
 
         .hall-size-title {
             font-size: 1.5rem;
