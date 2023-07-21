@@ -1,18 +1,24 @@
 <div id="Hall-Selection">
-    <div class="movie-title-wrapper">
-        <p class="movie-title">
-            {{(selectedMovie$|async)?.name}} - {{(activatedRouteService.params | async)?.["showtime"]}}
-        </p>
-        <div class="underline"></div>
+    <div class="movie-info-wrapper">
+        <div class="movie-img-wrapper">
+            <img class="movie-img" [src]="(selectedMovie$|async)?.imgUrlHorizontal" alt="">
+        </div>
+        <div class="movie-title-wrapper">
+            <p class="movie-title">
+                {{(selectedMovie$|async)?.name}} - {{(activatedRouteService.params | async)?.["showtime"]}}
+            </p>
+            <div class="underline"></div>
+        </div>
     </div>
     <p class="hall-selection-title">Hall Selection</p>
     <div class="hall-cards">
-        <div class="hall-card" *ngFor="let hall of halls$ | async">
+        <div [id]="hall.hallSize" (click)="navigateToSeatsBooking(hall.hallSize)" class="hall-card"
+            *ngFor="let hall of halls$ | async">
             <p class="hall-size-title">{{hall.hallSize}} Hall</p>
             <ul class="hall-desc-list">
                 <ng-container *ngIf="hall.hallSize === 'BIG'">
                     <div class="img-wrapper">
-                        <img class="img" src="../../../../assets/images/cinema.png" alt="">
+                        <img class="img" src="../../../../assets/images/big-cinema.png" alt="">
                     </div>
                     <li class="hall-desc">
                         <p class="emoji">💥</p>
@@ -30,7 +36,7 @@
 
                 <ng-container *ngIf="hall.hallSize === 'MEDIUM'">
                     <div class="img-wrapper">
-                        <img class="img" src="../../../../assets/images/cinema.png" alt="">
+                        <img class="img" src="../../../../assets/images/medium-cinema.png" alt="">
                     </div>
                     <li class="hall-desc">
                         <p class="emoji">🍟</p>
@@ -48,7 +54,7 @@
 
                 <ng-container *ngIf="hall.hallSize === 'SMALL'">
                     <div class="img-wrapper">
-                        <img class="img" src="../../../../assets/images/cinema.png" alt="">
+                        <img class="img" src="../../../../assets/images/small-cinema.png" alt="">
                     </div>
                     <li class="hall-desc">
                         <p class="emoji">🍿</p>

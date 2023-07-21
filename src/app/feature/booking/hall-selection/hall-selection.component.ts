@@ -2,7 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 import { Movie } from '../../movie/interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+enum HallSize {
+  BIG = "BIG",
+  MEDIUM = "MEDIUM",
+  SMALL = "SMALL"
+}
 
 @Component({
   selector: 'app-hall-selection',
@@ -12,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HallSelectionComponent {
   movieService: MovieService = inject(MovieService)
   activatedRouteService: ActivatedRoute = inject(ActivatedRoute)
+  routerService: Router = inject(Router)
 
   selectedMovie$!: Observable<Movie>;
   halls$!: Observable<any>;
@@ -23,10 +30,13 @@ export class HallSelectionComponent {
       ).subscribe()
 
     this.selectedMovie$ = this.movieService.getCurrentMovie$()
-
     this.halls$ = this.activatedRouteService.params
-      .pipe(switchMap(({ id, showtime }) => this.movieService.getMovieHalls$(id, showtime)))
+      .pipe(switchMap(({ movieId, showtime }) => this.movieService.getMovieHalls$(movieId, showtime)))
+  }
 
+  navigateToSeatsBooking(hallSize: HallSize) {
+    const queryParams = { hallSize }
+    this.routerService.navigate([`${this.routerService.url}`, 'seats'], { queryParams })
   }
 
 }

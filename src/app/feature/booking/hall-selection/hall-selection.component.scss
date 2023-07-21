@@ -8,28 +8,49 @@
     box-sizing: border-box;
 }
 
-.movie-title-wrapper {
+.movie-info-wrapper {
     @include flexDisplay(column, true);
+    margin: 50px;
+    border: 2px solid red;
+    position: relative;
 
-    .movie-title {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    .underline {
+    .movie-img-wrapper {
         width: 50%;
-        height: 5px;
-        background-color: gold;
+
+        .movie-img {
+            width: 100%;
+        }
     }
+
+    .movie-title-wrapper {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        @include flexDisplay(column, true);
+        background-color: hsla(0, 0%, 4%, 0.139);
+
+        .movie-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .underline {
+            width: 50%;
+            height: 5px;
+            background-color: gold;
+        }
+    }
+
 }
 
 .hall-selection-title {
     text-align: center;
     font-size: 1.5rem;
-
 }
+
+
 
 .hall-cards {
     margin: 60px 0 71px 0;

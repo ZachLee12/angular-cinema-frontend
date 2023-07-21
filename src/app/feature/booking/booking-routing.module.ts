@@ -6,12 +6,12 @@ import { HallSelectionComponent } from './hall-selection/hall-selection.componen
 
 const routes: Routes = [
     {
-        path: 'booking/hall/:id/:showtime',
+        path: 'booking/hall/:movieId/:showtime',
         component: HallSelectionComponent
     },
 
     {
-        path: 'booking/:id/:showtime',
+        path: 'booking/hall/:movieId/:showtime/seats',
         component: BookingComponent,
     },
 ];
