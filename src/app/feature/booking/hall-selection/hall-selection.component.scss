@@ -8,6 +8,23 @@
     box-sizing: border-box;
 }
 
+.movie-title-wrapper {
+    @include flexDisplay(column, true);
+
+    .movie-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .underline {
+        width: 50%;
+        height: 5px;
+        background-color: gold;
+    }
+}
+
 .hall-cards {
     margin: 50px 0;
 
