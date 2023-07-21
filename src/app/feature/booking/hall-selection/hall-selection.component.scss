@@ -25,8 +25,15 @@
     }
 }
 
+.hall-selection-title {
+    text-align: center;
+    font-size: 1.5rem;
+
+}
+
 .hall-cards {
-    margin: 50px 0;
+    margin: 60px 0 71px 0;
+    padding: 0 30px;
 
     @include flexDisplay(row, false) {
         justify-content: space-evenly;
@@ -102,5 +109,16 @@
             }
         }
 
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .movie-title-wrapper {
+        @include flexDisplay(column, true);
+
+        .underline {
+            width: 80%;
+            background-color: gold;
+        }
     }
 }
