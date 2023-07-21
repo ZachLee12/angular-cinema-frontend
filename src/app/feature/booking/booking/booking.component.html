@@ -2,22 +2,20 @@
     <ng-container *ngIf="(currentMovie$ | async) as movie">
         <h1>{{movie.name}}</h1>
         <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
+        <p class="hall-size-title">Hall Size: {{(hallInfo$|async).hallSize}} </p>
         <div class="content-wrapper">
             <div class="img-wrapper">
                 <img [src]="movie.imgUrlVertical" alt="movie-image">
             </div>
             <div class="booking-section">
-                <ng-container *ngIf="(halls$ |async) as halls">
-                    <div class="halls-wrapper">
-                        <button *ngFor="let hall of halls"> {{hall.hallSize}} </button>
-                    </div>
+                <ng-container *ngIf="(hallInfo$ |async) as hall">
                     <div class="screen-wrapper">
                         <div class="screen"></div>
                         <p class="screen-title">S C R E E N</p>
                     </div>
                     <div class="seats-wrapper">
-                        <ul class="seats">
-                            <li class="seat">
+                        <ul class="seats seats-row" *ngFor="let seat of sevenElementsArray">
+                            <li *ngFor="let seat of tenElementsArray" class="seat">
                                 <div class="inner-circle"></div>
                             </li>
                         </ul>
