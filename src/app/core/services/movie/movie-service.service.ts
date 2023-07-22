@@ -43,6 +43,6 @@ export class MovieService {
   // }
 
   makeBooking(userBooking: any) {
-    this.httpClient.post(`http://localhost:3000/booking`, userBooking)
+    return this.httpClient.post(`http://localhost:3000/booking`, userBooking)
   }
 }

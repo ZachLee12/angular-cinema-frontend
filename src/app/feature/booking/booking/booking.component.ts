@@ -36,15 +36,16 @@ export class BookingComponent {
           }
         }),
       )
+
+
   }
 
   updateSeatsBooked(event: SeatData[]) {
-    event.forEach(seat => delete seat.selected)
     this.seatsBooked = event
   }
 
   makeBooking() {
-    this.movieService.makeBooking(this.seatsBooked)
+    this.movieService.makeBooking(this.seatsBooked).subscribe(console.log)
   }
 
 }
