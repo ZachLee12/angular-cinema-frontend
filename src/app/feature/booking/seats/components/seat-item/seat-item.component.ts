@@ -8,8 +8,10 @@ import { Component, Input } from '@angular/core';
 export class SeatItemComponent {
   @Input() seatId?: { rowId: number, columnId: number };
 
-  // ngOnInit() {
-  //   console.log(this.seatId)
-  // }
+
+  getSeatId() {
+    console.log(this.seatId)
+    return this.seatId
+  }
 
 }
