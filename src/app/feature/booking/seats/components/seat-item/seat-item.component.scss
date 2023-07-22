@@ -26,5 +26,9 @@
         background-color: white;
         transition: background-color 200ms ease-in-out;
     }
+}
 
+.selected {
+    background-color: #00a2ff;
+    box-shadow: 0px 0px 3px 3px turquoise;
 }

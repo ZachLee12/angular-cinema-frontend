@@ -1,3 +1,4 @@
-<li id="Seat-item" class="seat-item" (click)="toggleSelected()" (click)="emitSelectedEvent()">
+<li id="Seat-item" class="seat-item" [ngClass]="{'selected':seatData?.selected}" (click)="toggleSelected()"
+    (click)="emitSelectedEvent()">
     <div class="inner-circle"></div>
 </li>

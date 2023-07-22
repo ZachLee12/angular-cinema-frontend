@@ -66,7 +66,7 @@ export class SeatsComponent {
       const removeIndex = this.bookedSeats.indexOf(event)
       this.bookedSeats.splice(removeIndex, 1)
     }
-
+    console.log(this.bookedSeats)
   }
 
 }
