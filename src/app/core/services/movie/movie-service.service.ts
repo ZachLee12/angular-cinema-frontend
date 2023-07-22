@@ -12,11 +12,6 @@ export class MovieService {
 
   httpClient: HttpClient = inject(HttpClient)
 
-
-  makeBooking(movieId: string, showtime: string, seats: number[]) {
-    // this.httpClient.post
-  }
-
   getMovieHalls$(movieId: string, showtime: string) {
     return this.httpClient.get(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
   }
@@ -39,11 +34,15 @@ export class MovieService {
     return this.httpClient.get<Movie>(`http://localhost:3000/movies/${id}`)
   }
 
-  updateMovieBooking(movieId: any, numberOfSeatsBooked: any, seatsBooked: number[]): void {
-    this.httpClient.post(`http://localhost:3000/booking`, {
-      movieId,
-      numberOfSeatsBooked,
-      seatsBooked
-    }).subscribe(response => console.log(`Post request successful: ${response}`))
+  // updateMovieBooking(movieId: any, numberOfSeatsBooked: any, seatsBooked: number[]): void {
+  //   this.httpClient.post(`http://localhost:3000/booking`, {
+  //     movieId,
+  //     numberOfSeatsBooked,
+  //     seatsBooked
+  //   }).subscribe(response => console.log(`Post request successful: ${response}`))
+  // }
+
+  makeBooking(userBooking: any) {
+    this.httpClient.post(`http://localhost:3000/booking`, userBooking)
   }
 }

@@ -3,6 +3,7 @@ import { MovieService } from 'src/app/core/services/movie/movie-service.service'
 import { Observable, combineLatestWith, map, mergeMap, of, switchMap, tap } from 'rxjs'
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
+import { SeatData } from '../seats/interfaces';
 
 @Component({
   selector: 'app-booking',
@@ -16,6 +17,7 @@ export class BookingComponent {
   currentRouteParams$?: Observable<Params>;
   currentMovie$!: Observable<Movie>;
   hallInfo$?: Observable<any>;
+  seatsBooked?: SeatData[];
 
   ngOnInit() {
     this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
@@ -34,7 +36,15 @@ export class BookingComponent {
           }
         }),
       )
+  }
 
+  updateSeatsBooked(event: SeatData[]) {
+    event.forEach(seat => delete seat.selected)
+    this.seatsBooked = event
+  }
+
+  makeBooking() {
+    this.movieService.makeBooking(this.seatsBooked)
   }
 
 }

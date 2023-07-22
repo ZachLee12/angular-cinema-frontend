@@ -32,6 +32,8 @@ export class HallSelectionComponent {
     this.selectedMovie$ = this.movieService.getCurrentMovie$()
     this.halls$ = this.activatedRouteService.params
       .pipe(switchMap(({ movieId, showtime }) => this.movieService.getMovieHalls$(movieId, showtime)))
+
+    this.halls$.subscribe(console.log)
   }
 
   navigateToSeatsBooking(hallSize: HallSize) {

@@ -14,7 +14,7 @@
                         <p class="screen-title">S C R E E N</p>
                     </div>
                     <div class="seats-wrapper">
-                        <app-seats></app-seats>
+                        <app-seats (selectedSeatsEvent)="updateSeatsBooked($event)"></app-seats>
                     </div>
                 </ng-container>
             </div>

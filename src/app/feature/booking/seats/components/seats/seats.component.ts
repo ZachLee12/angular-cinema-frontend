@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SeatData } from '../../interfaces';
 
 enum SeatsTemplate {
@@ -20,6 +20,7 @@ enum HallSize {
 })
 
 export class SeatsComponent {
+  @Output() selectedSeatsEvent = new EventEmitter<SeatData[]>();
   hallSize?: string = 'SMALL';
   numOfSeats?: number;
 
@@ -67,6 +68,10 @@ export class SeatsComponent {
       this.bookedSeats.splice(removeIndex, 1)
     }
     console.log(this.bookedSeats)
+  }
+
+  emitSelectedSeats() {
+    this.selectedSeatsEvent.emit(this.bookedSeats)
   }
 
 }
