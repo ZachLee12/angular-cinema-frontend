@@ -14,11 +14,7 @@
                         <p class="screen-title">S C R E E N</p>
                     </div>
                     <div class="seats-wrapper">
-                        <ul class="seats seats-row" *ngFor="let seat of sevenElementsArray">
-                            <li *ngFor="let seat of tenElementsArray" class="seat">
-                                <div class="inner-circle"></div>
-                            </li>
-                        </ul>
+                        <app-seats></app-seats>
                     </div>
                 </ng-container>
             </div>

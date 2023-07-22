@@ -1,0 +1,26 @@
+<div id="Seats">
+    <h1>Seats</h1>
+
+    <ng-container *ngIf="hallSize === getHallSizeEnum('SMALL'); then smallHall">
+
+    </ng-container>
+
+
+    <ng-template #smallHall>
+        <div class="small-hall-template">
+            <div class="five-seats-wrapper" *ngFor="let i of getArrayTemplate(5); let rowId = index">
+                <app-seat-item *ngFor="let s of lengthFiveArrayTemplate; let columnId = index"
+                    [seatId]="{rowId,columnId}"></app-seat-item>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- <div class="ten-seats-wrapper">
+        <app-seat-item *ngFor="let i of tenSeatsArrayTemplate"></app-seat-item>
+    </div>
+
+    <div class="two-seats-wrapper">
+        <app-seat-item *ngFor="let i of twoSeatsArrayTemplate"></app-seat-item>
+    </div> -->
+
+</div>

@@ -1,0 +1,48 @@
+@import '../../../../../mixins';
+
+#Seats {
+    // border: 2px solid green;
+    @include flexDisplay(column, false);
+}
+
+.small-hall-template {
+    height: 100%;
+
+    @include flexDisplay(column, false) {
+        gap: 10px;
+    }
+
+    ;
+
+    .five-seats-wrapper {
+
+        @include flexDisplay(row, false) {
+            justify-content: center;
+            gap: 25px;
+        }
+
+        ;
+    }
+}
+
+
+.ten-seats-wrapper {
+    border: 2px solid red;
+
+    @include flexDisplay(row, false) {
+        justify-content: space-evenly;
+    }
+
+    ;
+}
+
+.two-seats-wrapper {
+    border: 2px solid red;
+
+    @include flexDisplay(row, false) {
+        justify-content: center;
+        gap: 5px;
+    }
+
+    ;
+}

@@ -33,6 +33,7 @@
     .booking-section {
         width: 100%;
         border: 2px solid red;
+        height: 100%;
 
         .screen-wrapper {
             .screen {
@@ -52,47 +53,8 @@
         }
 
         .seats-wrapper {
-            border: 2px solid red;
-
-            .seats {
-                list-style: none;
-                padding: 0;
-
-                @include flexDisplay(row, false) {
-                    justify-content: space-evenly;
-                }
-
-                ;
-
-                .seat {
-                    @include flexDisplay(row, true);
-                    cursor: pointer;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 100%;
-                    background-color: gray;
-                    transition: box-shadow 200ms ease-in-out;
-
-
-                    &:hover>.inner-circle {
-                        background-color: #00a2ff;
-                    }
-
-                    &:hover {
-                        box-shadow: 0px 0px 3px 3px turquoise;
-                    }
-
-                    .inner-circle {
-                        width: 13px;
-                        height: 13px;
-                        border-radius: inherit;
-                        background-color: white;
-                        transition: background-color 200ms ease-in-out;
-                    }
-
-                }
-            }
+            height: 100%;
+            // background-color: pink;
         }
-
     }
 }
