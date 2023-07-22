@@ -1,10 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-interface SeatData {
-  rowId: number,
-  columnId: number,
-  selected: boolean
-}
+import { SeatData } from '../../interfaces';
 
 @Component({
   selector: 'app-seat-item',
@@ -20,7 +15,7 @@ export class SeatItemComponent {
     return this.seatData
   }
 
-  onClickToggle() {
+  toggleSelected() {
     //'if' here is necessary as a Type Guard, read more below:
     //https://bartwullems.blogspot.com/2022/05/typescript-left-hand-side-of-assignment.html
     if (this.seatData) {

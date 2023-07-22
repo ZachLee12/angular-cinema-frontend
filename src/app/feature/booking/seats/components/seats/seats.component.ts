@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeatData } from '../../interfaces';
 
 enum SeatsTemplate {
   TWO = 2,
@@ -30,6 +31,9 @@ export class SeatsComponent {
   //template of the seats
   seatsTemplate?: {};
 
+  //array of bookedSeats
+  bookedSeats: SeatData[] = [];
+
   ngOnInit() {
     this.seatsTemplate = this.mapHallSizeToSeatTemplate(this.hallSize!)
   }
@@ -53,6 +57,16 @@ export class SeatsComponent {
     };
 
     return template
+  }
+
+  bookOrUnbookSeat(event: SeatData) {
+    if (event.selected && !this.bookedSeats.includes(event)) {
+      this.bookedSeats?.push(event)
+    } else {
+      const removeIndex = this.bookedSeats.indexOf(event)
+      this.bookedSeats.splice(removeIndex, 1)
+    }
+
   }
 
 }
