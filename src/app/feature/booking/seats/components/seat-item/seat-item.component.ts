@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+interface SeatData {
+  rowId: number,
+  columnId: number,
+  selected: boolean
+}
 
 @Component({
   selector: 'app-seat-item',
@@ -6,12 +12,24 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./seat-item.component.scss']
 })
 export class SeatItemComponent {
-  @Input() seatId?: { rowId: number, columnId: number };
+  @Input() seatData?: SeatData;
+  @Output() selectedEvent = new EventEmitter<SeatData>();
 
+  getSeatData() {
+    console.log(this.seatData)
+    return this.seatData
+  }
 
-  getSeatId() {
-    console.log(this.seatId)
-    return this.seatId
+  onClickToggle() {
+    //'if' here is necessary as a Type Guard, read more below:
+    //https://bartwullems.blogspot.com/2022/05/typescript-left-hand-side-of-assignment.html
+    if (this.seatData) {
+      this.seatData.selected = !this.seatData.selected;
+    }
+  }
+
+  emitSelectedEvent() {
+    this.selectedEvent.emit(this.seatData)
   }
 
 }
