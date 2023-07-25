@@ -34,23 +34,16 @@ export class MovieService {
     return this.httpClient.get<Movie>(`http://localhost:3000/movies/${id}`)
   }
 
-  // updateMovieBooking(movieId: any, numberOfSeatsBooked: any, seatsBooked: number[]): void {
-  //   this.httpClient.post(`http://localhost:3000/booking`, {
-  //     movieId,
-  //     numberOfSeatsBooked,
-  //     seatsBooked
-  //   }).subscribe(response => console.log(`Post request successful: ${response}`))
-  // }
-
   makeBooking(userBooking: any) {
     return this.httpClient.post(`http://localhost:3000/booking`, userBooking)
   }
 
   getOneMovieHall$(hallId: string) {
-    return this.httpClient.post(`http://localhost:3000/booking/hall`, { hallId })
+    return this.httpClient.get(`http://localhost:3000/booking/hall/${hallId}`)
   }
 
   setCurrentHall$(hall: any) {
+    console.log(hall)
     this.currentHall$.next(hall)
   }
 
