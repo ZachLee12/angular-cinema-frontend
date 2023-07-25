@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { Observable, combineLatestWith, map, mergeMap, of, switchMap, tap } from 'rxjs'
+import { Observable, Subject, combineLatestWith, map, mergeMap, of, switchMap, tap } from 'rxjs'
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
+import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
   selector: 'app-booking',
@@ -13,11 +14,15 @@ import { SeatData } from '../seats/interfaces';
 export class BookingComponent {
   movieService: MovieService = inject(MovieService)
   activatedRoute: ActivatedRoute = inject(ActivatedRoute)
+  loginService: LoginService = inject(LoginService)
+  unsubscribe: Subject<void> = new Subject();
 
   currentRouteParams$?: Observable<Params>;
   currentMovie$!: Observable<Movie>;
   hallInfo$?: Observable<any>;
   seatsBooked?: SeatData[];
+  currentUser: any;
+
 
   ngOnInit() {
     this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
@@ -26,18 +31,16 @@ export class BookingComponent {
       ).subscribe()
 
     this.currentMovie$ = this.movieService.getCurrentMovie$()
-    this.hallInfo$ = this.activatedRoute.params
-      .pipe(
-        combineLatestWith(this.activatedRoute.queryParams),
-        map(([params, queryParams]) => {
-          return {
-            ...params,
-            ...queryParams
-          }
-        }),
-      )
 
-
+    this.hallInfo$ = this.movieService.getCurrentHall$()
+    this.loginService.getUserProfile$().subscribe(
+      {
+        next: userProfile => {
+          console.log(userProfile)
+          this.currentUser = userProfile
+        }
+      }
+    )
   }
 
   updateSeatsBooked(event: SeatData[]) {
@@ -45,7 +48,26 @@ export class BookingComponent {
   }
 
   makeBooking() {
-    this.movieService.makeBooking(this.seatsBooked).subscribe(console.log)
+    this.hallInfo$?.subscribe(
+      {
+        next: hall => {
+          const booking = {
+            hallId: hall.id,
+            movieId: hall.movieId,
+            userId: this.currentUser.id,
+            seatsBooked: this.seatsBooked
+          }
+          console.log(booking)
+          this.movieService.makeBooking(booking).subscribe()
+        }
+      }
+    )
+
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

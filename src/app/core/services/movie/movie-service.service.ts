@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Movie } from '../../../feature/movie/interfaces';
 import { mockMovie } from 'src/app/feature/movie/mock-movies';
 
@@ -9,6 +9,7 @@ import { mockMovie } from 'src/app/feature/movie/mock-movies';
 })
 export class MovieService {
   currentMovie$: BehaviorSubject<Movie> = new BehaviorSubject(mockMovie);
+  currentHall$: BehaviorSubject<any> = new BehaviorSubject(null)
 
   httpClient: HttpClient = inject(HttpClient)
 
@@ -18,7 +19,6 @@ export class MovieService {
 
   setCurrentMovie$(movie: Movie): void {
     this.currentMovie$.next(movie)
-
   }
 
   getCurrentMovie$(): Observable<Movie> {
@@ -44,5 +44,17 @@ export class MovieService {
 
   makeBooking(userBooking: any) {
     return this.httpClient.post(`http://localhost:3000/booking`, userBooking)
+  }
+
+  getOneMovieHall$(hallId: string) {
+    return this.httpClient.post(`http://localhost:3000/booking/hall`, { hallId })
+  }
+
+  setCurrentHall$(hall: any) {
+    this.currentHall$.next(hall)
+  }
+
+  getCurrentHall$(): Observable<any> {
+    return this.currentHall$.asObservable()
   }
 }

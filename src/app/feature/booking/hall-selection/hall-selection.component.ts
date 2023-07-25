@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, take, takeUntil, tap } from 'rxjs';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,6 +39,14 @@ export class HallSelectionComponent {
   navigateToSeatsBooking(hallSize: HallSize) {
     const queryParams = { hallSize }
     this.routerService.navigate([`${this.routerService.url}`, 'seats'], { queryParams })
+  }
+
+  setSelectedHall(event: any) {
+    this.movieService.getOneMovieHall$(event.target.id)
+      .pipe(
+        take(1),
+        tap(hall => this.movieService.setCurrentHall$(hall))
+      ).subscribe()
   }
 
 }

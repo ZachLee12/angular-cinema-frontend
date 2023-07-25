@@ -9,8 +9,8 @@
     </div>
     <p class="hall-selection-title">Hall Selection</p>
     <div class="hall-cards">
-        <div [id]="hall.hallSize" (click)="navigateToSeatsBooking(hall.hallSize)" class="hall-card"
-            *ngFor="let hall of halls$ | async">
+        <div class="hall-card" [id]="hall.id" (click)="setSelectedHall($event)"
+            (click)="navigateToSeatsBooking(hall.hallSize)" *ngFor="let hall of halls$ | async">
             <p class="hall-size-title">{{hall.hallSize}} Hall</p>
             <ul class="hall-desc-list">
                 <ng-container *ngIf="hall.hallSize === 'BIG'">

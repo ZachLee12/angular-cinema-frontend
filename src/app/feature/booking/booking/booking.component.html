@@ -2,21 +2,19 @@
     <ng-container *ngIf="(currentMovie$ | async) as movie">
         <h1>{{movie.name}}</h1>
         <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
-        <p class="hall-size-title">Hall Size: {{(hallInfo$|async).hallSize}} </p>
+        <p class="hall-size-title">Hall Size: {{(hallInfo$|async)?.hallSize}} </p>
         <div class="content-wrapper">
             <div class="img-wrapper">
                 <img [src]="movie.imgUrlVertical" alt="movie-image">
             </div>
             <div class="booking-section">
-                <ng-container *ngIf="(hallInfo$ |async) as hall">
-                    <div class="screen-wrapper">
-                        <div class="screen"></div>
-                        <p class="screen-title">S C R E E N</p>
-                    </div>
-                    <div class="seats-wrapper">
-                        <app-seats (selectedSeatsEvent)="updateSeatsBooked($event)"></app-seats>
-                    </div>
-                </ng-container>
+                <div class="screen-wrapper">
+                    <div class="screen"></div>
+                    <p class="screen-title">S C R E E N</p>
+                </div>
+                <div class="seats-wrapper">
+                    <app-seats (selectedSeatsEvent)="updateSeatsBooked($event)"></app-seats>
+                </div>
             </div>
         </div>
     </ng-container>
