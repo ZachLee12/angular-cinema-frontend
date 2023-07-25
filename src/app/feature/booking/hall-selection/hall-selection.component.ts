@@ -45,7 +45,7 @@ export class HallSelectionComponent {
     this.movieService.getOneMovieHall$(event.target.id)
       .pipe(
         take(1),
-        tap(hall => this.movieService.setCurrentHall$(hall))
+        tap((hall) => this.movieService.setCurrentHall$(hall))
       ).subscribe()
   }
 

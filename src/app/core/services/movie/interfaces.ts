@@ -11,3 +11,17 @@ export interface Hall {
     showtime: Showtime,
     numberOfSeats: number
 }
+
+export interface SeatBooked {
+    rowId: number,
+    columnId: number,
+    selected: boolean
+}
+
+export interface UserBooking {
+    id: string,
+    hallId: string,
+    userId: string,
+    movieId: string,
+    seatsBooked: SeatBooked[]
+}

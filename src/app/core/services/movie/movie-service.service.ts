@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Movie } from '../../../feature/movie/interfaces';
 import { mockMovie } from 'src/app/feature/movie/mock-movies';
+import { Hall } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class MovieService {
 
   httpClient: HttpClient = inject(HttpClient)
 
-  getMovieHalls$(movieId: string, showtime: string) {
-    return this.httpClient.get(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
+  getMovieHalls$(movieId: string, showtime: string): Observable<Hall[]> {
+    return this.httpClient.get<Hall[]>(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
   }
 
   setCurrentMovie$(movie: Movie): void {
@@ -38,16 +39,15 @@ export class MovieService {
     return this.httpClient.post(`http://localhost:3000/booking`, userBooking)
   }
 
-  getOneMovieHall$(hallId: string) {
-    return this.httpClient.get(`http://localhost:3000/booking/hall/${hallId}`)
+  getOneMovieHall$(hallId: string): Observable<Hall> {
+    return this.httpClient.get<Hall>(`http://localhost:3000/booking/hall/${hallId}`)
   }
 
-  setCurrentHall$(hall: any) {
-    console.log(hall)
+  setCurrentHall$(hall: Hall) {
     this.currentHall$.next(hall)
   }
 
-  getCurrentHall$(): Observable<any> {
+  getCurrentHall$(): Observable<Hall[]> {
     return this.currentHall$.asObservable()
   }
 }
