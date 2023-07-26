@@ -24,25 +24,3 @@
         ;
     }
 }
-
-
-.ten-seats-wrapper {
-    border: 2px solid red;
-
-    @include flexDisplay(row, false) {
-        justify-content: space-evenly;
-    }
-
-    ;
-}
-
-.two-seats-wrapper {
-    border: 2px solid red;
-
-    @include flexDisplay(row, false) {
-        justify-content: center;
-        gap: 5px;
-    }
-
-    ;
-}

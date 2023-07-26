@@ -18,7 +18,7 @@ type HallSize = 'BIG' | 'MEDIUM' | 'SMALL' | 'DEFAULT'
 
 export class SeatsComponent {
   @Output() selectedSeatsEvent = new EventEmitter<SeatData[]>();
-  hallSize: HallSize = 'DEFAULT';
+  hallSize: HallSize = 'MEDIUM';
   numOfSeats?: number;
 
   //services
@@ -37,11 +37,12 @@ export class SeatsComponent {
 
   ngOnInit() {
     this.seatsTemplate = this.mapHallSizeToSeatTemplate(this.hallSize)
-    this.movieService.getCurrentHall$().subscribe(
-      {
-        next: hall => this.hallSize = hall?.hallSize
-      }
-    )
+    // UNCOMMENT THIS AFTER YOU ARE FINISHED DESIGNING THIS COMPONENT
+    // this.movieService.getCurrentHall$().subscribe(
+    //   {
+    //     next: hall => this.hallSize = hall?.hallSize
+    //   }
+    // )
   }
 
   getArrayTemplate(arrayLength: number) {
