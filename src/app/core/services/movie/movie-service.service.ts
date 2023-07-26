@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Movie } from '../../../feature/movie/interfaces';
 import { mockMovie } from 'src/app/feature/movie/mock-movies';
-import { Hall } from './interfaces';
+import { Hall, UserBooking } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,8 @@ export class MovieService {
     return this.httpClient.get<Movie>(`http://localhost:3000/movies/${id}`)
   }
 
-  makeBooking(userBooking: any) {
-    return this.httpClient.post(`http://localhost:3000/booking`, userBooking)
+  makeBooking(userBooking: any): Observable<UserBooking> {
+    return this.httpClient.post<UserBooking>(`http://localhost:3000/booking`, userBooking)
   }
 
   getOneMovieHall$(hallId: string): Observable<Hall> {
@@ -47,7 +47,7 @@ export class MovieService {
     this.currentHall$.next(hall)
   }
 
-  getCurrentHall$(): Observable<Hall[]> {
+  getCurrentHall$(): Observable<Hall> {
     return this.currentHall$.asObservable()
   }
 }

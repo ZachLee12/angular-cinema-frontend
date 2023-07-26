@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { SeatData } from '../../interfaces';
+import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 
 enum SeatsTemplate {
   TWO = 2,
@@ -7,11 +8,7 @@ enum SeatsTemplate {
   TEN = 10
 }
 
-enum HallSize {
-  BIG = 'BIG',
-  MEDIUM = 'MEDIUM',
-  SMALL = 'SMALL'
-}
+type HallSize = 'BIG' | 'MEDIUM' | 'SMALL' | 'DEFAULT'
 
 @Component({
   selector: 'app-seats',
@@ -21,8 +18,11 @@ enum HallSize {
 
 export class SeatsComponent {
   @Output() selectedSeatsEvent = new EventEmitter<SeatData[]>();
-  hallSize?: string = 'SMALL';
+  hallSize: HallSize = 'DEFAULT';
   numOfSeats?: number;
+
+  //services
+  movieService: MovieService = inject(MovieService)
 
   //arrayTemplates
   lengthTwoArrayTemplate = new Array(2).fill('')
@@ -36,14 +36,12 @@ export class SeatsComponent {
   bookedSeats: SeatData[] = [];
 
   ngOnInit() {
-    this.seatsTemplate = this.mapHallSizeToSeatTemplate(this.hallSize!)
-  }
-
-  getHallSizeEnum(size: string) {
-    if (size === 'BIG') return HallSize.BIG
-    if (size === 'MEDIUM') return HallSize.MEDIUM
-    if (size === 'SMALL') return HallSize.SMALL
-    else return null
+    this.seatsTemplate = this.mapHallSizeToSeatTemplate(this.hallSize)
+    this.movieService.getCurrentHall$().subscribe(
+      {
+        next: hall => this.hallSize = hall?.hallSize
+      }
+    )
   }
 
   getArrayTemplate(arrayLength: number) {
@@ -67,7 +65,6 @@ export class SeatsComponent {
       const removeIndex = this.bookedSeats.indexOf(event)
       this.bookedSeats.splice(removeIndex, 1)
     }
-    console.log(this.bookedSeats)
   }
 
   emitSelectedSeats() {

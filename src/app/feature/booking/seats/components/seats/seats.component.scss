@@ -5,7 +5,7 @@
     @include flexDisplay(column, false);
 }
 
-.small-hall-template {
+.hall-template {
     height: 100%;
 
     @include flexDisplay(column, false) {
@@ -14,7 +14,7 @@
 
     ;
 
-    .five-seats-wrapper {
+    .seats-wrapper {
 
         @include flexDisplay(row, false) {
             justify-content: center;
