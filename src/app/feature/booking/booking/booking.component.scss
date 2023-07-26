@@ -18,7 +18,7 @@
 }
 
 .content-wrapper {
-    @include flexDisplay(row, false) {
+    @include flexDisplay(row, true) {
         justify-content: space-between
     }
 
@@ -34,9 +34,11 @@
     }
 
     .booking-section {
+        @include flexDisplay(column, false);
         width: 100%;
         border: 2px solid red;
         height: 100%;
+
 
         .screen-wrapper {
             .screen {
@@ -65,11 +67,13 @@
 .entrances-wrapper {
     // height: 30px;
     // border: 2px solid red;
-    padding: 0px 20px;
     margin-top: 10px;
+    align-self: center;
+    width: 500px;
 
     @include flexDisplay(row, false) {
         justify-content: space-between;
+        gap: 90px;
     }
 
     ;
@@ -96,5 +100,9 @@
 @media screen and (max-width: 765px) {
     .content-wrapper {
         @include flexDisplay(column, true);
+    }
+
+    .entrances-wrapper {
+        width: 300px;
     }
 }

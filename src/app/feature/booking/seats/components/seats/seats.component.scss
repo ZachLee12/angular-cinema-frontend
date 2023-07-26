@@ -24,3 +24,25 @@
         ;
     }
 }
+
+@media screen and (max-width: 765px) {
+    .hall-template {
+        height: 100%;
+
+        @include flexDisplay(column, false) {
+            gap: 10px;
+        }
+
+        ;
+
+        .seats-wrapper {
+
+            @include flexDisplay(row, false) {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            ;
+        }
+    }
+}

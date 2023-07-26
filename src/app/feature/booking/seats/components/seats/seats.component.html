@@ -12,7 +12,18 @@
         </div>
 
         <div class="medium-hall-template hall-template" *ngSwitchCase="'MEDIUM'">
-            <div class="ten-seats-wrapper seats-wrapper" *ngFor="let i of getArrayTemplate(5); let rowId = index">
+            <div class="five-seats-wrapper seats-wrapper" *ngFor="let i of getArrayTemplate(5); let rowId = index">
+                {{rowId + 1}}
+                <app-seat-item *ngFor="let s of getArrayTemplate(10); let columnId = index"
+                    (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
+                    [seatData]="{rowId: rowId+1 ,columnId:columnId+1, selected:false}">
+                </app-seat-item>
+                {{rowId + 1}}
+            </div>
+        </div>
+
+        <div class="big-hall-template hall-template" *ngSwitchCase="'BIG'">
+            <div class="ten-seats-wrapper seats-wrapper" *ngFor="let i of getArrayTemplate(10); let rowId = index">
                 {{rowId + 1}}
                 <app-seat-item *ngFor="let s of getArrayTemplate(10); let columnId = index"
                     (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
@@ -22,12 +33,5 @@
             </div>
         </div>
     </div>
-    <!-- <div class="ten-seats-wrapper">
-        <app-seat-item *ngFor="let i of tenSeatsArrayTemplate"></app-seat-item>
-    </div>
-
-    <div class="two-seats-wrapper">
-        <app-seat-item *ngFor="let i of twoSeatsArrayTemplate"></app-seat-item>
-    </div> -->
 
 </div>
