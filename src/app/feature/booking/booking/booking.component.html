@@ -34,7 +34,8 @@
                         <p>Entrance 2</p>
                     </div>
                 </div>
-                <button class="book-seats-btn" (click)="makeBooking()">Book seats</button>
+                <button class="book-seats-btn" [disabled]="seatsBooked.length === 0" (click)="makeBooking()">Book
+                    seats</button>
             </div>
         </div>
     </ng-container>

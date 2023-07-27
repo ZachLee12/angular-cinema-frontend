@@ -32,7 +32,7 @@ export class BookingComponent {
   currentRouteParams$?: Observable<Params>;
   currentMovie$!: Observable<Movie>;
   hallInfo$?: Observable<any>;
-  seatsBooked?: SeatData[];
+  seatsBooked: SeatData[] = [];
   currentUser: any;
 
   graphQLMovies?: Observable<any>;
