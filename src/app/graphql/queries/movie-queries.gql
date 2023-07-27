@@ -1,0 +1,5 @@
+query GET_MOVIES(){
+    movies{
+        name
+    }
+}

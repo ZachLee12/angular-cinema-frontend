@@ -5,6 +5,16 @@ import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { Apollo, gql } from 'apollo-angular';
+
+const GET_MOVIES = gql`
+  {
+    movies{
+      name,
+      imgUrlVertical
+    }
+  }
+`
 
 @Component({
   selector: 'app-booking',
@@ -15,6 +25,8 @@ export class BookingComponent {
   movieService: MovieService = inject(MovieService)
   activatedRoute: ActivatedRoute = inject(ActivatedRoute)
   loginService: LoginService = inject(LoginService)
+  apolloService: Apollo = inject(Apollo)
+
   unsubscribe: Subject<void> = new Subject();
 
   currentRouteParams$?: Observable<Params>;
@@ -22,6 +34,8 @@ export class BookingComponent {
   hallInfo$?: Observable<any>;
   seatsBooked?: SeatData[];
   currentUser: any;
+
+  graphQLMovies?: Observable<any>;
 
 
   ngOnInit() {
@@ -57,12 +71,19 @@ export class BookingComponent {
             userId: this.currentUser.id,
             seatsBooked: this.seatsBooked
           }
-          console.log(booking)
           this.movieService.makeBooking(booking).subscribe()
         }
       }
     )
 
+  }
+
+  testGraphQLCall() {
+    this.apolloService.watchQuery({
+      query: GET_MOVIES,
+    }).valueChanges.pipe(map(result => {
+      console.log(result)
+    })).subscribe()
   }
 
   ngOnDestroy() {
