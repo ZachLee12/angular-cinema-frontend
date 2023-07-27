@@ -4,7 +4,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/feature/movie/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { DriveService } from 'src/app/core/services/drive/drive.service';
-import { LocalAuthService } from 'src/app/core/services/local-auth/local-auth.service';
 import { Tokens } from './interfaces';
 import jwtDecode from 'jwt-decode';
 import { LoginService } from 'src/app/core/services/login/login.service';
@@ -30,7 +29,6 @@ export class AdminComponent {
 
   constructor(
     private databaseService: DatabaseService,
-    private localAuthService: LocalAuthService,
     private loginService: LoginService,
     private driveService: DriveService
   ) { }
@@ -44,16 +42,9 @@ export class AdminComponent {
     )
   }
 
-  login() {
-    this.localAuthService.login().subscribe(
-      {
-        next: (tokens: Tokens) => this.loginService.setTokens(tokens)
-      }
-    )
-  }
 
   logout() {
-    this.localAuthService.logout().subscribe(
+    this.loginService.logout().subscribe(
       {
         next: (revokedTokens: Tokens) => this.setTokens(revokedTokens)
       }
@@ -66,7 +57,7 @@ export class AdminComponent {
   }
 
   getUser() {
-    const { username } = jwtDecode(this.localAuthService.getAccessToken() ?? '') as any
+    const { username } = jwtDecode(this.loginService.getAccessToken() ?? '') as any
     this.databaseService.getUser$(username).subscribe(
       {
         next: (data) => console.log(data)

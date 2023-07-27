@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { catchError, mergeMap, of, switchMap, tap, throwError } from 'rxjs';
 import {
   HttpRequest,
@@ -8,16 +8,12 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LocalAuthService } from '../services/local-auth/local-auth.service';
 import { LoginService } from '../services/login/login.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  loginService: LoginService = inject(LoginService)
 
-  constructor(
-    private localAuthService: LocalAuthService,
-    private loginService: LoginService
-  ) { }
 
   ngOnInit() {
   }
@@ -25,14 +21,14 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (request.url.includes('protected') || request.url.includes('auth')) {
-      const accessToken = this.localAuthService.getAccessToken()
+      const accessToken = this.loginService.getAccessToken()
       const requestWithAuthHeader = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) })
 
       return next.handle(requestWithAuthHeader)
         .pipe(
           tap(() => console.log('TokenInterceptor executed:')),
           catchError((err: HttpErrorResponse) => {
-            const refreshToken = this.localAuthService.getRefreshToken()?.trim()
+            const refreshToken = this.loginService.getRefreshToken()?.trim()
             if (refreshToken !== '' && err.status === 401) {
               return this.initRefreshTokenProcedure(requestWithAuthHeader, next)
             } else {
@@ -47,7 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }//intercept
 
   private initRefreshTokenProcedure(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.localAuthService.refreshAccessToken$().pipe(
+    return this.loginService.refreshAccessToken$().pipe(
       switchMap((token: { accessToken: string }) => {
         localStorage.setItem('accessToken', token.accessToken)
         const clonedReq = req.clone({
