@@ -1,12 +1,21 @@
 <div id="Booking">
     <ng-container *ngIf="(currentMovie$ | async) as movie">
-        <h1>{{movie.name}}</h1>
-        <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
-        <p class="hall-size-title">Hall Size: {{(hallInfo$|async)?.hallSize}} </p>
+        <p class="select-your-seats-title">Select your seats</p>
         <div class="content-wrapper">
-            <div class="img-wrapper">
-                <img [src]="movie.imgUrlVertical" alt="movie-image">
+            <div class="movie-info-wrapper">
+                <div class="img-wrapper">
+                    <img [src]="movie.imgUrlVertical" alt="movie-image">
+                </div>
+                <div class="movie-info">
+                    <h1>{{movie.name}}</h1>
+                    <p class="movie-description">{{movie.description}} </p>
+                    <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
+                    <p class="hall-size-title">Hall Size: {{(hallInfo$|async)?.hallSize}}</p>
+                    <p class="actors">Actors: {{movie.actors}} </p>
+                </div>
             </div>
+
+
             <div class="booking-section">
                 <div class="screen-wrapper">
                     <div class="screen"></div>
@@ -25,9 +34,9 @@
                         <p>Entrance 2</p>
                     </div>
                 </div>
+                <button class="book-seats-btn" (click)="makeBooking()">Book seats</button>
             </div>
         </div>
     </ng-container>
-    <button (click)="makeBooking()">Make Booking</button>
     <button (click)="testGraphQLCall()">Make GraphQL Call</button>
 </div>

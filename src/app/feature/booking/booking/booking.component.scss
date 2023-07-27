@@ -18,9 +18,16 @@
 
 }
 
+.select-your-seats-title {
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .content-wrapper {
     border: 2px solid red;
     padding: 30px;
+    min-height: 700px;
 
     @include flexDisplay(row, true) {
         justify-content: space-between
@@ -29,11 +36,19 @@
     ;
     gap: 40px;
 
+
+    .movie-info-wrapper {
+        @include flexDisplay(column, false);
+        padding: 30px;
+    }
+
     .img-wrapper {
-        width: 300px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
 
         img {
-            width: 100%;
+            width: 300px;
         }
     }
 
@@ -65,6 +80,15 @@
         .seats-wrapper {
             height: 100%;
             width: 100%;
+
+        }
+
+        .book-seats-btn {
+            align-self: center;
+            width: 70%;
+            height: 40px;
+            margin: 60px 0 20px 0;
+            font-size: 1rem;
         }
     }
 }
