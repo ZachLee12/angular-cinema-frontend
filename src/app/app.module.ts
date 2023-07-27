@@ -14,6 +14,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageModule } from './routes/main-page/main-page.module';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MainPageModule } from './routes/main-page/main-page.module';
     AccountsModule,
     BrowserAnimationsModule,
     MainPageModule,
+    GraphQLModule,
   ],
   providers: [
     {

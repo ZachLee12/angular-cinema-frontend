@@ -15,7 +15,7 @@ export class MovieService {
   httpClient: HttpClient = inject(HttpClient)
 
   getMovieHalls$(movieId: string, showtime: string): Observable<Hall[]> {
-    return this.httpClient.get<Hall[]>(`http://localhost:3000/booking/hall/${movieId}/${showtime}`)
+    return this.httpClient.get<Hall[]>(`http://localhost:3000/hall/${movieId}/${showtime}`)
   }
 
   setCurrentMovie$(movie: Movie): void {
@@ -40,7 +40,7 @@ export class MovieService {
   }
 
   getOneMovieHall$(hallId: string): Observable<Hall> {
-    return this.httpClient.get<Hall>(`http://localhost:3000/booking/hall/${hallId}`)
+    return this.httpClient.get<Hall>(`http://localhost:3000/hall/${hallId}`)
   }
 
   setCurrentHall$(hall: Hall) {
