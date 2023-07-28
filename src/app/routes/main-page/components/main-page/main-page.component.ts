@@ -37,7 +37,7 @@ export class MainPageComponent {
 
   ngOnInit() {
     this.isLoggedIn$ = this.loginService.getIsLoggedIn$()
-    this.userProfile$ = this.loginService.getUserProfile$()
+    this.userProfile$ = this.loginService.getTokenUserProfile$()
 
     this.movieService.getMovies$()
       .pipe(

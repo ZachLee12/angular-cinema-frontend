@@ -45,7 +45,7 @@ export class LoginPageComponent {
             this.loginService.setIsLoggedIn$(true)
             const { firstname, lastname, username, age, id } = jwtDecode(tokens.accessToken) as UserProfile
             const userProfile = { firstname, lastname, username, age, id }
-            this.loginService.setUserProfile$(userProfile)
+            this.loginService.setTokenUserProfile$(userProfile)
             this.router.navigate(['/home'])
             return true
           })

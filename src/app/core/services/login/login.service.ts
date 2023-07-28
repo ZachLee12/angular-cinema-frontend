@@ -23,7 +23,7 @@ export class LoginService {
           const accessToken: string = this.getAccessToken() ?? ''
           const { firstname, lastname, username, age, id } = jwtDecode(accessToken) as UserProfile
           const userProfile = { firstname, lastname, username, age, id }
-          this.setUserProfile$(userProfile)
+          this.setTokenUserProfile$(userProfile)
           this.setIsLoggedIn$(true)
           return of(response.message as VerifyTokenResponse)
         } catch (err) {
@@ -42,11 +42,11 @@ export class LoginService {
     this.isLoggedIn$.next(bool)
   }
 
-  setUserProfile$(userProfile: UserProfile): void {
+  setTokenUserProfile$(userProfile: UserProfile): void {
     this.userProfile$.next(userProfile)
   }
 
-  getUserProfile$(): Observable<UserProfile> {
+  getTokenUserProfile$(): Observable<UserProfile> {
     return this.userProfile$.asObservable()
   }
 
@@ -56,6 +56,20 @@ export class LoginService {
 
   getRefreshToken() {
     return localStorage.getItem('refreshToken')
+  }
+
+  decodeToken(token: string): {} {
+    return jwtDecode(token)
+  }
+
+  isTokenExpired(token: string) {
+    try {
+      const decodedToken = jwtDecode(token) as { exp: number }
+      const currentTime = Date.now() / 1000
+      return decodedToken.exp < currentTime
+    } catch (error) {
+      return true
+    }
   }
 
   refreshAccessToken$(): Observable<any> {

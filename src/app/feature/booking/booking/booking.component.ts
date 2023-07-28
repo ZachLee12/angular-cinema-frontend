@@ -47,7 +47,7 @@ export class BookingComponent {
     this.currentMovie$ = this.movieService.getCurrentMovie$()
 
     this.hallInfo$ = this.movieService.getCurrentHall$()
-    this.loginService.getUserProfile$().subscribe(
+    this.loginService.getTokenUserProfile$().subscribe(
       {
         next: userProfile => {
           console.log(userProfile)

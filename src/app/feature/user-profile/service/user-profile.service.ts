@@ -26,12 +26,12 @@ export class UserProfileService {
     console.log('helo')
   }
 
-  getUserProfile() {
-    this.apolloService.watchQuery({
-      query: GET_USER,
-      variables: { username: 'zachlee123' }
-    }).valueChanges.pipe(map(res => {
-      console.log(res)
-    })).subscribe()
+  getUserProfile$(username: string) {
+    this.apolloService.query(
+      {
+        query: GET_USER,
+        variables: { username }
+      }
+    ).pipe(map(result => result.data))
   }
 }
