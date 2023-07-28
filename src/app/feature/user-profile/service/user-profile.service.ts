@@ -10,6 +10,7 @@ const GET_USER = gql`
         firstname,
         lastname,
         username,
+        birthday,
         age
     }
   }
@@ -27,11 +28,11 @@ export class UserProfileService {
   }
 
   getUserProfile$(username: string) {
-    this.apolloService.query(
+    return this.apolloService.query(
       {
         query: GET_USER,
         variables: { username }
       }
-    ).pipe(map(result => result.data))
+    ).pipe(map((result: any) => result.data.user))
   }
 }

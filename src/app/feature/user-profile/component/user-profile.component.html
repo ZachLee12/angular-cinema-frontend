@@ -1,3 +1,9 @@
 <div id="User-Profile">
-    <h1>Welcome {{(userProfile$ | async)?.username}}</h1>
+    <ng-container *ngIf="(userProfile$ | async) as user">
+        <p>Welcome {{user.username}}</p>
+        <p>Firstname: {{user.firstname}}</p>
+        <p>Lastname: {{user.lastname}}</p>
+        <p>Birthday: {{user.birthday | date:'dd MMMM, yyyy'}}</p>
+        <p>Age: {{user.age}} </p>
+    </ng-container>
 </div>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, skip, switchMap } from 'rxjs';
 import { UserProfile } from 'src/app/core/services/login/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserProfileService } from '../service/user-profile.service';
@@ -12,11 +12,12 @@ import { UserProfileService } from '../service/user-profile.service';
 export class UserProfileComponent {
   loginService: LoginService = inject(LoginService)
   userProfileService: UserProfileService = inject(UserProfileService)
-  userProfile$?: Observable<UserProfile>
+  userProfile$?: Observable<any>
 
 
   ngOnInit() {
     this.userProfile$ = this.loginService.getTokenUserProfile$()
+      .pipe(skip(1), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
 
   }
 
