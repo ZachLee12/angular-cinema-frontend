@@ -16,6 +16,20 @@ const GET_USER = gql`
   }
 `
 
+const GET_USERBOOKING = gql`
+    query GetUserBookingWithUserId($userId: String!){
+      userBookingsWithUserId(userId: $userId){
+        hall{
+          showtime
+        },
+        movie{
+          id,
+          name,
+        }
+      }
+    }
+`
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,5 +48,14 @@ export class UserProfileService {
         variables: { username }
       }
     ).pipe(map((result: any) => result.data.user))
+  }
+
+  getUserBookings$(userId: string) {
+    return this.apolloService.query(
+      {
+        query: GET_USERBOOKING,
+        variables: { userId }
+      }
+    ).pipe(map((result: any) => result.data.userBookingsWithUserId))
   }
 }

@@ -13,12 +13,19 @@ export class UserProfileComponent {
   loginService: LoginService = inject(LoginService)
   userProfileService: UserProfileService = inject(UserProfileService)
   userProfile$?: Observable<any>
+  userBookings$?: Observable<any>
 
 
   ngOnInit() {
     this.userProfile$ = this.loginService.getTokenUserProfile$()
       .pipe(skip(1), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
 
+    this.userBookings$ = this.loginService.getTokenUserProfile$()
+      .pipe(skip(1), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
+
+    this.userBookings$.subscribe({
+      next: movies => movies.forEach((movie: any) => console.log(movie))
+    })
   }
 
 
