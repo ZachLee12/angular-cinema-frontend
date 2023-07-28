@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserProfile } from 'src/app/core/services/login/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { UserProfileService } from '../service/user-profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,11 +11,12 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 })
 export class UserProfileComponent {
   loginService: LoginService = inject(LoginService)
+  userProfileService: UserProfileService = inject(UserProfileService)
   userProfile$?: Observable<UserProfile>
 
   ngOnInit() {
     this.userProfile$ = this.loginService.getUserProfile$()
-
+    this.userProfileService.getUserProfile()
   }
 
 }

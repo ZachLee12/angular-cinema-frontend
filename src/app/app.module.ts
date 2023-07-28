@@ -7,14 +7,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './routes/about/about.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { BookingModule } from './feature/booking/booking.module';
 import { AdminModule } from './routes/admin/admin.module';
-import { httpInterceptorProviders } from './core/interceptors';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AccountsModule } from './feature/accounts/accounts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageModule } from './routes/main-page/main-page.module';
 import { GraphQLModule } from './graphql.module';
+import { UserProfileModule } from './feature/user-profile/user-profile.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +33,7 @@ import { GraphQLModule } from './graphql.module';
     BrowserAnimationsModule,
     MainPageModule,
     GraphQLModule,
+    UserProfileModule
   ],
   providers: [
     {
