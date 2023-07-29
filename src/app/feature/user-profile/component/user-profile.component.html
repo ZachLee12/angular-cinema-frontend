@@ -1,27 +1,27 @@
 <div id="User-Profile">
     <div class="side-bar">
         <div class="tabs-wrapper">
-            <div class="account-tab tab" [routerLink]="['./account']">
+            <div class="account-tab tab" [routerLink]="['./account']" routerLinkActive="active-tab">
                 <mat-icon class="icon">account_circle</mat-icon>
                 <p class="tab-name">Account</p>
             </div>
-            <div class="bookings-tab tab" [routerLink]="['./bookings']">
+            <div class="bookings-tab tab" [routerLink]="['./bookings']" routerLinkActive="active-tab">
                 <mat-icon class="icon">local_activity</mat-icon>
                 <p class="tab-name">Bookings</p>
             </div>
-            <div class="privacy-tab tab" [routerLink]="['./privacy']">
+            <div class="privacy-tab tab" [routerLink]="['./privacy']" routerLinkActive="active-tab">
                 <mat-icon class="icon">privacy_tip</mat-icon>
                 <p class="tab-name">Privacy</p>
             </div>
-            <div class="settings-tab tab" [routerLink]="['./account']">
+            <div class="settings-tab tab" [routerLink]="['./settings']" routerLinkActive="active-tab">
                 <mat-icon class="icon">settings</mat-icon>
                 <p class="tab-name">Settings</p>
             </div>
-            <div class="support-tab tab" [routerLink]="['./support']">
+            <div class="support-tab tab" [routerLink]="['./support']" routerLinkActive="active-tab">
                 <mat-icon class="icon">forum</mat-icon>
                 <p class="tab-name">Support</p>
             </div>
-            <div class="faq-tab tab" [routerLink]="['./faq']">
+            <div class="faq-tab tab" [routerLink]="['./faq']" routerLinkActive="active-tab">
                 <mat-icon class="icon">question_mark</mat-icon>
                 <p class="tab-name">FAQ</p>
             </div>
@@ -33,23 +33,5 @@
     </div>
     <div class="router-outlet-wrapper">
         <router-outlet></router-outlet>
-        <!-- <ng-container *ngIf="(userProfile$ | async) as user">
-            <div class="user-info">
-                <p>Welcome {{user.username}}</p>
-                <p>Firstname: {{user.firstname}}</p>
-                <p>Lastname: {{user.lastname}}</p>
-                <p>Birthday: {{user.birthday | date:'dd MMMM, yyyy'}}</p>
-                <p>Age: {{user.age}} </p>
-            </div>
-        </ng-container>
-        <ng-container *ngIf="(userBookings$|async) as userBooking">
-            <p class="your-bookings-title">Your Bookings</p>
-            <div class="booked-movies-wrapper">
-                <div class="booked-movie" *ngFor="let booking of userBooking">
-                    <p class="movie-name">{{booking.movie.name}}</p>
-                    <p class="movie-showtime">{{booking.hall.showtime}} </p>
-                </div>
-            </div>
-        </ng-container> -->
     </div>
 </div>

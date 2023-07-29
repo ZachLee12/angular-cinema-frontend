@@ -2,8 +2,8 @@
     <ng-container *ngIf="(userBookings$ | async) as bookings; else loadingBlock">
         <div class="bookings-wrapper">
             <div class="booking" *ngFor="let booking of bookings">
-                {{booking.movie.name}}
-                {{booking.hall.showtime}}
+                <p class="movie-name">{{booking.movie.name}}</p>
+                <p class="showtime">{{booking.hall.showtime}}</p>
             </div>
         </div>
 

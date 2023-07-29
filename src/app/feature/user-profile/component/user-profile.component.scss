@@ -50,6 +50,8 @@ $footer-height: 50px;
                 align-self: center;
                 transform: translateX(30px);
             }
+
+
         }
     }
 
@@ -77,4 +79,9 @@ $footer-height: 50px;
     // you should use flex-grow, not width:100% to fill up remaining spaces in Flexbox
     flex-grow: 1;
     min-height: 100%;
+}
+
+.active-tab {
+    background-color: #353535;
+    border-right: 5px solid orange;
 }
