@@ -12,14 +12,13 @@
 }
 
 .side-bar {
-    border: 2px solid red;
     box-sizing: border-box;
     padding: 30px 0;
     width: 200px;
     position: relative;
+    border-right: 7px solid #404040;
 
     .tabs-wrapper {
-        border: 2px solid yellow;
 
         @include flexDisplay(column, true) {
             gap: 30px;
@@ -28,24 +27,26 @@
         ;
 
         .tab {
-            border: 2px solid pink;
+            @include flexDisplay(row, false) {
+                gap: 5px;
+            }
+
+            ;
             width: 100%;
-            height: 30px;
-            padding: 10px 0 0 0;
-            font-size: 1.3rem;
-            font-weight: 400;
-            text-align: center;
+            height: 50px;
             transition: background-color 200ms ease-in-out;
             cursor: pointer;
 
             &:hover {
-                background-color: #555555;
-
+                background-color: #353535;
+                border-right: 5px solid orange;
             }
 
+            .tab-name,
             .icon {
-                width: 30px;
-                height: 30px;
+                margin: 0;
+                align-self: center;
+                transform: translateX(30px);
             }
         }
     }
@@ -56,6 +57,16 @@
         bottom: 0;
         height: 30px;
         font-size: 0.9rem;
+
+        @include flexDisplay(row, true) {
+            gap: 10px;
+        }
+
+        ;
+
+        .logout-title {
+            margin: 0;
+        }
     }
 }
 

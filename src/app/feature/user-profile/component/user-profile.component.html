@@ -1,16 +1,35 @@
 <div id="User-Profile">
     <div class="side-bar">
         <div class="tabs-wrapper">
-            <div class="account-tab tab"> <mat-icon>account_circle</mat-icon>
-                Account</div>
-            <div class="bookings-tab tab"><mat-icon>local_activity</mat-icon>Bookings</div>
-            <div class="privacy-tab tab"><mat-icon>privacy_tip</mat-icon> Privacy</div>
-            <div class="settings-tab tab"><mat-icon>settings</mat-icon> Settings</div>
-            <div class="support-tab tab"><mat-icon>forum</mat-icon>Support</div>
-            <div class="faq-tab tab"><mat-icon>question_mark</mat-icon> FAQ</div>
+            <div class="account-tab tab">
+                <mat-icon class="icon">account_circle</mat-icon>
+                <p class="tab-name">Account</p>
+            </div>
+            <div class="bookings-tab tab">
+                <mat-icon class="icon">local_activity</mat-icon>
+                <p class="tab-name">Bookings</p>
+            </div>
+            <div class="privacy-tab tab">
+                <mat-icon class="icon">privacy_tip</mat-icon>
+                <p class="tab-name">Privacy</p>
+            </div>
+            <div class="settings-tab tab">
+                <mat-icon class="icon">settings</mat-icon>
+                <p class="tab-name">Settings</p>
+            </div>
+            <div class="support-tab tab">
+                <mat-icon class="icon">forum</mat-icon>
+                <p class="tab-name">Support</p>
+            </div>
+            <div class="faq-tab tab">
+                <mat-icon class="icon">question_mark</mat-icon>
+                <p class="tab-name">FAQ</p>
+            </div>
         </div>
 
-        <button class="logout-btn">Logout</button>
+        <button class="logout-btn"><mat-icon>logout</mat-icon>
+            <p class="logout-title">Logout</p>
+        </button>
     </div>
     <div class="main-contents">
         <ng-container *ngIf="(userProfile$ | async) as user">
