@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject, filter, skip, switchMap, tap } fr
 import { UserProfile } from 'src/app/core/services/login/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserProfileService } from '../service/user-profile.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,6 +13,7 @@ import { UserProfileService } from '../service/user-profile.service';
 export class UserProfileComponent {
   loginService: LoginService = inject(LoginService)
   userProfileService: UserProfileService = inject(UserProfileService)
+
   userProfile$?: Observable<any>
   userBookings$?: Observable<any>
 
