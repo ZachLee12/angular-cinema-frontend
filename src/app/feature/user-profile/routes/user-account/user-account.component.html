@@ -1,1 +1,30 @@
-<p>user-account works!</p>
+<div id="User-Account">
+    <ng-container *ngIf="(userProfile$ | async) as user; else loadingBlock">
+        <div class="user-info-wrapper">
+            <div class="user-info">
+                <p class="title">
+                    Username <mat-icon class="icon">edit</mat-icon>
+                </p>
+                <p class="username">{{user.username}}</p>
+            </div>
+
+            <div class="user-info">
+                <p class="title">
+                    Firstname <mat-icon class="icon">edit</mat-icon>
+                </p>
+                <p class="firstname">{{user.firstname}}</p>
+            </div>
+
+            <div class="user-info">
+                <p class="title">
+                    Lastname <mat-icon class="icon">edit</mat-icon>
+                </p>
+                <p class="firstname">{{user.lastname}}</p>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #loadingBlock>
+        <h1>Fetching data...</h1>
+    </ng-template>
+</div>

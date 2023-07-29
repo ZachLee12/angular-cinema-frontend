@@ -1,0 +1,25 @@
+#User-Account {
+    border: 2px solid aqua;
+    height: 100%;
+    width: 100%;
+}
+
+.user-info {
+    border: 2px solid yellow;
+    padding-left: 50px;
+
+    .title {
+        font-weight: 600;
+        font-size: 1.5rem;
+
+        .icon {
+            opacity: 0;
+            transition: opacity 200ms ease-in-out;
+            cursor: pointer;
+        }
+
+        &:hover>.icon {
+            opacity: 1;
+        }
+    }
+}

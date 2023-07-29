@@ -24,7 +24,6 @@ export class UserProfileComponent {
 
     this.userBookings$ = this.loginService.getTokenUserProfile$()
       .pipe(filter(({ id }) => id !== ''), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
-
   }
 
 
