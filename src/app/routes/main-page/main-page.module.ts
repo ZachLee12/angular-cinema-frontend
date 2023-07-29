@@ -19,7 +19,6 @@ import { SharedModule } from 'src/app/core/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    MatIconModule,
     TilesModule,
     RouterModule,
     BrowserAnimationsModule,

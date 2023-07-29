@@ -2,7 +2,61 @@
 
 #User-Profile {
     color: white;
+
+    // border: 2px solid red;
+    @include flexDisplay(row, false) {
+        flex-grow: 1;
+    }
+
+    ;
+}
+
+.side-bar {
     border: 2px solid red;
+    box-sizing: border-box;
+    padding: 30px 0;
+    width: 200px;
+    position: relative;
+
+    .tabs-wrapper {
+        border: 2px solid yellow;
+
+        @include flexDisplay(column, true) {
+            gap: 30px;
+        }
+
+        ;
+
+        .tab {
+            border: 2px solid pink;
+            width: 100%;
+            height: 30px;
+            padding: 10px 0 0 0;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: center;
+            transition: background-color 200ms ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #555555;
+
+            }
+
+            .icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+
+    .logout-btn {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        height: 30px;
+        font-size: 0.9rem;
+    }
 }
 
 
@@ -13,10 +67,10 @@
 
 .booked-movies-wrapper {
     @include flexDisplay(column, false);
-    border: 2px solid yellow;
+    // border: 2px solid yellow;
 
 
     .booked-movie {
-        border: 2px solid red;
+        // border: 2px solid red;
     }
 }

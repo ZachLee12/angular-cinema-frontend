@@ -45,18 +45,19 @@ export class UserProfileService {
     return this.apolloService.query(
       {
         query: GET_USER,
-        variables: { username }
+        variables: { username },
+        fetchPolicy: 'network-only'
       }
     ).pipe(map((result: any) => result.data.user))
   }
 
   getUserBookings$(userId: string) {
-    return this.apolloService.watchQuery(
+    return this.apolloService.query(
       {
         query: GET_USERBOOKING,
         variables: { userId },
         fetchPolicy: 'network-only'
       }
-    ).valueChanges.pipe(map((result: any) => result.data.userBookingsWithUserId))
+    ).pipe(map((result: any) => result.data.userBookingsWithUserId))
   }
 }

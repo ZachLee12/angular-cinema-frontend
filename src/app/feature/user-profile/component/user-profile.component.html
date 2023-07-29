@@ -1,21 +1,35 @@
 <div id="User-Profile">
-    <ng-container *ngIf="(userProfile$ | async) as user">
-        <div class="user-info">
-            <p>Welcome {{user.username}}</p>
-            <p>Firstname: {{user.firstname}}</p>
-            <p>Lastname: {{user.lastname}}</p>
-            <p>Birthday: {{user.birthday | date:'dd MMMM, yyyy'}}</p>
-            <p>Age: {{user.age}} </p>
+    <div class="side-bar">
+        <div class="tabs-wrapper">
+            <div class="account-tab tab"> <mat-icon>account_circle</mat-icon>
+                Account</div>
+            <div class="bookings-tab tab"><mat-icon>local_activity</mat-icon>Bookings</div>
+            <div class="privacy-tab tab"><mat-icon>privacy_tip</mat-icon> Privacy</div>
+            <div class="settings-tab tab"><mat-icon>settings</mat-icon> Settings</div>
+            <div class="support-tab tab"><mat-icon>forum</mat-icon>Support</div>
+            <div class="faq-tab tab"><mat-icon>question_mark</mat-icon> FAQ</div>
         </div>
-    </ng-container>
 
-    <ng-container *ngIf="(userBookings$|async) as userBooking">
-        <p class="your-bookings-title">Your Bookings</p>
-        <div class="booked-movies-wrapper">
-            <div class="booked-movie" *ngFor="let booking of userBooking">
-                <p class="movie-name">{{booking.movie.name}}</p>
-                <p class="movie-showtime">{{booking.hall.showtime}} </p>
+        <button class="logout-btn">Logout</button>
+    </div>
+    <div class="main-contents">
+        <ng-container *ngIf="(userProfile$ | async) as user">
+            <div class="user-info">
+                <p>Welcome {{user.username}}</p>
+                <p>Firstname: {{user.firstname}}</p>
+                <p>Lastname: {{user.lastname}}</p>
+                <p>Birthday: {{user.birthday | date:'dd MMMM, yyyy'}}</p>
+                <p>Age: {{user.age}} </p>
             </div>
-        </div>
-    </ng-container>
+        </ng-container>
+        <ng-container *ngIf="(userBookings$|async) as userBooking">
+            <p class="your-bookings-title">Your Bookings</p>
+            <div class="booked-movies-wrapper">
+                <div class="booked-movie" *ngFor="let booking of userBooking">
+                    <p class="movie-name">{{booking.movie.name}}</p>
+                    <p class="movie-showtime">{{booking.hall.showtime}} </p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
 </div>
