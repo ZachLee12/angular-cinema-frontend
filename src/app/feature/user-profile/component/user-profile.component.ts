@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, skip, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, filter, skip, switchMap, tap } from 'rxjs';
 import { UserProfile } from 'src/app/core/services/login/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserProfileService } from '../service/user-profile.service';
@@ -17,15 +17,13 @@ export class UserProfileComponent {
 
 
   ngOnInit() {
+    console.log('helo')
     this.userProfile$ = this.loginService.getTokenUserProfile$()
-      .pipe(skip(1), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
+      .pipe(filter(({ username }) => username !== ''), tap(() => console.log('executed')), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
 
     this.userBookings$ = this.loginService.getTokenUserProfile$()
-      .pipe(skip(1), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
+      .pipe(filter(({ id }) => id !== ''), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
 
-    this.userBookings$.subscribe({
-      next: movies => movies.forEach((movie: any) => console.log(movie))
-    })
   }
 
 
