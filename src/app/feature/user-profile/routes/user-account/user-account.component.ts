@@ -13,14 +13,11 @@ export class UserAccountComponent {
   userProfileService: UserProfileService = inject(UserProfileService)
 
   userProfile$?: Observable<any>
-  userBookings$?: Observable<any>
 
   ngOnInit() {
     this.userProfile$ = this.loginService.getTokenUserProfile$()
       .pipe(filter(({ username }) => username !== ''), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
 
-    this.userBookings$ = this.loginService.getTokenUserProfile$()
-      .pipe(filter(({ id }) => id !== ''), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
   }
 
 

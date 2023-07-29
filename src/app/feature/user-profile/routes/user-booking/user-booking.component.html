@@ -1,1 +1,14 @@
-<p>user-booking works!</p>
+<div id="User-Booking">
+    <ng-container *ngIf="(userBookings$ | async) as bookings; else loadingBlock">
+        <div class="bookings-wrapper">
+            <div class="booking" *ngFor="let booking of bookings">
+                {{booking.movie.name}}
+                {{booking.hall.showtime}}
+            </div>
+        </div>
+
+    </ng-container>
+    <ng-template #loadingBlock>
+        <h1>Fetching data...</h1>
+    </ng-template>
+</div>
