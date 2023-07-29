@@ -44,11 +44,7 @@ export class AdminComponent {
 
 
   logout() {
-    this.loginService.logout().subscribe(
-      {
-        next: (revokedTokens: Tokens) => this.setTokens(revokedTokens)
-      }
-    )
+
   }
 
   private setTokens(tokens: Tokens) {

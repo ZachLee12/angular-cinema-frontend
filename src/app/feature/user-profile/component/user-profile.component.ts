@@ -17,13 +17,13 @@ export class UserProfileComponent {
 
 
   ngOnInit() {
-    console.log('helo')
     this.userProfile$ = this.loginService.getTokenUserProfile$()
-      .pipe(filter(({ username }) => username !== ''), tap(() => console.log('executed')), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
+      .pipe(filter(({ username }) => username !== ''), switchMap(({ username }) => this.userProfileService.getUserProfile$(username)))
 
     this.userBookings$ = this.loginService.getTokenUserProfile$()
       .pipe(filter(({ id }) => id !== ''), switchMap(({ id }) => this.userProfileService.getUserBookings$(id)))
 
+    this.userBookings$.subscribe(console.log)
   }
 
 

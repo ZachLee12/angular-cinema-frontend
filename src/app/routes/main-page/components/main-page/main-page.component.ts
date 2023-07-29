@@ -97,6 +97,10 @@ export class MainPageComponent {
     this.backgroundImgSrcs[this.currentSrcIndex].display = true;
   }
 
+  logout() {
+    this.loginService.logout()
+  }
+
   ngOnDestroy() {
     clearInterval(this.imgInterval)
   }

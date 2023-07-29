@@ -51,11 +51,12 @@ export class UserProfileService {
   }
 
   getUserBookings$(userId: string) {
-    return this.apolloService.query(
+    return this.apolloService.watchQuery(
       {
         query: GET_USERBOOKING,
-        variables: { userId }
+        variables: { userId },
+        fetchPolicy: 'network-only'
       }
-    ).pipe(map((result: any) => result.data.userBookingsWithUserId))
+    ).valueChanges.pipe(map((result: any) => result.data.userBookingsWithUserId))
   }
 }

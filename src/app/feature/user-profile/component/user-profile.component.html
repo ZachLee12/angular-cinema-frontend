@@ -10,11 +10,11 @@
     </ng-container>
 
     <ng-container *ngIf="(userBookings$|async) as userBooking">
+        <p class="your-bookings-title">Your Bookings</p>
         <div class="booked-movies-wrapper">
-            <h1>User Bookings</h1>
             <div class="booked-movie" *ngFor="let booking of userBooking">
-                <p>{{booking.movie.name}}</p>
-                <p>{{booking.hall.showtime}} </p>
+                <p class="movie-name">{{booking.movie.name}}</p>
+                <p class="movie-showtime">{{booking.hall.showtime}} </p>
             </div>
         </div>
     </ng-container>
