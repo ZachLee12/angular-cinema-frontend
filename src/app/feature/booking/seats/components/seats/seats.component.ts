@@ -36,7 +36,6 @@ export class SeatsComponent {
   bookedSeats: SeatData[] = [];
 
   ngOnInit() {
-    this.seatsTemplate = this.mapHallSizeToSeatTemplate(this.hallSize)
     // UNCOMMENT THIS AFTER YOU ARE FINISHED DESIGNING THIS COMPONENT
     this.movieService.getCurrentHall$().subscribe(
       {
@@ -47,16 +46,6 @@ export class SeatsComponent {
 
   getArrayTemplate(arrayLength: number) {
     return new Array(arrayLength).fill('')
-  }
-
-  //try to do for SMALL hall first
-  mapHallSizeToSeatTemplate(hallSize: string): {} {
-    let template = {
-      rows: 5,
-      rowTemplate: SeatsTemplate.FIVE
-    };
-
-    return template
   }
 
   bookOrUnbookSeat(event: SeatData) {

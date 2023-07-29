@@ -21,6 +21,20 @@
                 </p>
                 <p class="firstname">{{user.lastname}}</p>
             </div>
+
+            <div class="user-info">
+                <p class="title">
+                    Age <mat-icon class="icon">edit</mat-icon>
+                </p>
+                <p class="firstname">{{user.age}}</p>
+            </div>
+
+            <div class="user-info">
+                <p class="title">
+                    Birthday <mat-icon class="icon">edit</mat-icon>
+                </p>
+                <p class="firstname">{{user.birthday | date:"dd MMMM, yyyy"}}</p>
+            </div>
         </div>
     </ng-container>
 

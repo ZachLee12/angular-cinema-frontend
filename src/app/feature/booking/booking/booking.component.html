@@ -34,10 +34,11 @@
                         <p>Entrance 2</p>
                     </div>
                 </div>
+                <div class="number-of-seats-selected">{{seatsBooked.length}} seat<span
+                        *ngIf="seatsBooked.length > 1">(s)</span> selected</div>
                 <button class="book-seats-btn" [disabled]="seatsBooked.length === 0" (click)="makeBooking()">Book
                     seats</button>
             </div>
         </div>
     </ng-container>
-    <button (click)="testGraphQLCall()">Make GraphQL Call</button>
 </div>
