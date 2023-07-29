@@ -19,6 +19,14 @@
     }
 }
 
+.your-bookings-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.2rem;
+    margin: 10px;
+    border-bottom: 3px solid white;
+}
+
 
 .bookings-wrapper {
     @include flexDisplay(column, false) {
@@ -47,6 +55,10 @@
         .movie-name {
             font-size: 1.3rem;
             font-weight: 600;
+        }
+
+        .booking-id {
+            font-size: 0.7rem;
         }
 
     }

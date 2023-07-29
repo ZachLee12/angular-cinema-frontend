@@ -1,9 +1,11 @@
 <div id="User-Booking">
+    <p class="your-bookings-title">Your Bookings</p>
     <ng-container *ngIf="(userBookings$ | async) as bookings; else loadingBlock">
         <div class="bookings-wrapper">
             <div class="booking" *ngFor="let booking of bookings">
                 <p class="movie-name">{{booking.movie.name}}</p>
                 <p class="showtime">{{booking.hall.showtime}}</p>
+                <p class="booking-id">ID: {{booking.id}}</p>
             </div>
         </div>
 

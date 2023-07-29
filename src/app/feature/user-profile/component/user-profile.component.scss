@@ -39,11 +39,6 @@ $footer-height: 50px;
             transition: background-color 200ms ease-in-out;
             cursor: pointer;
 
-            &:hover {
-                background-color: #353535;
-                border-right: 5px solid orange;
-            }
-
             .tab-name,
             .icon {
                 margin: 0;
@@ -78,7 +73,6 @@ $footer-height: 50px;
     border: 2px solid red;
     // you should use flex-grow, not width:100% to fill up remaining spaces in Flexbox
     flex-grow: 1;
-    min-height: 100%;
     padding: 20px;
 }
 

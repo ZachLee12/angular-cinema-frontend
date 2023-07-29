@@ -13,7 +13,7 @@
             <div *ngIf="!(isLoggedIn$|async)" class="tab" routerLink="/accounts/login">
                 <p class="tab-title">Log In</p>
             </div>
-            <div *ngIf="isLoggedIn$|async" class="tab" [routerLink]="'/user/'+ (userProfile$|async)?.id">
+            <div *ngIf="isLoggedIn$|async" class="tab" [routerLink]="'/user/'+ (userProfile$|async)?.id + '/account'">
                 <p class="tab-title">My Profile</p>
             </div>
             <div *ngIf="isLoggedIn$|async" class="tab" (click)="logout()">

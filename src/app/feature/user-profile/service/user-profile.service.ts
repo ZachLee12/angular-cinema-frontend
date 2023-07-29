@@ -19,6 +19,7 @@ const GET_USER = gql`
 const GET_USERBOOKING = gql`
     query GetUserBookingWithUserId($userId: String!){
       userBookingsWithUserId(userId: $userId){
+        id,
         hall{
           showtime
         },
