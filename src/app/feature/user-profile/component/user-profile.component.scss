@@ -1,14 +1,15 @@
 @import '../../../mixins';
 
+$header-height: 80px;
+$footer-height: 50px;
+
 #User-Profile {
     color: white;
+    height: calc(100vh - $header-height - $footer-height);
+    flex-grow: 1;
+    // border: 2px solid yellow;
 
-    // border: 2px solid red;
-    @include flexDisplay(row, false) {
-        flex-grow: 1;
-    }
-
-    ;
+    @include flexDisplay(row, false);
 }
 
 .side-bar {
@@ -17,11 +18,12 @@
     width: 200px;
     position: relative;
     border-right: 3px solid #333333;
+    height: 100%;
 
     .tabs-wrapper {
 
         @include flexDisplay(column, true) {
-            gap: 30px;
+            gap: 5px;
         }
 
         ;
@@ -70,18 +72,9 @@
     }
 }
 
-
-.your-bookings-title {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.booked-movies-wrapper {
-    @include flexDisplay(column, false);
-    // border: 2px solid yellow;
-
-
-    .booked-movie {
-        // border: 2px solid red;
-    }
+.router-outlet-wrapper {
+    border: 2px solid red;
+    // you should use flex-grow, not width:100% to fill up remaining spaces in Flexbox
+    flex-grow: 1;
+    min-height: 100%;
 }
