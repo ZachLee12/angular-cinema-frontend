@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
-  renderSidebar: boolean = true
-  renderCloseIcon: boolean = false
+  renderSidebar: boolean = false
 
   toggleSidebar() {
     this.renderSidebar = !this.renderSidebar
