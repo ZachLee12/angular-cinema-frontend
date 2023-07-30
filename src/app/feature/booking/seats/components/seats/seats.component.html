@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="big-hall-template hall-template">
+        <div class="big-hall-template hall-template" *ngSwitchCase="'BIG'">
             <div class="ten-seats-wrapper seats-wrapper" *ngFor="let i of getArrayTemplate(10); let rowId = index">
                 {{rowId + 1}}
                 <app-seat-item *ngFor="let s of getArrayTemplate(10); let columnId = index"

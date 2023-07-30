@@ -6,15 +6,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { Apollo, gql } from 'apollo-angular';
+import { UserBookingService } from 'src/app/core/services/user-booking/user-booking.service';
 
-const GET_MOVIES = gql`
-  {
-    movies{
-      name,
-      imgUrlVertical
-    }
-  }
-`
 
 @Component({
   selector: 'app-booking',
@@ -26,6 +19,7 @@ export class BookingComponent {
   activatedRoute: ActivatedRoute = inject(ActivatedRoute)
   loginService: LoginService = inject(LoginService)
   apolloService: Apollo = inject(Apollo)
+  userBookingService: UserBookingService = inject(UserBookingService)
 
   unsubscribe: Subject<void> = new Subject();
 
@@ -39,10 +33,15 @@ export class BookingComponent {
 
 
   ngOnInit() {
-    // this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
-    //   .pipe(
-    //     tap(movie => { this.movieService.setCurrentMovie$(movie) })
-    //   ).subscribe()
+    this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
+      .pipe(
+        tap(movie => { this.movieService.setCurrentMovie$(movie) })
+      ).subscribe()
+
+    this.movieService.getMovieHalls$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72", "08:00 AM")
+      .pipe(
+        tap(halls => { this.movieService.setCurrentHall$(halls[0]) })
+      ).subscribe()
 
     this.currentMovie$ = this.movieService.getCurrentMovie$()
 
@@ -50,12 +49,27 @@ export class BookingComponent {
     this.loginService.getTokenUserProfile$().subscribe(
       {
         next: userProfile => {
-          console.log(userProfile)
           this.currentUser = userProfile
         }
       }
     )
+    this.currentRouteParams$ = this.activatedRoute.params
+    // this.userBookingService.getUserBookingsInOneHall$()
+    setTimeout(() => {
+      this.hallInfo$!
+        .pipe(
+          switchMap(hall => {
+            console.log(hall)
+            return this.userBookingService.getUserBookingsInOneHall$(hall.id)
+          })
+        ).subscribe(console.log)
+    }, 100)
   }
+
+  decodeURI(encodedURI: string) {
+    return decodeURIComponent(encodedURI)
+  }
+
 
   updateSeatsBooked(event: SeatData[]) {
     this.seatsBooked = event
@@ -77,13 +91,6 @@ export class BookingComponent {
     )
   }
 
-  testGraphQLCall() {
-    this.apolloService.watchQuery({
-      query: GET_MOVIES,
-    }).valueChanges.pipe(map(result => {
-      console.log(result)
-    })).subscribe()
-  }
 
   ngOnDestroy() {
     this.unsubscribe.next();
