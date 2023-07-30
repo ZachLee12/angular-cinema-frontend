@@ -46,21 +46,21 @@
             bottom: 3px;
         }
 
-        .icon {
-            opacity: 0;
-            transition: opacity 200ms ease-in-out;
-            cursor: pointer;
-        }
-
-        &:hover>.icon {
-            opacity: 1;
-        }
-
         &+p {
             margin: 0;
             padding-top: 7px;
             font-size: 1.2rem;
             min-width: 200px;
+
+            .icon {
+                opacity: 0;
+                transition: opacity 200ms ease-in-out;
+                cursor: pointer;
+            }
+
+            &:hover>.icon {
+                opacity: 1;
+            }
         }
     }
 }
