@@ -8,10 +8,10 @@ import { SeatData } from '../../interfaces';
 })
 export class SeatItemComponent {
   @Input() seatData?: SeatData;
+  @Input() alreadyBooked?: boolean;
   @Output() selectedEvent = new EventEmitter<SeatData>();
 
   getSeatData() {
-    console.log(this.seatData)
     return this.seatData
   }
 

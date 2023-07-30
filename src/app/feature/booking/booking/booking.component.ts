@@ -27,6 +27,7 @@ export class BookingComponent {
   currentMovie$!: Observable<Movie>;
   hallInfo$?: Observable<any>;
   seatsBooked: SeatData[] = [];
+  userBookingsFromDatabase: SeatData[] = []
   currentUser: any;
 
   graphQLMovies?: Observable<any>;
@@ -59,10 +60,19 @@ export class BookingComponent {
       this.hallInfo$!
         .pipe(
           switchMap(hall => {
-            console.log(hall)
             return this.userBookingService.getUserBookingsInOneHall$(hall.id)
-          })
-        ).subscribe(console.log)
+          },
+          )
+        ).subscribe(
+          {
+            next: (data: any[]) => {
+              data.forEach(data => {
+                this.userBookingsFromDatabase.push(data.seatsBooked)
+              }
+              )
+            }
+          }
+        )
     }, 100)
   }
 

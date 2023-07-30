@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject, Input } from '@angular/core';
 import { SeatData } from '../../interfaces';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
 
@@ -18,6 +18,8 @@ type HallSize = 'BIG' | 'MEDIUM' | 'SMALL' | 'DEFAULT'
 
 export class SeatsComponent {
   @Output() selectedSeatsEvent = new EventEmitter<SeatData[]>();
+  @Input() userBookingsFromDatabase: any[] = [];
+
   hallSize: HallSize = 'MEDIUM';
   numOfSeats?: number;
 
@@ -42,6 +44,20 @@ export class SeatsComponent {
         next: hall => this.hallSize = hall?.hallSize
       }
     )
+  }
+
+  checkIfSeatIsAlreadyBooked(rowId: number, columnId: number) {
+    // console.log(this.userBookingsFromDatabase[0][0])
+    let result: boolean = false;
+    this.userBookingsFromDatabase?.forEach((seatsBooked: SeatData[]) => {
+      seatsBooked.forEach((seat: SeatData) => {
+        if ((seat.columnId === columnId) && (seat.rowId === rowId)) {
+          result = true
+        }
+      })
+    })
+
+    return result
   }
 
   getArrayTemplate(arrayLength: number) {
