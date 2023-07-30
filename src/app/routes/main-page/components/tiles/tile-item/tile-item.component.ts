@@ -14,6 +14,8 @@ export class TileItemComponent {
   @Input() descTitle?: string;
   @Input() desc?: string;
   @Input() website?: string;
+  @Input() aosDelay?: number;
+
   constructor(
     private domSanitizer: DomSanitizer
   ) { }

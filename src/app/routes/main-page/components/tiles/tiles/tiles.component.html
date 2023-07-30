@@ -1,6 +1,6 @@
-<div id="Tiles">
+<div id="Tiles" data-aos="fade-up" data-aos-duration="2000">
     <app-tile-item *ngFor="let tile of tiles" [iconSrc]="tile.iconSrc" [descTitle]="tile.descTitle" [desc]="tile.desc"
-        [website]="tile.website">
+        [website]="tile.website" [aosDelay]="tile.aosDelay">
 
     </app-tile-item>
 </div>

@@ -6,7 +6,7 @@ import { MovieService } from 'src/app/core/services/movie/movie-service.service'
 import { Observable, map } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserProfile } from 'src/app/core/services/login/interfaces';
-
+import AOS from "aos";
 
 @Component({
   selector: 'app-main-page',
@@ -36,6 +36,7 @@ export class MainPageComponent {
 
 
   ngOnInit() {
+    AOS.init({ once: true });
     this.isLoggedIn$ = this.loginService.getIsLoggedIn$()
     this.userProfile$ = this.loginService.getTokenUserProfile$()
 
