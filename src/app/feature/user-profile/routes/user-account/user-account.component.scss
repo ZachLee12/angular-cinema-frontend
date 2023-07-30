@@ -56,9 +56,9 @@
 }
 
 @media screen and (max-width: 720px) {
-
     .user-info-wrapper {
         gap: 50px;
+        z-index: 1;
     }
 
     .user-info {
@@ -66,4 +66,5 @@
         align-items: center;
         flex-grow: 0;
     }
+
 }
