@@ -7,11 +7,12 @@
                     <img [src]="movie.imgUrlVertical" alt="movie-image">
                 </div>
                 <div class="movie-info">
-                    <h1>{{movie.name}}</h1>
+                    <p class="movie-name">{{movie.name}}</p>
                     <p class="movie-description">{{movie.description}} </p>
-                    <p class="showtime">Showtime: {{(currentRouteParams$ | async)?.['showtime']}} </p>
-                    <p class="hall-size-title">Hall Size: {{(hallInfo$|async)?.hallSize}}</p>
-                    <p class="actors">Actors: {{movie.actors}} </p>
+                    <p class="showtime"><span class="title">Showtime:</span>
+                        {{(currentRouteParams$ | async)?.['showtime']}} </p>
+                    <p class="hall-size"><span class="title">Hall Size:</span> {{(hallInfo$|async)?.hallSize}}</p>
+                    <p class="actors"><span class="title">Actors:</span> {{movie.actors}} </p>
                 </div>
             </div>
 
