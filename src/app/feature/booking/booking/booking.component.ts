@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { Observable, Subject, combineLatestWith, map, mergeMap, of, switchMap, tap } from 'rxjs'
+import { Observable, Subject, switchMap, tap } from 'rxjs'
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
