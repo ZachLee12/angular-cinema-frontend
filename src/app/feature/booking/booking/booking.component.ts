@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { Observable, Subject, switchMap, tap } from 'rxjs'
+import { Observable, Subject, filter, switchMap, tap } from 'rxjs'
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
@@ -48,7 +48,6 @@ export class BookingComponent {
 
     this.currentMovie$ = this.movieService.getCurrentMovie$()
 
-    this.hallInfo$ = this.movieService.getCurrentHall$()
     this.loginService.getTokenUserProfile$().subscribe(
       {
         next: userProfile => {
@@ -57,25 +56,41 @@ export class BookingComponent {
       }
     )
     this.currentRouteParams$ = this.activatedRoute.params
-    // this.userBookingService.getUserBookingsInOneHall$()
-    setTimeout(() => {
-      this.hallInfo$!
-        .pipe(
-          switchMap(hall => {
-            return this.userBookingService.getUserBookingsInOneHall$(hall.id)
-          },
-          )
-        ).subscribe(
-          {
-            next: (data: any[]) => {
-              data.forEach(data => {
-                this.userBookingsFromDatabase.push(data.seatsBooked)
-              }
-              )
-            }
+    new Promise((resolve) => {
+      this.hallInfo$ = this.movieService.getCurrentHall$()
+      this.hallInfo$.pipe(filter(data => data !== null)).subscribe(
+        {
+          next: hall => {
+            console.log(hall)
+            resolve(hall)
           }
-        )
-    }, 100)
+        }
+      )
+    })
+      .then((hall: any) => {
+        console.log('ran')
+        console.log(hall)
+        return this.userBookingService.getUserBookingsInOneHall$(hall.id)
+      })
+      .then(data => {
+        console.log("data here:")
+        console.log(data)
+      })
+
+    //   setTimeout(() => {
+    //   this.hallInfo$!
+    //     .pipe(
+    //       switchMap(hall => {
+    //         return this.userBookingService.getUserBookingsInOneHall$(hall.id)
+    //       }
+    //       ),
+    //       tap((data: any[]) => {
+    //         data.forEach(data => {
+    //           this.userBookingsFromDatabase.push(data.seatsBooked)
+    //         })
+    //       })
+    //     ).subscribe()
+    // }, 100)
   }
 
   decodeURI(encodedURI: string) {
