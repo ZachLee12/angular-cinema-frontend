@@ -34,15 +34,17 @@ export class BookingComponent {
 
 
   ngOnInit() {
-    this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
-      .pipe(
-        tap(movie => { this.movieService.setCurrentMovie$(movie) })
-      ).subscribe()
+    // //Just for development
+    // this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
+    //   .pipe(
+    //     tap(movie => { this.movieService.setCurrentMovie$(movie) })
+    //   ).subscribe()
 
-    this.movieService.getMovieHalls$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72", "08:00 AM")
-      .pipe(
-        tap(halls => { this.movieService.setCurrentHall$(halls[0]) })
-      ).subscribe()
+    // //Just for development
+    // this.movieService.getMovieHalls$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72", "08:00 AM")
+    //   .pipe(
+    //     tap(halls => { this.movieService.setCurrentHall$(halls[0]) })
+    //   ).subscribe()
 
     this.currentMovie$ = this.movieService.getCurrentMovie$()
 

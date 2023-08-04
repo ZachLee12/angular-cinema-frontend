@@ -3,13 +3,11 @@
         <div class="small-hall-template hall-template" *ngSwitchCase="'SMALL'">
             <div class="five-seats-wrapper seats-wrapper" *ngFor="let i of getArrayTemplate(5); let rowId = index">
                 {{rowId + 1}}
-                <ng-container *ngIf="userBookingsFromDatabase.length > 0">
-                    <app-seat-item *ngFor="let s of getArrayTemplate(5); let columnId = index"
-                        (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
-                        [alreadyBooked]="checkIfSeatIsAlreadyBooked(rowId + 1,columnId + 1)!"
-                        [seatData]="{rowId: rowId+1 ,columnId:columnId+1, selected:false}">
-                    </app-seat-item>
-                </ng-container>
+                <app-seat-item *ngFor="let s of getArrayTemplate(5); let columnId = index"
+                    (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
+                    [alreadyBooked]="checkIfSeatIsAlreadyBooked(rowId + 1,columnId + 1)!"
+                    [seatData]="{rowId: rowId+1 ,columnId:columnId+1, selected:false}">
+                </app-seat-item>
                 {{rowId + 1}}
             </div>
         </div>
@@ -19,6 +17,7 @@
                 {{rowId + 1}}
                 <app-seat-item *ngFor="let s of getArrayTemplate(10); let columnId = index"
                     (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
+                    [alreadyBooked]="checkIfSeatIsAlreadyBooked(rowId + 1,columnId + 1)!"
                     [seatData]="{rowId: rowId+1 ,columnId:columnId+1, selected:false}">
                 </app-seat-item>
                 {{rowId + 1}}
@@ -30,6 +29,7 @@
                 {{rowId + 1}}
                 <app-seat-item *ngFor="let s of getArrayTemplate(10); let columnId = index"
                     (selectedEvent)="bookOrUnbookSeat($event)" (selectedEvent)="emitSelectedSeats()"
+                    [alreadyBooked]="checkIfSeatIsAlreadyBooked(rowId + 1,columnId + 1)!"
                     [seatData]="{rowId: rowId+1 ,columnId:columnId+1, selected:false}">
                 </app-seat-item>
                 {{rowId + 1}}

@@ -41,13 +41,15 @@ export class SeatsComponent {
     // UNCOMMENT THIS AFTER YOU ARE FINISHED DESIGNING THIS COMPONENT
     this.movieService.getCurrentHall$().subscribe(
       {
-        next: hall => this.hallSize = hall?.hallSize
+        next: hall => {
+          this.hallSize = hall?.hallSize
+        }
       }
     )
+
   }
 
   checkIfSeatIsAlreadyBooked(rowId: number, columnId: number) {
-    // console.log(this.userBookingsFromDatabase[0][0])
     let result: boolean = false;
     this.userBookingsFromDatabase?.forEach((seatsBooked: SeatData[]) => {
       seatsBooked.forEach((seat: SeatData) => {
