@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Movie } from 'src/app/feature/movie/interfaces';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { DriveService } from 'src/app/core/services/drive/drive.service';
+import { Tokens } from './interfaces';
+import jwtDecode from 'jwt-decode';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { DriveService } from 'src/app/core/services/drive/drive.service';
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
+
 export class AdminComponent {
-  movies: string[] = []
+  movies: Movie[] = []
   movieName: string = '';
   movieNameToAdd: string = '';
   movieNameToDelete: string = '';
@@ -19,9 +27,45 @@ export class AdminComponent {
   serverResponse?: any;
   unsubscribe$: Subject<void> = new Subject();
 
-  constructor(private httpClient: HttpClient, private databaseService: DatabaseService) {
-    this.getMovieNames()
+  constructor(
+    private databaseService: DatabaseService,
+    private loginService: LoginService,
+    private driveService: DriveService
+  ) { }
+
+  ngOnInit() {
+    this.getMovies();
+    this.driveService.getFilesInFolder('17tFB05XFBKQk0Xw3_xEDFj5PD_LocTwy').subscribe(
+      {
+        next: (data: any) => console.log(data)
+      }
+    )
   }
+
+
+  logout() {
+
+  }
+
+  private setTokens(tokens: Tokens) {
+    localStorage.setItem('accessToken', tokens.accessToken)
+    localStorage.setItem('refreshToken', tokens.refreshToken)
+  }
+
+  getUser() {
+    const { username } = jwtDecode(this.loginService.getAccessToken() ?? '') as any
+    this.databaseService.getUser$(username).subscribe(
+      {
+        next: (data) => console.log(data)
+      }
+    )
+  }
+
+  logTokens() {
+    console.log('Access Token: ' + localStorage.getItem('accessToken'))
+    console.log('Refresh Token: ' + localStorage.getItem('refreshToken'))
+  }
+
 
   handleImageInput(e: any) {
     const imageFile = e.target.files[0]
@@ -32,32 +76,27 @@ export class AdminComponent {
     fileReader.readAsDataURL(imageFile) // need this for .onload to execute
   }
 
-  resetSeatsBooked() {
-    this.databaseService.resetSeatsBooked$(this.movieName).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
-      this.serverResponse = response
+  getMovies() {
+    this.databaseService.getMovies$().subscribe({
+      next: (movies: Movie[]) => {
+        this.movies = movies
+      }
     })
   }
 
-  getMovieNames() {
-    this.databaseService.getMovieNames$().pipe(takeUntil(this.unsubscribe$)).subscribe((response: [{ name: string }]) => {
-      response.forEach(obj => {
-        this.movies.push(obj.name)
-      })
-    })
+
+  resetSeatsBooked() {
+
   }
+
+
 
   addMovie() {
-    this.movies.push(this.movieNameToAdd) //to update the UI without rerendering the page
-    this.databaseService.addMovie$(this.movieTime, this.movieNameToAdd, this.movieSeatCount, this.movieImageBase64).subscribe(response => {
-      this.serverResponse = response
-    })
+
   }
 
   deleteMovie() {
-    this.movies = this.movies.filter(name => this.movieNameToDelete !== name)//to update the UI without rerendering the page
-    this.databaseService.deleteMovie$(this.movieNameToDelete).subscribe(response => {
-      this.serverResponse = response
-    })
+
   }
 
   ngOnDestroy() {

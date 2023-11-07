@@ -1,0 +1,62 @@
+<div id="MainPage">
+    <!-- <button (click)="loginGoogleDrive()">Log In Google Drive</button> -->
+    <header class="header">
+
+        <div class="tab main-tab-title" data-aos="fade-in" data-aos-duration="2000">
+            <p class="cinema-booking-system-title"><span class="beautify">Cinema Express</span></p>
+        </div>
+
+        <div class="nav-tabs" data-aos="fade-in" data-aos-duration="2000">
+            <div class="tab" routerLink="/movies">
+                <p class="tab-title">Movies</p>
+            </div>
+            <div *ngIf="!(isLoggedIn$|async)" class="tab" routerLink="/accounts/login">
+                <p class="tab-title">Log In</p>
+            </div>
+            <div *ngIf="isLoggedIn$|async" class="tab" [routerLink]="'/user/'+ (userProfile$|async)?.id + '/account'">
+                <p class="tab-title">My Profile</p>
+            </div>
+            <div *ngIf="isLoggedIn$|async" class="tab" (click)="logout()">
+                <p class="tab-title">Log Out</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="spacing-for-main">
+        <ng-container *ngFor="let obj of backgroundImgSrcs; let index;">
+            <section *ngIf="obj.display" @fadeIn @fadeOut class="main" [style.background-image]="'url('+obj.src+')'">
+                <div class="opacity-wrapper"></div>
+            </section>
+        </ng-container>
+    </div>
+
+    <section class="promotion-section">
+        <p class="promotion-title" data-aos="fade-in" data-aos-duration="2000">More than just frames on screens.
+        </p>
+        <p class="promotion-title" data-aos="fade-in" data-aos-duration="2000">The Cinema with <span
+                class="style-word">Style</span>.</p>
+        <div class="wrapper">
+            <ul class="benefits" data-aos="fade-down-right" data-aos-duration="2000">
+                <li class="benefit"><span class="emoji">⚡</span> Lightning fast confirmation</li>
+                <br>
+                <li class="benefit"><span class="emoji">🧩</span> Digital tickets out-of-the-box</li>
+                <br>
+                <li class="benefit"><span class="emoji">✨</span> Cancel anytime. No Commitments</li>
+            </ul>
+
+            <img class="computer-svg" data-aos="fade-up-right" data-aos-duration="2000"
+                src=" ../../../../../assets/images/video-camera.svg" alt="computer">
+        </div>
+    </section>
+
+    <section class="carousel-section" data-aos="fade-down" data-aos-duration="2000">
+        <app-carousel></app-carousel>
+    </section>
+
+    <section class="third-section">
+        <p class="tech-stack-title" data-aos="fade-in" data-aos-duration="2000">Built with Your
+            Favourite Tools
+        </p>
+        <app-tiles></app-tiles>
+    </section>
+</div>

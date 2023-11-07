@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MovieService } from '../movie-service.service';
-import { Movie, MovieListResponse } from '../interfaces';
+import { MovieService } from '../../../core/services/movie/movie-service.service';
+import { Movie } from '../interfaces';
 
 
 @Component({
@@ -10,10 +10,10 @@ import { Movie, MovieListResponse } from '../interfaces';
 })
 
 export class MoviePageComponent {
-  movieList?: Movie[];
 
-  constructor(private movieService: MovieService) {
 
+
+  ngOnInit() {
   }
 
 }

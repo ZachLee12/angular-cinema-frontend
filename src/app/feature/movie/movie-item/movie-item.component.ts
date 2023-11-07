@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Input } from '@angular/core';
+import { Movie } from '../interfaces';
+import { MovieService } from 'src/app/core/services/movie/movie-service.service';
+import { switchMap, take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-item',
@@ -7,12 +11,28 @@ import { Input } from '@angular/core';
   styleUrls: ['./movie-item.component.scss']
 })
 export class MovieItemComponent {
-  @Input() id = "";
-  @Input() time = "";
-  @Input() name = "";
-  @Input() numberOfSeats = 0;
-  @Input() numberOfSeatsBooked = 0;
-  @Input() seatsBooked: any = [];
-  @Input() imageBase64: any = "";
+  @Input() movie!: Movie;
+  isHovered: boolean = false;
+  movieService: MovieService = inject(MovieService)
+  router: Router = inject(Router)
 
+  onMouseLeave() {
+    this.isHovered = false;
+  }
+
+  onMouseEnter() {
+    this.isHovered = true;
+  }
+
+  setCurrentMovie$() {
+    this.movieService.getOneMovie$(this.movie.id)
+      .pipe(take(1))
+      .subscribe({
+        next: movie => this.movieService.setCurrentMovie$(movie)
+      })
+  }
+
+  getCurrentUrl(): string {
+    return this.router.url // '/movies/
+  }
 }

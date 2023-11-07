@@ -1,0 +1,146 @@
+@import '../../../mixins';
+
+$header-height: 80px;
+$footer-height: 50px;
+
+#User-Profile {
+    color: white;
+    height: calc(100vh - $header-height - $footer-height);
+    flex-grow: 1;
+    @include flexDisplay(row, false);
+}
+
+.responsive-wrapper {
+    display: flex;
+    position: relative;
+}
+
+
+.side-bar {
+    background-color: #222222;
+    box-sizing: border-box;
+    padding: 30px 0;
+    width: 200px;
+    position: relative;
+    border-right: 3px solid #333333;
+    height: 100%;
+
+    .close-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+        z-index: 3;
+        display: none;
+    }
+
+    .tabs-wrapper {
+
+        @include flexDisplay(column, true) {
+            gap: 5px;
+        }
+
+        ;
+
+        .tab {
+            @include flexDisplay(row, false) {
+                gap: 5px;
+            }
+
+            ;
+            width: 100%;
+            height: 50px;
+            transition: background-color 200ms ease-in-out;
+            cursor: pointer;
+
+            .tab-name,
+            .icon {
+                margin: 0;
+                align-self: center;
+                transform: translateX(30px);
+            }
+
+
+        }
+    }
+
+    .logout-btn {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        height: 30px;
+        font-size: 0.9rem;
+
+        @include flexDisplay(row, true) {
+            gap: 10px;
+        }
+
+        ;
+
+        .logout-title {
+            margin: 0;
+        }
+    }
+}
+
+.menu-icon {
+    $menu-icon-width: 50px;
+    background-color: #353535;
+    font-size: 3rem;
+    width: $menu-icon-width;
+    height: 50px;
+    text-align: center;
+    display: none;
+}
+
+.router-outlet-wrapper {
+    box-sizing: border-box;
+    // you should use flex-grow, not width:100% to fill up remaining spaces in Flexbox
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.active-tab {
+    background-color: #353535;
+    border-right: 5px solid orange;
+}
+
+.hide {
+    display: none !important; //important is needed here to overwrite the previous CSS
+}
+
+
+@media screen and (max-width: 485px) {
+
+    .menu-icon {
+        display: block;
+    }
+
+    .close-icon {
+        display: block !important;
+    }
+
+    .responsive-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+
+    .side-bar {
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        transition: width 200ms ease-in-out;
+
+    }
+
+    .hide-side-bar {
+        width: 0;
+        overflow: hidden;
+    }
+}

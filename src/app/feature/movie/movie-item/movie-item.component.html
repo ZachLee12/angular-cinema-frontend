@@ -1,13 +1,15 @@
-<div id="Movie-Item">
-    <div [style.background-image]="'url('+imageBase64+')'" class="movie-image-wrapper"></div>
-    <div class="position-wrapper">
-        <div class="content-wrapper">
-            <div class="name">{{name}} </div>
-            <div class="time">{{time | uppercase }} </div>
-            <div class="seats">Number of seats left: {{numberOfSeats - numberOfSeatsBooked}} </div>
-            <button class="book-now-button" routerLink="/booking"
-                [queryParams]="{id, time,name, numberOfSeats, numberOfSeatsBooked, seatsBooked}">Book
-                Now</button>
+<div id="Movie-Item" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
+    [style.background-image]="'url('+movie.imgUrlVertical+')'">
+    <div class="opacity-film"></div>
+
+    <div class="content-wrapper">
+        <p class="movie-title">{{movie.name}}</p>
+        <div class="title-underline"></div>
+        <div class="movie-details-wrapper" [ngClass]="{'hovered':isHovered, 'not-hovered': !isHovered}">
+            <p class="movie-description">{{movie.description}}</p>
+            <button class="details-btn" (click)="setCurrentMovie$()"
+                [routerLink]="getCurrentUrl()+'/details/'+movie.id">More
+                Details</button>
         </div>
     </div>
 </div>

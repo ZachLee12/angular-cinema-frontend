@@ -1,21 +1,46 @@
 <div id="Booking">
-    <!-- <h1 class="booking-page-title">Booking page</h1> -->
+    <ng-container *ngIf="(currentMovie$ | async) as movie">
+        <p class="select-your-seats-title">Select your seats</p>
+        <div class="content-wrapper">
+            <div class="movie-info-wrapper">
+                <div class="img-wrapper">
+                    <img [src]="movie.imgUrlVertical" alt="movie-image">
+                </div>
+                <div class="movie-info">
+                    <p class="movie-name">{{movie.name}}</p>
+                    <p class="movie-description">{{movie.description}} </p>
+                    <p class="showtime"><span class="title">Showtime:</span>
+                        {{ decodeURI((currentRouteParams$ | async)?.['showtime'])}} </p>
+                    <p class="hall-size"><span class="title">Hall Size:</span> {{(hallInfo$|async)?.hallSize}}</p>
+                    <p class="actors"><span class="title">Actors:</span> {{movie.actors}} </p>
+                </div>
+            </div>
 
-    <div class="target-movie-info-wrapper">
-        <p class="screen-title">SCREEN</p>
-        <div class="target-movie-name movie-info-text">{{movieName}} </div>
-        <div class="target-movie-time movie-info-text">{{movieTime}} </div>
-    </div>
 
-    <div class="grid-container">
-        <div (click)="setSelectedSeat($event)" *ngFor="let seat of seatLayout"
-            [ngClass]="{'booked-seat':seat.isBooked, 'selected-seat':seat.isSelected}" class="grid-item"
-            id="{{seat.id}}">
+            <div class="booking-section">
+                <div class="screen-wrapper">
+                    <div class="screen"></div>
+                    <p class="screen-title">S C R E E N</p>
+                </div>
+                <div class="seats-wrapper">
+                    <app-seats [userBookingsFromDatabase]="userBookingsFromDatabase!"
+                        (selectedSeatsEvent)="updateSeatsBooked($event)"></app-seats>
+                </div>
 
-            Seat {{seat.id}}
+
+                <div class="entrances-wrapper">
+                    <div class="entrance">
+                        <p>Entrance 1</p>
+                    </div>
+                    <div class="entrance">
+                        <p>Entrance 2</p>
+                    </div>
+                </div>
+                <div class="number-of-seats-selected">{{seatsBooked.length}} seat<span
+                        *ngIf="seatsBooked.length > 1">(s)</span> selected</div>
+                <button class="book-seats-btn" [disabled]="seatsBooked.length === 0" (click)="makeBooking()">Book
+                    seats</button>
+            </div>
         </div>
-    </div>
-
-    <button class="confirm-booking-button" (click)="confirmBooking()" routerLink="/confirmation">Confirm
-        Booking</button>
+    </ng-container>
 </div>

@@ -1,0 +1,84 @@
+@import "../../../../app.component.scss";
+
+#Carousel {
+    height: 500px;
+    padding: 0px 20px;
+    position: relative;
+
+    @include flexDisplay(row, true) {
+        gap: 20px;
+        // justify-content: space-between
+    }
+
+    ;
+    background-color: #1e1e20;
+}
+
+.slides {
+    align-self: center;
+    max-width: 70%;
+}
+
+.nav-arrow {
+    @include flexDisplay(row, true);
+    height: 50px;
+    width: 50px;
+    font-size: 90px;
+    cursor: pointer;
+    color: #919191;
+    transition: color 200ms ease-in-out;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.nav-arrow.left-arrow {
+    position: absolute;
+    left: 50px;
+}
+
+.nav-arrow.right-arrow {
+    position: absolute;
+    right: 50px;
+}
+
+.small-nav-arrows {
+    display: none;
+}
+
+@media screen and (max-width: 880px) {
+    #Carousel {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .nav-arrow {
+        display: none;
+    }
+
+    .small-nav-arrows {
+        @include flexDisplay(row, true) {
+            justify-content: space-evenly;
+        }
+
+        ;
+        width: 100%;
+        height: 100px;
+
+        .small-screen-nav-arrow {
+            @include flexDisplay(row, true);
+            color: #919191;
+            cursor: pointer;
+            font-size: 6rem;
+            text-align: center;
+            width: 200px;
+            height: 100px;
+            transition: color 200ms ease-in-out;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}

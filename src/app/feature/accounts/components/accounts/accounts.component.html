@@ -1,0 +1,15 @@
+<div id="Accounts">
+    <div class="contents-wrapper">
+        <p class="form-title">{{router.url.includes('login')? 'Log In' : 'Sign Up'}} </p>
+        <div class="outlet-wrapper">
+            <router-outlet>
+            </router-outlet>
+            <p class="nav-sentence" *ngIf="router.url.includes('login')">Don't have an account?
+                Sign up <span class="here" routerLink="/accounts/sign-up">here</span></p>
+
+            <p class="nav-sentence" *ngIf="router.url.includes('sign-up')">Already have an account? Login <span
+                    class="here" routerLink="/accounts/login">here</span></p>
+        </div>
+    </div>
+</div>
+<div class="curve"></div>

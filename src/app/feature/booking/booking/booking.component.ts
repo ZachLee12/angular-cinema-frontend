@@ -1,7 +1,14 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../movie/movie-service.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { MovieService } from 'src/app/core/services/movie/movie-service.service';
+import { Observable, Subject, filter, map, switchMap, tap } from 'rxjs'
+import { Movie } from '../../movie/interfaces';
+import { ActivatedRoute, Params } from '@angular/router';
+import { SeatData } from '../seats/interfaces';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { Apollo, gql } from 'apollo-angular';
+import { UserBookingService } from 'src/app/core/services/user-booking/user-booking.service';
+import { UserBooking } from 'src/app/core/services/movie/interfaces';
+
 
 @Component({
   selector: 'app-booking',
@@ -9,87 +16,118 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent {
-  unsubscribe$: Subject<void> = new Subject();
-  id!: any;
-  movieName!: string;
-  movieTime!: string;
-  numberOfSeatsBooked!: number;
-  numberOfSeats !: number;
-  seatsBooked!: any[];
-  seatLayout: any[] = []
+  movieService: MovieService = inject(MovieService)
+  activatedRoute: ActivatedRoute = inject(ActivatedRoute)
+  loginService: LoginService = inject(LoginService)
+  apolloService: Apollo = inject(Apollo)
+  userBookingService: UserBookingService = inject(UserBookingService)
 
-  constructor(private activatedRoute: ActivatedRoute,
-    private movieService: MovieService) {
-  }
+  unsubscribe: Subject<void> = new Subject();
+
+  currentRouteParams$?: Observable<Params>;
+  currentMovie$!: Observable<Movie>;
+  hallInfo$?: Observable<any>;
+  seatsBooked: SeatData[] = [];
+  userBookingsFromDatabase: SeatData[] = []
+  currentUser: any;
+
+  graphQLMovies?: Observable<any>;
+
 
   ngOnInit() {
-    new Promise<void>((resolve) => {
-      this.activatedRoute.queryParams.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
-        this.id = params['id'];
-        this.movieName = params['name'];
-        this.movieTime = params['time'];
-        this.numberOfSeats = params['numberOfSeats']
-        this.numberOfSeatsBooked = params["numberOfSeatsBooked"]
-        this.seatsBooked = params["seatsBooked"] || []
-        console.log("[INIT] number of seats booked: " + this.numberOfSeatsBooked)
-      })
-      resolve()
-    }).then(() => {
-      this.generateSeats(this.numberOfSeats)
-    })
-      .then(() => {
-        this.seatLayout.forEach(seat => {
-          if (this.seatsBooked?.includes(seat.id.toString())) {
-            seat.isBooked = true
+    // //Just for development
+    // this.movieService.getOneMovie$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72")
+    //   .pipe(
+    //     tap(movie => { this.movieService.setCurrentMovie$(movie) })
+    //   ).subscribe()
+
+    // //Just for development
+    // this.movieService.getMovieHalls$("8c6e9f31-f5e4-4c2a-be26-99ad1204ba72", "08:00 AM")
+    //   .pipe(
+    //     tap(halls => { this.movieService.setCurrentHall$(halls[0]) })
+    //   ).subscribe()
+
+    this.currentMovie$ = this.movieService.getCurrentMovie$()
+
+    this.loginService.getTokenUserProfile$().subscribe(
+      {
+        next: userProfile => {
+          this.currentUser = userProfile
+        }
+      }
+    )
+    this.currentRouteParams$ = this.activatedRoute.params
+    new Promise((resolve) => {
+      this.hallInfo$ = this.movieService.getCurrentHall$()
+      this.hallInfo$.pipe(filter(data => data !== null)).subscribe(
+        {
+          next: hall => {
+            console.log(hall)
+            resolve(hall)
           }
-        })
+        }
+      )
+    })
+      .then((hall: any) => {
+
+        return this.userBookingService.getUserBookingsInOneHall$(hall.id)
       })
+      .then((userBookings$: Observable<UserBooking[]>) => {
+        userBookings$.pipe(
+          tap(userBookings => {
+            userBookings.forEach(booking => {
+              console.log(booking.seatsBooked)
+              booking.seatsBooked.forEach(seat => this.userBookingsFromDatabase.push(seat))
+            })
+          })
+        ).subscribe(console.log)
+      })
+
+    //   setTimeout(() => {
+    //   this.hallInfo$!
+    //     .pipe(
+    //       switchMap(hall => {
+    //         return this.userBookingService.getUserBookingsInOneHall$(hall.id)
+    //       }
+    //       ),
+    //       tap((data: any[]) => {
+    //         data.forEach(data => {
+    //           this.userBookingsFromDatabase.push(data.seatsBooked)
+    //         })
+    //       })
+    //     ).subscribe()
+    // }, 100)
   }
 
-  generateRandomInteger(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  decodeURI(encodedURI: string) {
+    return decodeURIComponent(encodedURI)
   }
 
-  generateSeats(count: number) {
-    for (let i = 0; i < count; i++) {
-      let seatObject = Object.create({ id: i + 1, isSelected: false, isBooked: false })
-      this.seatLayout.push(seatObject)
-    }
+
+  updateSeatsBooked(event: SeatData[]) {
+    this.seatsBooked = event
   }
 
-  setSelectedSeat(e: any) {
-    this.seatLayout.forEach(seat => {
-      if (seat.id == e.target.id) {
-        seat.isSelected = true
-      }
-    })
-  }
-
-  confirmBooking() {
-    let numberOfSeatsBooked = 0
-
-    this.seatLayout.forEach(seat => {
-      if (seat.isBooked) {
-        numberOfSeatsBooked++;
-        if (!this.seatsBooked.includes(seat.id.toString())) {
-          this.seatsBooked.push(seat.id)
+  makeBooking() {
+    this.hallInfo$?.subscribe(
+      {
+        next: hall => {
+          const booking = {
+            hallId: hall.id,
+            movieId: hall.movieId,
+            userId: this.currentUser.id,
+            seatsBooked: this.seatsBooked
+          }
+          this.movieService.makeBooking(booking).subscribe()
         }
       }
-      if (seat.isSelected) {
-        numberOfSeatsBooked++;
-        if (!this.seatsBooked.includes(seat.id.toString())) {
-          this.seatsBooked.push(seat.id)
-        }
-      }
-    })
-    this.seatsBooked = this.seatsBooked.filter((seatId, index) => this.seatsBooked.indexOf(seatId) === index)
-
-    this.movieService.updateMovieBooking(this.id, numberOfSeatsBooked, this.seatsBooked)
+    )
   }
 
 
   ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
+
 }

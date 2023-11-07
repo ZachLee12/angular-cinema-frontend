@@ -1,0 +1,36 @@
+<div id="Login-Page">
+    <form [formGroup]="loginForm" class="login-form">
+
+        <div class="wrapper">
+            <input autocomplete="off" type="text" id="username" formControlName="username">
+            <label class="label" for="username" [ngClass]="{
+                'active-label': loginForm.get('username')?.dirty &&loginForm.get('username')?.valid && loginForm.get('username')?.value?.trim() !== '',
+                'invalid-label':  loginForm.get('username')?.touched && (loginForm.get('username')?.invalid || loginForm.get('username')?.value?.trim() === ''),
+                'login-failed' : loginAttempted && !(isLoginSuccessful$ | async) 
+            }">Username<span>*</span></label>
+            <div class="focus-line"></div>
+        </div>
+
+        <div class="wrapper">
+            <input autocomplete="off" type="text" id="password" formControlName="password">
+            <label class="label" for="password" [ngClass]="{
+                'active-label': loginForm.get('password')?.dirty && loginForm.get('password')?.valid && loginForm.get('password')?.value?.trim() !== '',
+                'invalid-label':  loginForm.get('password')?.touched && (loginForm.get('password')?.invalid || loginForm.get('password')?.value?.trim() === ''),
+                'login-failed' : loginAttempted && !(isLoginSuccessful$ | async) 
+            }">Password<span>*</span> </label>
+            <div class="focus-line"></div>
+        </div>
+        <label for="remember-me"><input type="checkbox" (change)="setRememberMe($event)" [checked]="rememberMe">
+            Remember Me
+        </label>
+
+        <button (click)="login()" [ngClass]="{'disable-btn':!loginForm.valid}" class="login-btn">Log In</button>
+    </form>
+
+    <ng-container *ngIf="{isLoggedIn : isLoginSuccessful$ | async} as status">
+        <h2 class="login-status-message"
+            [ngClass]="{'login-success':status.isLoggedIn, 'login-failed':!status.isLoggedIn}">
+            {{loginStatusMessage}}
+        </h2>
+    </ng-container>
+</div>

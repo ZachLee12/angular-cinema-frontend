@@ -1,0 +1,99 @@
+@import '../../../../mixins';
+
+#Slide {
+    max-height: 100%;
+    color: white;
+    max-width: 100%;
+}
+
+.first-section {
+    .title {
+        font-size: 2.8rem;
+    }
+
+    .desc {
+        font-size: 1.3rem;
+        font-weight: 100;
+    }
+}
+
+.second-section {
+    @include flexDisplay(row, false) {
+        justify-content: space-evenly;
+        gap: 100px;
+    }
+
+    ;
+    // border: 2px solid red;
+
+    .showtimes {
+        // border: 2px solid red;
+        max-height: 250px;
+        overflow-y: auto;
+        padding-right: 20px;
+        min-width: 100px;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #606060;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #424242;
+        }
+
+        .showtimes-title {
+            position: sticky;
+            top: 0;
+            text-align: center;
+            font-size: 1.4rem;
+            background-color: #1e1e20;
+        }
+
+        .showtime {
+            text-align: center;
+        }
+    }
+
+    .movie-img-wrapper {
+        @include flexDisplay(row, true);
+
+        .movie-img {
+            width: 300px;
+            height: auto;
+        }
+    }
+
+    .movie-info-wrapper {
+        @include flexDisplay(column, true);
+
+        .actors {
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .first-section {
+        .title {
+            text-align: center;
+        }
+    }
+
+    .second-section {
+        @include flexDisplay(column, false) {
+            justify-content: space-evenly;
+            gap: 30px;
+        }
+    }
+
+    .movie-img {
+        max-width: 80%;
+        height: auto;
+        align-self: center;
+    }
+}

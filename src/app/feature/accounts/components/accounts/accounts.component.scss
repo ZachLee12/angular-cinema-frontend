@@ -1,0 +1,82 @@
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if($centerContents) {
+        align-items: center;
+        justify-content: center;
+    }
+
+    @content
+}
+
+#Accounts {
+    width: 100%;
+    height: 100vh;
+    background-color: #1e1e20;
+    @include flexDisplay(column, true);
+    color: #b2b2b2;
+    box-sizing: border-box;
+}
+
+
+.contents-wrapper {
+    @include flexDisplay(column, true) {}
+
+    width:100%;
+    box-shadow: 0 0px 1px rgb(255, 255, 255),
+    1px 2px 2px hsl(0, 0%, 30%);
+    border-radius: 5px;
+    background-color: #212121;
+    width: clamp(250px, 30%, 700px);
+    padding: 20px 40px 20px 40px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+
+    .outlet-wrapper {
+        width: 100%;
+    }
+
+    .form-title {
+        cursor: pointer;
+        flex-grow: 1;
+        width: clamp(150px, 20%, 300px);
+        height: 55px;
+        font-size: 1.8em;
+        font-weight: 600;
+        margin: 0;
+        text-align: center;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, purple, #23c1f5);
+    }
+
+    .nav-to-sign-up-btn {
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .nav-to-login-btn {
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .active-route {
+        color: white;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: aliceblue;
+        background-image: linear-gradient(to right, purple, #23c1f5);
+    }
+
+
+
+    .nav-sentence {
+
+        .here {
+            text-decoration: underline;
+            cursor: pointer;
+            color: rgb(74, 224, 199);
+        }
+    }
+}
+
+.curve {}

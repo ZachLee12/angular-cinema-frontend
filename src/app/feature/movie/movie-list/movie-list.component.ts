@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MovieService } from '../movie-service.service';
-import { Movie, MovieListResponse } from '../interfaces';
+import { MovieService } from '../../../core/services/movie/movie-service.service';
+import { Movie } from '../interfaces';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -10,16 +10,21 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class MovieListComponent {
   unsubscribe$: Subject<void> = new Subject();
-  movieList!: Movie[]
+  movieList?: Movie[]
 
-  constructor(private movieService: MovieService) {
-
-  }
+  constructor(
+    private movieService: MovieService
+  ) { }
 
   getMovieList(): void {
-    this.movieService.getMovieList().pipe(takeUntil(this.unsubscribe$)).subscribe((data: any) => {
-      this.movieList = data
-    })
+    this.movieService.getMovies$().pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        {
+          next: (data: Movie[]) => {
+            this.movieList = data
+          }
+        }
+      )
   }
 
   ngOnInit() {

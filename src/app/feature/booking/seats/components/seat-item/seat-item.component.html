@@ -1,0 +1,4 @@
+<li id="Seat-item" class="seat-item" [ngClass]="{'selected':seatData?.selected, 'already-booked':alreadyBooked}"
+    (click)="toggleSelected()" (click)="emitSelectedEvent()">
+    <div class="inner-circle"></div>
+</li>

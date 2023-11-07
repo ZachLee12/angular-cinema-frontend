@@ -1,31 +1,18 @@
+<!-- <button (click)="login()">Google Drive Log In</button> -->
 <div id="App">
-    <header class="header">
-        <div class="cinema-name-title-wrapper">
-            <p class="cinema-name-title" routerLink="/home">Cinema Express</p>
+    <header *ngIf="!router.url.includes('home')">
+        <div class="tab main-tab-title" routerLink="/home">
+            <p class="cinema-booking-system-title"><span class="beautify">Cinema Express</span></p>
         </div>
-        <div class="nav-wrapper">
-            <div routerLink="/home" routerLinkActive="active-link" class="nav">
-                Home
-            </div>
-            <div routerLink="/movie-page" routerLinkActive="active-link" class="nav">
-                Movies
-            </div>
-            <div routerLink="/about" routerLinkActive="active-link" class="nav">
-                About
-            </div>
 
-            <div *ngIf="getIsLoggedIn() else elseBlock" class="wrapper" (click)="logOut()">
-                <div class="nav">
-                    Log Out
-                </div>
-            </div>
-
-            <ng-template #elseBlock>
-                <div class="nav" (click)="logIn()">
-                    Log In
-                </div>
-            </ng-template>
-        </div>
     </header>
-    <router-outlet></router-outlet>
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="footer">
+        <p>Created by @zachlee12 during his free time.</p>
+        <a target="_blank" href="https://github.com/ZachLee12"><img class="github-icon"
+                src="../assets/images/web-technology/github.svg" type="image/svg+xml"></a>
+    </footer>
 </div>

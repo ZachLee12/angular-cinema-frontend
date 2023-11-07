@@ -1,58 +1,95 @@
-$header-height: 70px;
-$header-left-and-right-padding: 20px;
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $centerContents {
+        justify-content: center;
+        align-items: center;
+    }
+
+    @content
+}
 
 #App {
-    width: 100%;
-    height: calc(100% - $header-height);
+    max-width: 1500px;
+    min-height: 100%;
+    background-color: #1e1e20;
+    position: relative;
+    align-self: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.header {
-    height: $header-height;
-    display: flex;
-    background-color: black;
-    color: white;
-    justify-content: space-between;
-    padding: 0 $header-left-and-right-padding;
-    border-bottom: 3px solid white;
+header {
+    height: 80px;
+    padding: 0 20px;
+    background-color: #111111;
+    // border-bottom: 5px solid #404040;
+    box-shadow: 0px 0px 10px -1px #414141;
     box-sizing: border-box;
-    font-weight: 600;
-    font-size: 1.2em;
-}
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-.cinema-name-title-wrapper {
-    display: flex;
+    @include flexDisplay(row, false) {
+        align-items: center;
+    }
 
-    .cinema-name-title {
-        align-self: center;
-        font-weight: 600;
+    ;
+
+    .cinema-booking-system-title {
         cursor: pointer;
-        transition: all 300ms ease-in-out;
+        margin: 0px;
+        font-size: 2em;
+        text-shadow: none;
+        font-weight: bolder;
 
-        &:hover {
-            color: #ffa200;
-            // text-shadow: 0px 0px 5px #ff7300;
+        .beautify {
+            background-image: linear-gradient(to right, #f62929, #e84949, #f3a64e, #f18509);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     }
 }
 
-.nav-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-right: 20px;
+.main-content {
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    .nav {
-        cursor: pointer;
-        font-weight: 600;
-        transition: color 300ms ease-in-out;
+.footer {
+    height: 50px;
+    background-color: #313131;
+    color: #808080;
+    width: 100%;
 
-        &:hover {
-            color: #ffa200;
-        }
+    @include flexDisplay(row, true) {
+        gap: 20px;
+    }
+
+    ;
+
+    p {
+        margin: 0;
+    }
+
+    .github-icon {
+        width: 30px;
+        height: 30px;
     }
 }
 
-.active-link {
-    color: #ffa200;
+@media screen and (max-width: 700px) {
+    header {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:520px) {
+
+    .footer {
+        flex-direction: column;
+        padding: 20px 0;
+    }
 }

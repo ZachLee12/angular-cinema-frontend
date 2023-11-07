@@ -1,0 +1,40 @@
+@import '../../../../../mixins';
+
+
+.seat-item {
+    @include flexDisplay(row, true);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: gray;
+    transition: box-shadow 200ms ease-in-out;
+
+
+    &:hover>.inner-circle {
+        background-color: #00a2ff;
+    }
+
+    &:hover {
+        box-shadow: 0px 0px 3px 3px turquoise;
+    }
+
+    .inner-circle {
+        width: 13px;
+        height: 13px;
+        border-radius: inherit;
+        background-color: white;
+        transition: background-color 200ms ease-in-out;
+    }
+}
+
+.selected {
+    background-color: #00a2ff;
+    box-shadow: 0px 0px 3px 3px turquoise;
+}
+
+.already-booked {
+    background-color: #ff1500;
+    box-shadow: 0px 0px 3px 3px #e07d40;
+    pointer-events: none;
+}

@@ -1,0 +1,84 @@
+@import './../../../../mixins';
+
+#User-Booking {
+    height: 100%;
+    overflow-y: auto;
+    // border: 2px solid aliceblue;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #606060;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #424242;
+    }
+}
+
+.your-bookings-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.2rem;
+    margin: 10px;
+    border-bottom: 3px solid white;
+}
+
+
+.bookings-wrapper {
+    @include flexDisplay(column, false) {
+        gap: 10px;
+    }
+
+    ;
+
+    .booking {
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 1.5px 5px -2px white;
+        margin: 5px;
+
+        @include flexDisplay(row, false) {
+            justify-content: space-between;
+        }
+
+        ;
+
+
+
+
+        p {
+            margin: 0;
+        }
+
+        .movie-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .booking-id {
+            font-size: 0.7rem;
+        }
+
+        .details-btn {
+            height: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            align-self: center;
+            border-radius: 5px;
+            width: 150px;
+            background-color: #2f2f2f;
+            border: none;
+            color: white;
+            transition: background-color 200ms ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #b47f1e
+            }
+        }
+    }
+}

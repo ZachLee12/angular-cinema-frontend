@@ -1,0 +1,73 @@
+<div id="Hall-Selection">
+    <div class="movie-info-wrapper">
+        <div class="movie-title-wrapper">
+            <p class="movie-title">
+                {{(selectedMovie$|async)?.name}} - {{(activatedRouteService.params | async)?.["showtime"]}}
+            </p>
+            <div class="underline"></div>
+        </div>
+    </div>
+    <p class="hall-selection-title">Hall Selection</p>
+    <div class="hall-cards">
+        <div class="hall-card" [id]="hall.id" (click)="setSelectedHall($event)"
+            (click)="navigateToSeatsBooking(hall.hallSize)" *ngFor="let hall of halls$ | async">
+            <p class="hall-size-title">{{hall.hallSize}} Hall</p>
+            <ul class="hall-desc-list">
+                <ng-container *ngIf="hall.hallSize === 'BIG'">
+                    <div class="img-wrapper">
+                        <img class="img" src="../../../../assets/images/big-cinema.png" alt="">
+                    </div>
+                    <li class="hall-desc">
+                        <p class="emoji">💥</p>
+                        <p class="promo-desc">50% discount for every 2nd ticket purchase</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">🏆</p>
+                        <p class="promo-desc">Full cinematic endulgence</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">💖</p>
+                        <p class="promo-desc">Our big hall accommodates all movie lovers</p>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="hall.hallSize === 'MEDIUM'">
+                    <div class="img-wrapper">
+                        <img class="img" src="../../../../assets/images/medium-cinema.png" alt="">
+                    </div>
+                    <li class="hall-desc">
+                        <p class="emoji">🍟</p>
+                        <p class="promo-desc">20% discount for snacks</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">👻</p>
+                        <p class="promo-desc">Ideal for Groups and Solo Moviegoers</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">🎫</p>
+                        <p class="promo-desc">A versatile cinematic experience</p>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="hall.hallSize === 'SMALL'">
+                    <div class="img-wrapper">
+                        <img class="img" src="../../../../assets/images/small-cinema.png" alt="">
+                    </div>
+                    <li class="hall-desc">
+                        <p class="emoji">🍿</p>
+                        <p class="promo-desc">25% discount for group purchases</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">🎬</p>
+                        <p class="promo-desc">Close-Up cinema at its finest</p>
+                    </li>
+                    <li class="hall-desc">
+                        <p class="emoji">🌠</p>
+                        <p class="promo-desc">Our small hall delights!</p>
+                    </li>
+                </ng-container>
+            </ul>
+
+        </div>
+    </div>
+</div>

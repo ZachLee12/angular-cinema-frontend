@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Movie } from 'src/app/feature/movie/interfaces';
+import jwt_decode from 'jwt-decode'
 
 interface ApiResponse {
   status: string
@@ -21,19 +23,12 @@ export class DatabaseService {
     })
   }
 
-  getMovieNames$(): Observable<[{ name: string }]> {
-    return this.httpClient.get<[{ name: string }]>(`http://localhost:3000/movies/names`)
+  getMovies$(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(`http://localhost:3000/movies`)
   }
 
-  addMovie$(time: string, name: string, numberofseats: number, imageBase64: string) {
-    return this.httpClient.post(`http://localhost:3000/movies/add`, {
-      time, name, numberofseats, imageBase64
-    })
-  }
-
-  deleteMovie$(name: string) {
-    return this.httpClient.post(`http://localhost:3000/movies/delete`, {
-      name
-    })
+  //Protected
+  getUser$(username: string) {
+    return this.httpClient.get(`http://localhost:3000/protected/users/${username}`)
   }
 }

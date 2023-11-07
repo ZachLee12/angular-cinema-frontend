@@ -1,0 +1,186 @@
+$netflix-red: #e50914;
+
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $centerContents {
+        justify-content: center;
+        align-items: center;
+    }
+
+    @content
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../../../../assets/fonts/Roboto-Black.ttf');
+}
+
+#MainPage {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    z-index: 1; //this is needed
+    padding: 25px 25px 0px 25px;
+    box-sizing: border-box;
+
+    @include flexDisplay(row, false) {
+        justify-content: space-between;
+    }
+
+    ;
+
+    .main-tab-title {
+        @include flexDisplay(row, true);
+        cursor: pointer;
+
+        .cinema-booking-system-title {
+            margin: 0px;
+            font-size: 2em;
+            text-shadow: none;
+            font-weight: bolder;
+
+            .beautify {
+                background-image: linear-gradient(to right, #f62929, #e84949, #f3a64e, #f18509);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    .nav-tabs {
+        @include flexDisplay(row, true) {
+            justify-content: space-evenly;
+            gap: 40px;
+        }
+
+        ;
+
+        cursor: pointer;
+        // border: 2px solid red;
+        min-width: 35%;
+
+        .tab>.tab-title {
+            color: white;
+            font-size: 1.5em;
+        }
+    }
+
+}
+
+section {
+    border-bottom: 8px solid rgb(53, 53, 53);
+    max-height: 100%;
+}
+
+.spacing-for-main {
+    width: 100%;
+    height: 750px;
+    position: relative;
+    border-bottom: 8px solid gray;
+
+    .main {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        // background-image: url(../../../../../assets/images/movies/elemental.webp);
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .opacity-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(ellipse at center, transparent, black 95%);
+            opacity: 0.8;
+        }
+    }
+}
+
+.promotion-section {
+    color: #ffffff;
+    padding: 100px 0;
+
+    .promotion-title {
+        text-align: center;
+        font-size: 3rem;
+        margin: 0;
+
+        span.style-word {
+            background-image: linear-gradient(to right, #44f629, #49e87b, #4ef3d5, #09aff1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    .wrapper {
+        margin: 50px 0;
+
+        @include flexDisplay(row, false) {
+            justify-content: space-evenly;
+            gap: 30px;
+        }
+
+        ;
+
+        .benefit {
+            font-weight: 100;
+            font-size: 1.3rem;
+            list-style: none;
+
+            .emoji {
+                font-size: 1.8rem;
+            }
+        }
+
+        .computer-svg {
+            max-width: 200px;
+            height: auto;
+        }
+    }
+}
+
+.carousel-section {
+    padding: 100px 50px;
+}
+
+.third-section {
+    .tech-stack-title {
+        margin: 40px 0 0 0;
+        text-align: center;
+        color: white;
+        font-size: 2.5rem;
+    }
+}
+
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 710px) {
+    .nav-tabs {
+        display: none !important;
+    }
+
+}
+
+@media screen and (max-width: 670px) {
+    .promotion-section {
+        .wrapper {
+            @include flexDisplay(column, true) {
+                justify-content: space-between;
+            }
+
+            ;
+        }
+    }
+}

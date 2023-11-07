@@ -1,0 +1,131 @@
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if($centerContents) {
+        align-items: center;
+        justify-content: center;
+    }
+
+    @content
+}
+
+#Login-Page {}
+
+.login-form {
+    @include flexDisplay(column, false) {
+        justify-content: space-evenly;
+        gap: 20px;
+    }
+
+    ;
+}
+
+.wrapper {
+    @include flexDisplay(column, false);
+
+    @mixin activeLabel() {
+        font-size: 0.85em;
+        transform: translate(-10px, -25px);
+        color: purple;
+    }
+
+    position: relative;
+
+    input[type="text"],
+    input[type="password"] {
+        height: 40px;
+        border: 2px solid purple;
+        background-color: #f5f5f5;
+        box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4),
+            1px 2px 2px hsla(0, 0%, 0%, 0.4);
+        border-radius: 10px;
+        font-size: 1.2em;
+        padding-left: 10px;
+        padding-top: 20px;
+        outline: none;
+
+        &:focus {
+            border-radius: 10px 10px 0px 0px;
+        }
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        color: gray;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translate(0%, -50%);
+        font-size: 1em;
+        transition: transform 300ms ease-in-out,
+            font-size 300ms ease-in-out,
+            color 300ms ease-in-out;
+
+        .error-message {
+            // display: block;
+            font-size: 0.7em;
+        }
+    }
+
+
+    &>input:focus+.label {
+        @include activeLabel();
+    }
+
+    &>input:focus~.focus-line {
+        width: 100%;
+        height: 5px;
+        background-image: linear-gradient(90deg, purple, #23c1f5, purple);
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .active-label {
+        @include activeLabel();
+    }
+
+    .invalid-label {
+        color: red !important;
+    }
+
+    .transform-words {
+        font-size: 0.85em;
+        transform: translate(-10px, -25px);
+    }
+}
+
+.login-btn {
+    height: 40px;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: white;
+    background: linear-gradient(45deg, #800080, #23c1f5);
+    opacity: 0.8;
+    transition: opacity 200ms ease-in-out;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        opacity: 0.8;
+    }
+}
+
+.disable-btn {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.login-success {
+    color: green;
+}
+
+.login-failed {
+    color: red !important;
+}

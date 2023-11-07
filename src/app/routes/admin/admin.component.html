@@ -1,9 +1,14 @@
 <div id="Admin">
+    <button (click)="getUser()">Get User</button>
+    <button (click)="logout()">Logout</button>
+    <button (click)="logTokens()">Log Tokens</button>
+
+    <!-- <img src="https://drive.google.com/uc?id=1E0Ue8xCF6T6IoqTmYSAskP2M9PkBMlZz&export=download" alt=""> -->
     <fieldset class="fieldset">
         <legend>RESET</legend>
         <label for="movie-name-reset">Movie Name</label>
         <select [(ngModel)]="movieName" name="movie-select" id="movie-select">
-            <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+            <option *ngFor="let movie of movies" value="{{movie.name}}">{{movie.name}} </option>
         </select>
         <button class="reset-seats-booked-button function-button" (click)="resetSeatsBooked()">Reset seats
             booked</button>
@@ -26,7 +31,7 @@
         <legend>DELETE</legend>
         <label for="movie-name-reset">Movie Name</label>
         <select [(ngModel)]="movieNameToDelete" name="movie-select" id="movie-select">
-            <option *ngFor="let movie of movies" value="{{movie}}">{{movie}} </option>
+            <option *ngFor="let movie of movies" value="{{movie.name}}">{{movie.name}} </option>
         </select>
         <button class="function-button" (click)="deleteMovie()">Delete Movie</button>
     </fieldset>

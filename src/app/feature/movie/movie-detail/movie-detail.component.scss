@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(../../../../assets/fonts/Roboto-Regular.ttf);
+}
+
+@mixin flexDisplay($direction: row, $centerContents: false) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $centerContents {
+        justify-content: center;
+        align-items: center;
+    }
+
+    @content
+}
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url(../../../../assets/fonts/Roboto-Bold.ttf);
+}
+
+#Movie-Detail {
+    max-width: 100%;
+    height: 100%;
+    color: white;
+    font-family: 'Roboto-Regular';
+    padding: 80px;
+}
+
+.movie-name {
+    font-family: 'Roboto-Bold';
+    font-size: 3rem;
+    border-bottom: 5px solid gold;
+    display: inline-block;
+    margin: 50px 0 20px 0;
+}
+
+.content-wrapper {
+    @include flexDisplay(row, false) {
+        justify-content: space-between
+    }
+
+    ;
+    // border: 2px solid red;
+
+    .movie-info {
+        max-width: 50%;
+        // border: 2px solid red;
+
+        .actors-and-genres-wrapper {
+            @include flexDisplay(column, false) {
+                justify-content: space-evenly;
+            }
+
+            ;
+
+            .actors,
+            .genres {}
+        }
+    }
+
+    .img-wrapper {
+        max-width: 100%;
+        flex-grow: 1;
+        @include flexDisplay(row, true);
+
+        img {
+            max-width: 300px;
+            margin: auto;
+        }
+    }
+}
+
+.showtimes-wrapper {
+    .showtimes-title {
+        font-size: 2rem;
+        font-family: 'Roboto-Bold';
+    }
+
+    .showtimes {
+        border: 2px solid red;
+        padding: 0; //it seems like `ul` has a default padding-left of 40px;
+
+        @include flexDisplay(row, false) {
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        ;
+
+        .showtime {
+            list-style: none;
+            padding: 10px 0;
+            width: 150px;
+            font-size: 1.3rem;
+            border-bottom: 5px solid #c1a91d;
+            position: relative;
+            text-align: center;
+            transition: transform 300ms ease-in-out,
+                border 300ms ease-in-out, color 300ms ease-in-out;
+            cursor: pointer;
+            color: #b1b1b1;
+
+            &:hover {
+                transform: translateY(-10px);
+                border-bottom: 5px solid #88fff3;
+                color: white;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width:840px) {
+    .movie-name {
+        display: block;
+        text-align: center;
+    }
+
+    .movie-info {
+        max-width: 100% !important; //find out why you need to use important
+    }
+
+    .content-wrapper {
+        @include flexDisplay(column, true) {
+            justify-content: space-between
+        }
+    }
+}

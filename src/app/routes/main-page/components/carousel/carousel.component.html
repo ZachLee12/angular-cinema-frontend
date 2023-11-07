@@ -1,0 +1,16 @@
+<div id="Carousel">
+    <mat-icon class="left-arrow nav-arrow" (click)="prev()">keyboard_arrow_left</mat-icon>
+    <section class="slides">
+        <ng-container *ngFor="let slide of slides;">
+            <app-slide [@fade]="slide.display ? 'in' : 'out'" *ngIf="slide.display" [slide]="slide">
+            </app-slide>
+        </ng-container>
+    </section>
+
+    <mat-icon class="right-arrow nav-arrow" (click)="next()">keyboard_arrow_right</mat-icon>
+    <div class="small-nav-arrows">
+        <mat-icon class="small-screen-left-arrow small-screen-nav-arrow" (click)="prev()">keyboard_arrow_left</mat-icon>
+        <mat-icon class="small-screen-right-arrow small-screen-nav-arrow"
+            (click)="next()">keyboard_arrow_right</mat-icon>
+    </div>
+</div>

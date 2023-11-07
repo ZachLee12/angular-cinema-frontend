@@ -5,19 +5,24 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { RouterModule } from '@angular/router';
 import { MovieRoutingModule } from './movie-routing.module';
-
+import { BookingModule } from '../booking/booking.module';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { SharedModule } from 'src/app/core/shared/shared.module';
 
 
 @NgModule({
   declarations: [
     MovieItemComponent,
     MoviePageComponent,
-    MovieListComponent
+    MovieListComponent,
+    MovieDetailComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MovieRoutingModule
+    BookingModule,
+    MovieRoutingModule,
+    SharedModule
   ]
 })
 export class MovieModule { }
