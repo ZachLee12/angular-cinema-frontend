@@ -23,7 +23,7 @@ import { UserProfileModule } from './feature/user-profile/user-profile.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
+    // AdminModule,
     HttpClientModule,
     OAuthModule.forRoot(),
 
@@ -33,7 +33,7 @@ import { UserProfileModule } from './feature/user-profile/user-profile.module';
     BrowserAnimationsModule,
     MainPageModule,
     GraphQLModule,
-    UserProfileModule
+    // UserProfileModule
   ],
   providers: [
     {

@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from 'src/app/core/services/movie/movie-service.service';
-import { Observable, Subject, filter, switchMap, tap } from 'rxjs'
+import { Observable, Subject, filter, map, switchMap, tap } from 'rxjs'
 import { Movie } from '../../movie/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SeatData } from '../seats/interfaces';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { Apollo, gql } from 'apollo-angular';
 import { UserBookingService } from 'src/app/core/services/user-booking/user-booking.service';
+import { UserBooking } from 'src/app/core/services/movie/interfaces';
 
 
 @Component({
@@ -68,13 +69,18 @@ export class BookingComponent {
       )
     })
       .then((hall: any) => {
-        console.log('ran')
-        console.log(hall)
+
         return this.userBookingService.getUserBookingsInOneHall$(hall.id)
       })
-      .then(data => {
-        console.log("data here:")
-        console.log(data)
+      .then((userBookings$: Observable<UserBooking[]>) => {
+        userBookings$.pipe(
+          tap(userBookings => {
+            userBookings.forEach(booking => {
+              console.log(booking.seatsBooked)
+              booking.seatsBooked.forEach(seat => this.userBookingsFromDatabase.push(seat))
+            })
+          })
+        ).subscribe(console.log)
       })
 
     //   setTimeout(() => {

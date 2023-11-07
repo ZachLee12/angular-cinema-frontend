@@ -8,7 +8,6 @@ import { AboutComponent } from './routes/about/about.component';
 const routes: Routes = [
   {
     path: "",
-    // component: PlaceholderComponent,
     redirectTo: "home",
     pathMatch: 'full'
   },
@@ -18,12 +17,15 @@ const routes: Routes = [
   },
   {
     path: "admin",
-    component: AdminComponent,
-    canActivate: [AdminGuard]
+    loadChildren: () => import('./routes/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: "about",
     component: AboutComponent,
+  },
+  {
+    path: "user/:userId",
+    loadChildren: () => import("./feature/user-profile/user-profile.module").then(m => m.UserProfileModule)
   }
 ];
 

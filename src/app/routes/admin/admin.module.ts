@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
@@ -19,6 +20,7 @@ import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
   imports: [
     CommonModule,
     FormsModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
